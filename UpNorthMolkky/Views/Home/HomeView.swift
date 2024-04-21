@@ -16,7 +16,6 @@ struct HomeView: View {
     
     @State private var headerColor: Color = Color(hue: 0.6, saturation: 0.6, brightness: 0.8)
     @State private var headerText: String = "play"
-    @State private var headerTextOpacity: Double = 0.1
     
     let saveAction: () -> Void
     
@@ -52,8 +51,9 @@ struct HomeView: View {
                 .padding()
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(headerColor.opacity(headerTextOpacity))
-            // .shadow(radius: 2, x: 0, y: 3)
+            .background(
+                LinearGradient(gradient: Gradient(colors: [headerColor.opacity(0.25), headerColor.opacity(0)]), startPoint: .top, endPoint: .bottom)
+            )
             TabView(selection: $selectedTab) {
                 Group {
                     PlayTabView(userData: $store.userData, navPath: $path)
