@@ -26,7 +26,6 @@ struct NewRoundSheet: View {
                         NavigationLink(destination: ScoreboardView(round: $newRound)) {
                             Button("Start") {
                                 if (newRound.players.count >= 2) {
-                                    userData.addPlayers(newRound.players)
                                     userData.addRound(newRound)
                                     isPresentingNewRoundView = false
                                 }
