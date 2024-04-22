@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PlayerScoreShimmerView: View {
-    var playerScore: MolkkyRound.PlayerScore
+    var playerScore: MolkkyRound.ContenderScore
     var currentPlayer: Bool
     
     func getFinishColor() -> Color {

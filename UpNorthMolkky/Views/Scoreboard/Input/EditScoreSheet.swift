@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct EditScoreSheet: View {
-    @Binding var attempt: MolkkyRound.PlayerAttempt
+    @Binding var attempt: MolkkyRound.ContenderAttempt
     @Binding var isPresentingEditScoreView: Bool
     
-    @State var editAttempt: MolkkyRound.PlayerAttempt
+    @State var editAttempt: MolkkyRound.ContenderAttempt
     
-    init(attempt: Binding<MolkkyRound.PlayerAttempt>, isPresentingEditScoreView: Binding<Bool>) {
+    init(attempt: Binding<MolkkyRound.ContenderAttempt>, isPresentingEditScoreView: Binding<Bool>) {
         self._attempt = attempt
         self._editAttempt = State(initialValue: attempt.wrappedValue)
         self._isPresentingEditScoreView = isPresentingEditScoreView
@@ -42,11 +42,11 @@ struct EditScoreSheet: View {
 }
 
 struct EditView: View {
-    @Binding var attempt: MolkkyRound.PlayerAttempt
-    @Binding var editAttempt: MolkkyRound.PlayerAttempt
+    @Binding var attempt: MolkkyRound.ContenderAttempt
+    @Binding var editAttempt: MolkkyRound.ContenderAttempt
     
     func editScore(value: Int) {
-        editAttempt = MolkkyRound.PlayerAttempt(player: attempt.player, score: value)
+        editAttempt = MolkkyRound.ContenderAttempt(player: attempt.contender, score: value)
     }
     
     var body: some View {
@@ -55,7 +55,7 @@ struct EditView: View {
             HStack {
                 Divider()
                 VStack {
-                    Text(editAttempt.player.playerName)
+                    Text(editAttempt.contender.name)
                     ScoreboardView.getNumberAsText(value: editAttempt.score)
                 }
                 Divider()
@@ -71,6 +71,6 @@ struct EditView: View {
 
 struct EditScoreSheet_Previews: PreviewProvider {
     static var previews: some View {
-        EditScoreSheet(attempt: .constant(MolkkyRound.PlayerAttempt(player: Player(playerName: "Anthony", orderKey: 0), score: 1)), isPresentingEditScoreView: .constant(true))
+        EditScoreSheet(attempt: .constant(MolkkyRound.ContenderAttempt(player: Contender(name: "Anthony", orderKey: 0), score: 1)), isPresentingEditScoreView: .constant(true))
     }
 }

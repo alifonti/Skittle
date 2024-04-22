@@ -81,8 +81,8 @@ struct PlayerListView: View {
                                     let newPlayer = Person(playerName: newPlayerNameText)
                                     newPlayers.append(newPlayer)
                                     selectedPlayers.insert(newPlayer.id)
-                                    round.players = newPlayers.filter{selectedPlayers.contains($0.id)}
-                                        .enumerated().map{Player(id: $1.id, playerName: $1.playerName, orderKey: $0)}
+                                    round.contenders = newPlayers.filter{selectedPlayers.contains($0.id)}
+                                        .enumerated().map{Contender(id: $1.id, name: $1.playerName, orderKey: $0)}
                                     newPlayerNameText = ""
                                 }
                                 viewAddPlayerField = false
@@ -113,8 +113,8 @@ struct PlayerListView: View {
                             } else {
                                 selectedPlayers.insert(person.id)
                             }
-                            round.players = newPlayers.filter{selectedPlayers.contains($0.id)}
-                                .enumerated().map{Player(id: $1.id, playerName: $1.playerName, orderKey: $0)}
+                            round.contenders = newPlayers.filter{selectedPlayers.contains($0.id)}
+                                .enumerated().map{Contender(id: $1.id, name: $1.playerName, orderKey: $0)}
                         }
                 }
                 //

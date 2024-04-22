@@ -11,7 +11,7 @@ struct ScoreControlsView: View {
     @Binding var round: MolkkyRound
     
     func addScore(value: Int) {
-        round.recordAttempt(attempt: MolkkyRound.PlayerAttempt(player: round.currentPlayer, score: value))
+        round.recordAttempt(attempt: MolkkyRound.ContenderAttempt(player: round.currentContender, score: value))
         round.clearUndoStack()
     }
     

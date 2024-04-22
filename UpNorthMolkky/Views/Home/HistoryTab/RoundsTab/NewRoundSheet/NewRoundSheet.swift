@@ -25,12 +25,12 @@ struct NewRoundSheet: View {
                     ToolbarItem(placement: .confirmationAction) {
                         NavigationLink(destination: ScoreboardView(round: $newRound)) {
                             Button("Start") {
-                                if (newRound.players.count >= 2) {
+                                if (newRound.contenders.count >= 2) {
                                     userData.addRound(newRound)
                                     isPresentingNewRoundView = false
                                 }
                             }
-                            .disabled(newRound.players.count <= 1)
+                            .disabled(newRound.contenders.count <= 1)
                         }
                     }
                 }

@@ -17,8 +17,8 @@ struct CardView: View {
                     .font(.headline)
                     .accessibilityAddTraits(.isHeader)
                 Spacer()
-                Label("\(round.players.count)", systemImage: "person.3")
-                    .accessibilityLabel("\(round.players.count) attendees")
+                Label("\(round.contenders.count)", systemImage: "person.3")
+                    .accessibilityLabel("\(round.contenders.count) attendees")
                     .font(.caption)
             }
             Spacer()

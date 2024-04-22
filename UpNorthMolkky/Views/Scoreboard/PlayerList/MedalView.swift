@@ -10,7 +10,7 @@ import SwiftUI
 struct MedalView : View {
     @Environment(\.colorScheme) var colorScheme
     
-    var playerScore: MolkkyRound.PlayerScore
+    var playerScore: MolkkyRound.ContenderScore
     var accentColor: Color
     
     var iconString: String {

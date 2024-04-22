@@ -33,8 +33,8 @@ struct PlayerOrderView: View {
             Divider()
             ScrollView(showsIndicators: false, content: {
                 VStack(spacing: 10, content: {
-                    ForEach(round.players, id: \.self) { player in
-                        PlayerOrderItemView(title: player.playerName, index: round.players.firstIndex(of: player) ?? 0,
+                    ForEach(round.contenders, id: \.self) { contender in
+                        PlayerOrderItemView(title: contender.name, index: round.contenders.firstIndex(of: contender) ?? 0,
                             hideOrderedDetails: isShuffle)
                     }
                     Spacer()

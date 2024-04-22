@@ -13,12 +13,12 @@ struct PlayerScoresListView: View {
     var body: some View {
         ScrollView(.vertical) {
             LazyVStack(alignment: .leading, spacing: 0) {
-                ForEach(round.playerScores, id: \.player.id) { playerScore in
+                ForEach(round.contenderScores, id: \.contender.id) { contenderScore in
                     VStack(spacing: 0) {
                         Divider()
                         PlayerScoreView(
-                            playerScore: playerScore,
-                            currentPlayer: (round.currentPlayerIndex == playerScore.player.orderKey) && !round.hasGameEnded
+                            playerScore: contenderScore,
+                            currentPlayer: (round.currentContenderIndex == contenderScore.contender.orderKey) && !round.hasGameEnded
                         )
                     }
                 }

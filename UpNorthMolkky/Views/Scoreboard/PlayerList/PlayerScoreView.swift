@@ -10,7 +10,7 @@ import SwiftUI
 struct PlayerScoreView: View {
     @State var isSimpleView: Bool = true
     
-    var playerScore: MolkkyRound.PlayerScore
+    var playerScore: MolkkyRound.ContenderScore
     var currentPlayer: Bool
     
     var accentColor: Color {
@@ -56,7 +56,7 @@ struct PlayerScoreView: View {
                 .frame(width: 10)
             HStack(alignment: .center) {
                 VStack(alignment: .leading, spacing: 5) {
-                    Text(playerScore.player.playerName)
+                    Text(playerScore.contender.name)
                         .font(isSimpleView ? .title : .title2)
                         .foregroundColor(Color(UIColor.label))
                     ScrollViewReader { proxy in

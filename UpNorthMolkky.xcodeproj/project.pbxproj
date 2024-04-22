@@ -14,7 +14,7 @@
 		FD79286B2AB14E1600FF25CE /* ScoreboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD79286A2AB14E1600FF25CE /* ScoreboardView.swift */; };
 		FD79286F2AB151DD00FF25CE /* ScoreKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD79286E2AB151DD00FF25CE /* ScoreKeyboardView.swift */; };
 		FD7928712AB15A0C00FF25CE /* PlayerScoresListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7928702AB15A0C00FF25CE /* PlayerScoresListView.swift */; };
-		FD7928732AB15DE800FF25CE /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7928722AB15DE800FF25CE /* Player.swift */; };
+		FD7928732AB15DE800FF25CE /* Contender.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7928722AB15DE800FF25CE /* Contender.swift */; };
 		FD7928752AB166B200FF25CE /* ScoreHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7928742AB166B200FF25CE /* ScoreHistoryView.swift */; };
 		FD7928772AB1670600FF25CE /* ScoreControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD7928762AB1670600FF25CE /* ScoreControlsView.swift */; };
 		FD841A212AB6BEA700E4AD1B /* EditScoreSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD841A202AB6BEA700E4AD1B /* EditScoreSheet.swift */; };
@@ -57,7 +57,7 @@
 		FDD8C7EA2BC8D9AE0082B523 /* BarToggleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8C7E92BC8D9AE0082B523 /* BarToggleInput.swift */; };
 		FDD8C7EC2BC8DEBE0082B523 /* CheckmarkToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8C7EB2BC8DEBE0082B523 /* CheckmarkToggleStyle.swift */; };
 		FDD8C7EE2BC8E8010082B523 /* PartyToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8C7ED2BC8E8010082B523 /* PartyToggleStyle.swift */; };
-		FDD8C7F02BCCEA270082B523 /* Contender.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8C7EF2BCCEA270082B523 /* Contender.swift */; };
+		FDD8C7F02BCCEA270082B523 /* SpareContenderTEMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8C7EF2BCCEA270082B523 /* SpareContenderTEMP.swift */; };
 		FDE03B2C2ACE2BD400A263A7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE03B2B2ACE2BD400A263A7 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,7 +70,7 @@
 		FD79286A2AB14E1600FF25CE /* ScoreboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardView.swift; sourceTree = "<group>"; };
 		FD79286E2AB151DD00FF25CE /* ScoreKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreKeyboardView.swift; sourceTree = "<group>"; };
 		FD7928702AB15A0C00FF25CE /* PlayerScoresListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoresListView.swift; sourceTree = "<group>"; };
-		FD7928722AB15DE800FF25CE /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		FD7928722AB15DE800FF25CE /* Contender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contender.swift; sourceTree = "<group>"; };
 		FD7928742AB166B200FF25CE /* ScoreHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreHistoryView.swift; sourceTree = "<group>"; };
 		FD7928762AB1670600FF25CE /* ScoreControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreControlsView.swift; sourceTree = "<group>"; };
 		FD841A202AB6BEA700E4AD1B /* EditScoreSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScoreSheet.swift; sourceTree = "<group>"; };
@@ -113,7 +113,7 @@
 		FDD8C7E92BC8D9AE0082B523 /* BarToggleInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarToggleInput.swift; sourceTree = "<group>"; };
 		FDD8C7EB2BC8DEBE0082B523 /* CheckmarkToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkToggleStyle.swift; sourceTree = "<group>"; };
 		FDD8C7ED2BC8E8010082B523 /* PartyToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyToggleStyle.swift; sourceTree = "<group>"; };
-		FDD8C7EF2BCCEA270082B523 /* Contender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contender.swift; sourceTree = "<group>"; };
+		FDD8C7EF2BCCEA270082B523 /* SpareContenderTEMP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpareContenderTEMP.swift; sourceTree = "<group>"; };
 		FDE03B2B2ACE2BD400A263A7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,12 +178,12 @@
 			isa = PBXGroup;
 			children = (
 				FD3F12AD2AD20E4B005F5BF5 /* Person.swift */,
-				FD7928722AB15DE800FF25CE /* Player.swift */,
+				FD7928722AB15DE800FF25CE /* Contender.swift */,
 				FD90BD012AB2872B00D7CF3B /* MolkkyRound.swift */,
 				FD90BD032AB663FC00D7CF3B /* MolkkyStore.swift */,
 				FD90BD072AB6673700D7CF3B /* ErrorWrapper.swift */,
 				FD95BC482ABFA6A5001A9CFF /* PlayerRoundResults.swift */,
-				FDD8C7EF2BCCEA270082B523 /* Contender.swift */,
+				FDD8C7EF2BCCEA270082B523 /* SpareContenderTEMP.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -459,8 +459,8 @@
 				FDD8C7EA2BC8D9AE0082B523 /* BarToggleInput.swift in Sources */,
 				FD90A3A72BD1F78300FCA297 /* HistoryTabView.swift in Sources */,
 				FD90BD042AB663FC00D7CF3B /* MolkkyStore.swift in Sources */,
-				FDD8C7F02BCCEA270082B523 /* Contender.swift in Sources */,
-				FD7928732AB15DE800FF25CE /* Player.swift in Sources */,
+				FDD8C7F02BCCEA270082B523 /* SpareContenderTEMP.swift in Sources */,
+				FD7928732AB15DE800FF25CE /* Contender.swift in Sources */,
 				FD95BC472ABBE98C001A9CFF /* MissScoreView.swift in Sources */,
 				FD841A212AB6BEA700E4AD1B /* EditScoreSheet.swift in Sources */,
 				FDD8C7D22BBF861E0082B523 /* PlayerItemView.swift in Sources */,

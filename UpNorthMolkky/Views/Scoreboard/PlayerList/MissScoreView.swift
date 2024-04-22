@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MissScoreView: View {
-    var playerScore: MolkkyRound.PlayerScore
+    var playerScore: MolkkyRound.ContenderScore
     var currentPlayer: Bool
     var isSimpleView: Bool
     var displayAccentColor: Color
@@ -57,11 +57,11 @@ struct MissScoreView: View {
 
 struct MissScoreView_Previews: PreviewProvider {
     static var previews: some View {
-        MissScoreView(playerScore: (MolkkyRound.PlayerScore(
-            player: Player(playerName: "A", orderKey: 0),
+        MissScoreView(playerScore: (MolkkyRound.ContenderScore(
+            player: Contender(name: "A", orderKey: 0),
             attempts: [
-                MolkkyRound.PlayerAttempt(player: Player(playerName: "A", orderKey: 0), score: 0),
-                MolkkyRound.PlayerAttempt(player: Player(playerName: "A", orderKey: 0), score: 0)
+                MolkkyRound.ContenderAttempt(player: Contender(name: "A", orderKey: 0), score: 0),
+                MolkkyRound.ContenderAttempt(player: Contender(name: "A", orderKey: 0), score: 0)
             ],
             totalScore: 0,
             isInWarning: false,

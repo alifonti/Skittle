@@ -12,12 +12,12 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
     let date: Date
     
     // -
-    var players: [Player] = []
+    var contenders: [Contender] = []
     
     // - Game Data
-    var attempts: [PlayerAttempt] = []
-    var undoStack: [PlayerAttempt] = []
-    var currentPlayerIndex: Int = 0
+    var attempts: [ContenderAttempt] = []
+    var undoStack: [ContenderAttempt] = []
+    var currentContenderIndex: Int = 0
     
     // - Game Preferences
     var targetScore: Int = 50
@@ -39,31 +39,31 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
     
     // --- Calculated Values
     var hasGameEnded: Bool {
-        playerScores.lazy.filter({ $0.isFinished }).count >= playerScores.count - 1
+        contenderScores.lazy.filter({ $0.isFinished }).count >= contenderScores.count - 1
     }
     
-    var currentPlayer: Player {
-        players[currentPlayerIndex]
+    var currentContender: Contender {
+        contenders[currentContenderIndex]
     }
-    var currentPlayerScore: MolkkyRound.PlayerScore? {
-        playerScores.first(where: {$0.player == currentPlayer})
+    var currentContenderScore: MolkkyRound.ContenderScore? {
+        contenderScores.first(where: {$0.contender == currentContender})
     }
     
-    var playerScores: [PlayerScore] {
-        var dict: [Player: [PlayerAttempt]] = Dictionary(uniqueKeysWithValues: players.map { ($0, [])})
-        var scoreDict: [Player: Int] = Dictionary(uniqueKeysWithValues: players.map { ($0, 0)})
-        var finishPositions: [Player] = []
+    var contenderScores: [ContenderScore] {
+        var dict: [Contender: [ContenderAttempt]] = Dictionary(uniqueKeysWithValues: contenders.map { ($0, [])})
+        var scoreDict: [Contender: Int] = Dictionary(uniqueKeysWithValues: contenders.map { ($0, 0)})
+        var finishPositions: [Contender] = []
         
         for attempt in attempts {
-            dict.updateValue(dict[attempt.player, default: []] + [attempt], forKey: attempt.player)
-            scoreDict.updateValue(calculateTotalScore(total: scoreDict[attempt.player, default: 0], nextScore: attempt.score), forKey: attempt.player)
-            if (scoreDict[attempt.player] == targetScore) {
-                finishPositions.append(attempt.player)
+            dict.updateValue(dict[attempt.contender, default: []] + [attempt], forKey: attempt.contender)
+            scoreDict.updateValue(calculateTotalScore(total: scoreDict[attempt.contender, default: 0], nextScore: attempt.score), forKey: attempt.contender)
+            if (scoreDict[attempt.contender] == targetScore) {
+                finishPositions.append(attempt.contender)
             }
         }
         
         var results = dict.map {
-            PlayerScore(
+            ContenderScore(
                 player: $0.key,
                 attempts: $0.value,
                 totalScore: scoreDict[$0.key] ?? 0,
@@ -74,14 +74,14 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
         }
         
         if (sortByTurn) {
-            results.sort { $0.player.orderKey < $1.player.orderKey }
+            results.sort { $0.contender.orderKey < $1.contender.orderKey }
         } else {
             results.sort { (lhs, rhs) in
-                let predicates: [(PlayerScore, PlayerScore) -> Bool] = [
+                let predicates: [(ContenderScore, ContenderScore) -> Bool] = [
                     { !$0.isEliminated && $1.isEliminated },
                     { $0.totalScore > $1.totalScore },
                     { $0.finishPosition < $1.finishPosition },
-                    { $0.player.orderKey < $1.player.orderKey }
+                    { $0.contender.orderKey < $1.contender.orderKey }
                 ]
                 for predicate in predicates {
                     if !predicate(lhs, rhs) && !predicate(rhs, lhs) {
@@ -97,18 +97,18 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
     }
     
     // --- Mutating Functions
-    mutating func recordAttempt(attempt: MolkkyRound.PlayerAttempt) {
+    mutating func recordAttempt(attempt: MolkkyRound.ContenderAttempt) {
         attempts.append(attempt)
         wasAttemptAdded = true
-        advanceToNextPlayer()
+        advanceToNextContender()
     }
     
-    mutating func advanceToNextPlayer() {
-        let nextPlayer = findNextPlayer()
+    mutating func advanceToNextContender() {
+        let nextPlayer = findNextContender()
         if let nextPlayer {
-            let indexOfNextPlayer = players.firstIndex(of: nextPlayer)
+            let indexOfNextPlayer = contenders.firstIndex(of: nextPlayer)
             if let indexOfNextPlayer {
-                currentPlayerIndex = indexOfNextPlayer % players.count
+                currentContenderIndex = indexOfNextPlayer % contenders.count
             }
         } else {
             print("end game?")
@@ -121,9 +121,9 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
             if let lastAttempt {
                 undoStack.append(lastAttempt)
                 wasAttemptAdded = false // TODO: refactor
-                let index = players.firstIndex(of: lastAttempt.player)
+                let index = contenders.firstIndex(of: lastAttempt.contender)
                 if let index {
-                    currentPlayerIndex = index
+                    currentContenderIndex = index
                 }
             }
         }
@@ -151,10 +151,10 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
     }
     
     // --- Helper Functions
-    func findNextPlayer(_ offset: Int = 0) -> Player? {
-        let followingPlayers = players[(currentPlayerIndex + 1)...] + players[...(currentPlayerIndex)]
+    func findNextContender(_ offset: Int = 0) -> Contender? {
+        let followingPlayers = contenders[(currentContenderIndex + 1)...] + contenders[...(currentContenderIndex)]
         let activePlayers = followingPlayers.filter({ player in
-            let nps = playerScores.first(where: {$0.player == player})
+            let nps = contenderScores.first(where: {$0.contender == player})
             if let nps {
                 return (!nps.isFinished)
             }
@@ -188,13 +188,13 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
     init(id: UUID = UUID(), date: Date = Date.now, players: [Person]) {
         self.id = id
         self.date = Date.now
-        self.players = players.enumerated().map { Player(playerName: $1.playerName, orderKey: $0) }
+        self.contenders = players.enumerated().map { Contender(name: $1.playerName, orderKey: $0) }
     }
     
     init(id: UUID = UUID(), date: Date = Date.now, players: [Person], targetScore: Int, resetScore: Int, missesForElimination: Int) {
         self.id = id
         self.date = Date.now
-        self.players = players.enumerated().map { Player(playerName: $1.playerName, orderKey: $0) }
+        self.contenders = players.enumerated().map { Contender(name: $1.playerName, orderKey: $0) }
         self.targetScore = targetScore
         self.resetScore = resetScore
         self.missesForElimination = missesForElimination
@@ -202,11 +202,11 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
 }
 
 extension MolkkyRound {
-    struct PlayerScore: Identifiable, Codable {
+    struct ContenderScore: Identifiable, Codable {
         let id: UUID
         
-        let player: Player
-        let attempts: [PlayerAttempt]
+        let contender: Contender
+        let attempts: [ContenderAttempt]
         let totalScore: Int
         
         let isInWarning: Bool
@@ -214,9 +214,9 @@ extension MolkkyRound {
         let finishPosition: Int
         var isFinished: Bool { finishPosition >= 0 || isEliminated}
         
-        init(id: UUID = UUID(), player: Player, attempts: [PlayerAttempt], totalScore: Int, isInWarning: Bool, isEliminated: Bool, finishPosition: Int) {
+        init(id: UUID = UUID(), player: Contender, attempts: [ContenderAttempt], totalScore: Int, isInWarning: Bool, isEliminated: Bool, finishPosition: Int) {
             self.id = id
-            self.player = player
+            self.contender = player
             self.attempts = attempts
             self.totalScore = totalScore
             self.isInWarning = isInWarning
@@ -225,15 +225,15 @@ extension MolkkyRound {
         }
     }
     
-    struct PlayerAttempt: Identifiable, Codable, Hashable {
+    struct ContenderAttempt: Identifiable, Codable, Hashable {
         let id: UUID
         
-        let player: Player
+        let contender: Contender
         var score: Int = 0
         
-        init(id: UUID = UUID(), player: Player, score: Int) {
+        init(id: UUID = UUID(), player: Contender, score: Int) {
             self.id = id
-            self.player = player
+            self.contender = player
             self.score = score
         }
     }

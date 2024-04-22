@@ -11,7 +11,7 @@ struct EditScoreHistorySheet: View {
     @Binding var round: MolkkyRound
     @Binding var isPresentingEditScoreView: Bool
     
-    @State var editedHistory: [MolkkyRound.PlayerAttempt]
+    @State var editedHistory: [MolkkyRound.ContenderAttempt]
     
     init(round: Binding<MolkkyRound>, isPresentingEditScoreView: Binding<Bool>) {
         self._round = round
@@ -43,7 +43,7 @@ struct EditScoreHistorySheet: View {
 
 struct EditHistoryView: View {
     @Binding var round: MolkkyRound
-    @Binding var editedHistory: [MolkkyRound.PlayerAttempt]
+    @Binding var editedHistory: [MolkkyRound.ContenderAttempt]
     
     func editScore(value: Int) {
 //        editAttempt = MolkkyRound.PlayerAttempt(player: attempt.player, score: value)
@@ -55,7 +55,7 @@ struct EditHistoryView: View {
                 LazyVStack {
                     ForEach(round.attempts, id: \.id) { attempt in
                         HStack {
-                            Text(attempt.player.playerName)
+                            Text(attempt.contender.name)
                             Spacer()
                             Text(String(attempt.score))
                         }

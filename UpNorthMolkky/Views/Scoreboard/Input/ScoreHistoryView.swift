@@ -34,12 +34,12 @@ struct ScoreHistoryView: View {
                             .offset(x: -118 + CGFloat(animationOffset), y: 0)
                     )
             }
-            HistoryElement(player: round.currentPlayer, playerScore: round.currentPlayerScore, isCurrentPlayer: true, targetScore: round.targetScore)
+            HistoryElement(player: round.currentContender, playerScore: round.currentContenderScore, isCurrentPlayer: true, targetScore: round.targetScore)
                 .offset(x: 0 + CGFloat(animationOffset), y: 0)
-            HistoryElement(player: round.findNextPlayer(), playerScore: round.playerScores.first(where: {$0.player == round.findNextPlayer()}), isCurrentPlayer: false, targetScore: round.targetScore)
+            HistoryElement(player: round.findNextContender(), playerScore: round.contenderScores.first(where: {$0.contender == round.findNextContender()}), isCurrentPlayer: false, targetScore: round.targetScore)
                 .offset(x: -8 + CGFloat(animationOffset), y: 0)
                 .overlay(
-                    HistoryElement(player: round.findNextPlayer(1), playerScore: round.playerScores.first(where: {$0.player == round.findNextPlayer(1)}), isCurrentPlayer: false, targetScore: round.targetScore)
+                    HistoryElement(player: round.findNextContender(1), playerScore: round.contenderScores.first(where: {$0.contender == round.findNextContender(1)}), isCurrentPlayer: false, targetScore: round.targetScore)
                         .offset(x: 118 + CGFloat(animationOffset), y: 0)
                 )
         }
@@ -71,12 +71,12 @@ struct EmptyHistoryElement: View {
 }
 
 struct PastElement: View {
-    @Binding var attempt: MolkkyRound.PlayerAttempt
-    @Binding var history: [MolkkyRound.PlayerAttempt]
+    @Binding var attempt: MolkkyRound.ContenderAttempt
+    @Binding var history: [MolkkyRound.ContenderAttempt]
     
     var body: some View {
         VStack {
-            Text(attempt.player.playerName)
+            Text(attempt.contender.name)
             Text(String(attempt.score))
         }
         .fontWeight(.light)
@@ -88,8 +88,8 @@ struct PastElement: View {
 }
 
 struct HistoryElement: View {
-    var player: Player?
-    var playerScore: MolkkyRound.PlayerScore?
+    var player: Contender?
+    var playerScore: MolkkyRound.ContenderScore?
     var isCurrentPlayer: Bool
     var targetScore: Int
     
@@ -112,7 +112,7 @@ struct HistoryElement: View {
         }
         
         VStack {
-            Text(player?.playerName ?? "")
+            Text(player?.name ?? "")
                 .fontWeight(isCurrentPlayer ? .medium : .light)
             if (amountToWin != "" && isCurrentPlayer) {
                 Text("\(amountToWin) to win")
