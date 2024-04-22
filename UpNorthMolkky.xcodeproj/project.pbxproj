@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FD3F12AE2AD20E4B005F5BF5 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3F12AD2AD20E4B005F5BF5 /* Person.swift */; };
+		FD3F12AE2AD20E4B005F5BF5 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD3F12AD2AD20E4B005F5BF5 /* Player.swift */; };
 		FD79285B2AB14D3700FF25CE /* UpNorthMolkkyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD79285A2AB14D3700FF25CE /* UpNorthMolkkyApp.swift */; };
 		FD79285F2AB14D3700FF25CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD79285E2AB14D3700FF25CE /* Assets.xcassets */; };
 		FD7928622AB14D3700FF25CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD7928612AB14D3700FF25CE /* Preview Assets.xcassets */; };
@@ -57,12 +57,11 @@
 		FDD8C7EA2BC8D9AE0082B523 /* BarToggleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8C7E92BC8D9AE0082B523 /* BarToggleInput.swift */; };
 		FDD8C7EC2BC8DEBE0082B523 /* CheckmarkToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8C7EB2BC8DEBE0082B523 /* CheckmarkToggleStyle.swift */; };
 		FDD8C7EE2BC8E8010082B523 /* PartyToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8C7ED2BC8E8010082B523 /* PartyToggleStyle.swift */; };
-		FDD8C7F02BCCEA270082B523 /* SpareContenderTEMP.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8C7EF2BCCEA270082B523 /* SpareContenderTEMP.swift */; };
 		FDE03B2C2ACE2BD400A263A7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE03B2B2ACE2BD400A263A7 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FD3F12AD2AD20E4B005F5BF5 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		FD3F12AD2AD20E4B005F5BF5 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		FD7928572AB14D3700FF25CE /* UpNorthMolkky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UpNorthMolkky.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD79285A2AB14D3700FF25CE /* UpNorthMolkkyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpNorthMolkkyApp.swift; sourceTree = "<group>"; };
 		FD79285E2AB14D3700FF25CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -113,7 +112,6 @@
 		FDD8C7E92BC8D9AE0082B523 /* BarToggleInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarToggleInput.swift; sourceTree = "<group>"; };
 		FDD8C7EB2BC8DEBE0082B523 /* CheckmarkToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkToggleStyle.swift; sourceTree = "<group>"; };
 		FDD8C7ED2BC8E8010082B523 /* PartyToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyToggleStyle.swift; sourceTree = "<group>"; };
-		FDD8C7EF2BCCEA270082B523 /* SpareContenderTEMP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpareContenderTEMP.swift; sourceTree = "<group>"; };
 		FDE03B2B2ACE2BD400A263A7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -177,13 +175,12 @@
 		FD7928692AB14DDF00FF25CE /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				FD3F12AD2AD20E4B005F5BF5 /* Person.swift */,
+				FD3F12AD2AD20E4B005F5BF5 /* Player.swift */,
 				FD7928722AB15DE800FF25CE /* Contender.swift */,
 				FD90BD012AB2872B00D7CF3B /* MolkkyRound.swift */,
 				FD90BD032AB663FC00D7CF3B /* MolkkyStore.swift */,
 				FD90BD072AB6673700D7CF3B /* ErrorWrapper.swift */,
 				FD95BC482ABFA6A5001A9CFF /* PlayerRoundResults.swift */,
-				FDD8C7EF2BCCEA270082B523 /* SpareContenderTEMP.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -436,7 +433,7 @@
 				FD79285B2AB14D3700FF25CE /* UpNorthMolkkyApp.swift in Sources */,
 				FDD8C7CC2BBE20F90082B523 /* PlayerEditView.swift in Sources */,
 				FD90BD082AB6673700D7CF3B /* ErrorWrapper.swift in Sources */,
-				FD3F12AE2AD20E4B005F5BF5 /* Person.swift in Sources */,
+				FD3F12AE2AD20E4B005F5BF5 /* Player.swift in Sources */,
 				FD90BD022AB2872B00D7CF3B /* MolkkyRound.swift in Sources */,
 				FDD8C7EE2BC8E8010082B523 /* PartyToggleStyle.swift in Sources */,
 				FD79286F2AB151DD00FF25CE /* ScoreKeyboardView.swift in Sources */,
@@ -459,7 +456,6 @@
 				FDD8C7EA2BC8D9AE0082B523 /* BarToggleInput.swift in Sources */,
 				FD90A3A72BD1F78300FCA297 /* HistoryTabView.swift in Sources */,
 				FD90BD042AB663FC00D7CF3B /* MolkkyStore.swift in Sources */,
-				FDD8C7F02BCCEA270082B523 /* SpareContenderTEMP.swift in Sources */,
 				FD7928732AB15DE800FF25CE /* Contender.swift in Sources */,
 				FD95BC472ABBE98C001A9CFF /* MissScoreView.swift in Sources */,
 				FD841A212AB6BEA700E4AD1B /* EditScoreSheet.swift in Sources */,

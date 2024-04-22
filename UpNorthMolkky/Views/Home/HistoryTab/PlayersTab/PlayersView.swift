@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlayersView: View {
     
-    var players: [Person]
+    var players: [Player]
     
     var body: some View {
         List {

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlayerItemView: View {
     
-    var person: Person
+    var player: Player
     var selected: Bool
     
     let selectedColor: Color = Color(hue: 0.6, saturation: 0.25, brightness: 0.95)
@@ -17,7 +17,7 @@ struct PlayerItemView: View {
     
     var body: some View {
         HStack {
-            Text(person.playerName)
+            Text(player.playerName)
                 .padding()
             Spacer()
             Image(systemName: "checkmark")

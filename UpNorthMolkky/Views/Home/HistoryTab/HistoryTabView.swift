@@ -9,12 +9,12 @@ import SwiftUI
 
 struct HistoryTabView: View {
     @Binding var rounds: [MolkkyRound]
-    @Binding var players: [Person]
+    @Binding var players: [Player]
     @Binding var navPath: NavigationPath
     
     @State var selectedTab: HistoryTabView.Tab = HistoryTabView.Tab.rounds
     
-    var people: [Person] = []
+    var people: [Player] = []
     
     func getColor(tab: HistoryTabView.Tab) -> Color {
         return tab == selectedTab ? Color(hue: 0.8, saturation: 0.6, brightness: 0.8) : Color(UIColor.label)
@@ -65,7 +65,7 @@ struct HistoryTabView: View {
 
 struct HistoryTabView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryTabView(rounds: .constant([MolkkyRound.sampleData]), players: .constant(Person.sampleData), navPath: .constant(NavigationPath()))
+        HistoryTabView(rounds: .constant([MolkkyRound.sampleData]), players: .constant(Player.sampleData), navPath: .constant(NavigationPath()))
             .environmentObject(MolkkyStore())
     }
 }

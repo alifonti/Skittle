@@ -42,19 +42,19 @@ class MolkkyStore: ObservableObject {
 
 struct SkittleData: Codable {
     var rounds: [MolkkyRound]
-    var players: [Person]
+    var players: [Player]
     
     init() {
         self.rounds = []
         self.players = []
     }
     
-    init(rounds: [MolkkyRound], players: [Person]) {
+    init(rounds: [MolkkyRound], players: [Player]) {
         self.rounds = rounds
         self.players = players
     }
     
-    mutating func addPlayers(_ newPlayers: [Person]) {
+    mutating func addPlayers(_ newPlayers: [Player]) {
         newPlayers.forEach { newPlayer in
             if (!players.contains(where: {$0.id == newPlayer.id})) {
                 players.append(newPlayer)

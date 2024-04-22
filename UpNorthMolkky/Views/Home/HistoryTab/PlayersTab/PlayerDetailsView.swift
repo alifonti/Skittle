@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PlayerDetailsView: View {
     
-    var player: Person
+    var player: Player
     
     var body: some View {
         Text(player.playerName)
@@ -18,6 +18,6 @@ struct PlayerDetailsView: View {
 
 struct PlayerDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayerDetailsView(player: Person.sampleData[0])
+        PlayerDetailsView(player: Player.sampleData[0])
     }
 }

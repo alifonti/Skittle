@@ -185,13 +185,13 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
 //    }
     
     // --- Initializers
-    init(id: UUID = UUID(), date: Date = Date.now, players: [Person]) {
+    init(id: UUID = UUID(), date: Date = Date.now, players: [Player]) {
         self.id = id
         self.date = Date.now
         self.contenders = players.enumerated().map { Contender(name: $1.playerName, orderKey: $0) }
     }
     
-    init(id: UUID = UUID(), date: Date = Date.now, players: [Person], targetScore: Int, resetScore: Int, missesForElimination: Int) {
+    init(id: UUID = UUID(), date: Date = Date.now, players: [Player], targetScore: Int, resetScore: Int, missesForElimination: Int) {
         self.id = id
         self.date = Date.now
         self.contenders = players.enumerated().map { Contender(name: $1.playerName, orderKey: $0) }
@@ -240,5 +240,5 @@ extension MolkkyRound {
 }
 
 extension MolkkyRound {
-    static let sampleData: MolkkyRound = MolkkyRound(players: Person.sampleData)
+    static let sampleData: MolkkyRound = MolkkyRound(players: Player.sampleData)
 }

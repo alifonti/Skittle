@@ -36,9 +36,9 @@ struct PlayerOrderItemView: View {
 
 struct DropViewDelegate: DropDelegate {
     
-    let destinationItem: Person
-    @Binding var players: [Person]
-    @Binding var draggedItem: Person?
+    let destinationItem: Player
+    @Binding var players: [Player]
+    @Binding var draggedItem: Player?
     
     func dropUpdated(info: DropInfo) -> DropProposal? {
         return DropProposal(operation: .move)

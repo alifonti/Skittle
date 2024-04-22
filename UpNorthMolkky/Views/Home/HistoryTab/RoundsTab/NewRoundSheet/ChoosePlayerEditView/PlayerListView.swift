@@ -17,12 +17,8 @@ struct PlayerListView: View {
     @State private var searchText = ""
     @FocusState private var searchIsFocused: Bool
     
-    @State private var newPlayers: [Person] = []
+    @State private var newPlayers: [Player] = []
     @State private var selectedPlayers = Set<UUID>()
-    
-//    var players: [Person] {
-//        store.players + newPlayers
-//    }
     
     var body: some View {
         ScrollView(showsIndicators: false, content: {
@@ -78,7 +74,7 @@ struct PlayerListView: View {
                             .onSubmit {
                                 if (newPlayerNameText != "") {
                                     // BAD
-                                    let newPlayer = Person(playerName: newPlayerNameText)
+                                    let newPlayer = Player(playerName: newPlayerNameText)
                                     newPlayers.append(newPlayer)
                                     selectedPlayers.insert(newPlayer.id)
                                     round.contenders = newPlayers.filter{selectedPlayers.contains($0.id)}
@@ -105,13 +101,13 @@ struct PlayerListView: View {
                 ForEach(newPlayers
                     .sorted(by: {selectedPlayers.contains($0.id) && !selectedPlayers.contains($1.id)})
                     .filter{$0.playerName.hasPrefix(searchText) || selectedPlayers.contains($0.id) || searchText == ""
-                }, id: \.self) { person in
-                    PlayerItemView(person: person, selected: selectedPlayers.contains(person.id))
+                }, id: \.self) { player in
+                    PlayerItemView(player: player, selected: selectedPlayers.contains(player.id))
                         .onTapGesture {
-                            if(selectedPlayers.contains(person.id)) {
-                                selectedPlayers.remove(person.id)
+                            if(selectedPlayers.contains(player.id)) {
+                                selectedPlayers.remove(player.id)
                             } else {
-                                selectedPlayers.insert(person.id)
+                                selectedPlayers.insert(player.id)
                             }
                             round.contenders = newPlayers.filter{selectedPlayers.contains($0.id)}
                                 .enumerated().map{Contender(id: $1.id, name: $1.playerName, orderKey: $0)}

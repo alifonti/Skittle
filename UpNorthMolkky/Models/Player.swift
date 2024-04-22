@@ -4,10 +4,15 @@
 //
 //  Created by Anthony LiFonti on 10/7/23.
 //
+//  Player.swift
+//  UpNorthMolkky
+//
+//  Renamed by Anthony LiFonti on 4/21/24.
+//
 
 import Foundation
 
-struct Person: Identifiable, Codable, Hashable {
+struct Player: Identifiable, Codable, Hashable {
     let id: UUID
     let playerName: String
     
@@ -17,10 +22,10 @@ struct Person: Identifiable, Codable, Hashable {
     }
 }
 
-extension Person {
-    static let sampleData: [Person] =
+extension Player {
+    static let sampleData: [Player] =
     [
-        Person(playerName: "Anthony"),
-        Person(playerName: "Emma")
+        Player(playerName: "Anthony"),
+        Player(playerName: "Emma")
     ]
 }
