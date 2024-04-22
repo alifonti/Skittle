@@ -40,7 +40,6 @@
 		FD95BC6B2AC1264D001A9CFF /* PlayerScoreShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD95BC6A2AC1264D001A9CFF /* PlayerScoreShimmerView.swift */; };
 		FD9A52172AC3B28C0082B9B7 /* MolkkyKeyboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9A52162AC3B28C0082B9B7 /* MolkkyKeyboardController.swift */; };
 		FD9A52192AC3B9320082B9B7 /* MolkkyKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9A52182AC3B9320082B9B7 /* MolkkyKeyboardView.swift */; };
-		FD9A521B2ACE21310082B9B7 /* NewRoundCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9A521A2ACE21310082B9B7 /* NewRoundCard.swift */; };
 		FDD8C7C72BBE180E0082B523 /* NewRoundSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8C7C62BBE180D0082B523 /* NewRoundSheet.swift */; };
 		FDD8C7CA2BBE19090082B523 /* DetailEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8C7C92BBE19090082B523 /* DetailEditView.swift */; };
 		FDD8C7CC2BBE20F90082B523 /* PlayerEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8C7CB2BBE20F90082B523 /* PlayerEditView.swift */; };
@@ -95,7 +94,6 @@
 		FD95BC6A2AC1264D001A9CFF /* PlayerScoreShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreShimmerView.swift; sourceTree = "<group>"; };
 		FD9A52162AC3B28C0082B9B7 /* MolkkyKeyboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MolkkyKeyboardController.swift; sourceTree = "<group>"; };
 		FD9A52182AC3B9320082B9B7 /* MolkkyKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MolkkyKeyboardView.swift; sourceTree = "<group>"; };
-		FD9A521A2ACE21310082B9B7 /* NewRoundCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRoundCard.swift; sourceTree = "<group>"; };
 		FDD8C7C62BBE180D0082B523 /* NewRoundSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRoundSheet.swift; sourceTree = "<group>"; };
 		FDD8C7C92BBE19090082B523 /* DetailEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEditView.swift; sourceTree = "<group>"; };
 		FDD8C7CB2BBE20F90082B523 /* PlayerEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerEditView.swift; sourceTree = "<group>"; };
@@ -188,6 +186,7 @@
 		FD90A3A22BD1E17600FCA297 /* PlayTab */ = {
 			isa = PBXGroup;
 			children = (
+				FDD8C7C82BBE18F40082B523 /* NewRoundSheet */,
 				FD90A3A42BD1E23C00FCA297 /* PlayTabView.swift */,
 			);
 			path = PlayTab;
@@ -314,10 +313,8 @@
 		FDD8C7E02BC239E20082B523 /* RoundsTab */ = {
 			isa = PBXGroup;
 			children = (
-				FDD8C7C82BBE18F40082B523 /* NewRoundSheet */,
 				FD90BD0B2AB6686300D7CF3B /* CardView.swift */,
 				FD90BD052AB665A900D7CF3B /* RoundsView.swift */,
-				FD9A521A2ACE21310082B9B7 /* NewRoundCard.swift */,
 			);
 			path = RoundsTab;
 			sourceTree = "<group>";
@@ -463,7 +460,6 @@
 				FD90A3AB2BD373F400FCA297 /* PlayTabCard.swift in Sources */,
 				FD9A52172AC3B28C0082B9B7 /* MolkkyKeyboardController.swift in Sources */,
 				FDD8C7D02BBF85940082B523 /* PlayerListView.swift in Sources */,
-				FD9A521B2ACE21310082B9B7 /* NewRoundCard.swift in Sources */,
 				FD90BD062AB665A900D7CF3B /* RoundsView.swift in Sources */,
 				FD95BC4B2ABFA743001A9CFF /* SortToggleButton.swift in Sources */,
 				FDD8C7D72BBF9AC40082B523 /* PlayerOrderItemView.swift in Sources */,
