@@ -12,6 +12,7 @@ struct PlayTabCard: View {
     var title: String = ""
     var imageName: String = ""
     var buttonLabel: String = ""
+    var buttonColor: Color = Color.clear
     var onClick: () -> Void = {}
     
     enum Variant {
@@ -19,7 +20,7 @@ struct PlayTabCard: View {
     }
     
     var body: some View {
-        PlayTabCardBody(variant: variant, title: title, imageName: imageName, buttonLabel: buttonLabel, onClick: onClick)
+        PlayTabCardBody(variant: variant, title: title, imageName: imageName, buttonLabel: buttonLabel, buttonColor: buttonColor, onClick: onClick)
             .withStyles(variant)
     }
 }
@@ -29,14 +30,16 @@ struct PlayTabCardBody: View {
     var title: String = ""
     var imageName: String = ""
     var buttonLabel: String = ""
+    var buttonColor: Color = Color.clear
     var onClick: () -> Void = {}
     
     func withStyles(_ variant: PlayTabCard.Variant) -> some View {
         if (variant == .primary) {
             return self
-                .padding([.all], 20)
+                .padding([.horizontal], 16)
+                .padding([.vertical], 18)
                 .frame(maxWidth: .infinity)
-                .background(Color(UIColor.secondarySystemFill))
+                .background(Color(UIColor.tertiarySystemFill))
                 .clipShape(RoundedRectangle(cornerRadius: 10.0))
                 .overlay(
                     RoundedRectangle(cornerRadius: 10)
@@ -44,7 +47,8 @@ struct PlayTabCardBody: View {
                 )
         } else {
             return self
-                .padding([.all], 20)
+                .padding([.horizontal], 16)
+                .padding([.vertical], 18)
                 .frame(maxWidth: .infinity)
                 .background(Color(UIColor.tertiarySystemFill))
                 .clipShape(RoundedRectangle(cornerRadius: 10.0))
@@ -60,9 +64,10 @@ struct PlayTabCardBody: View {
             PlayTabCardHeader(variant: variant, title: title, imageName: imageName)
                 .withStyles(variant)
             Button(action: onClick) {
-                PlayTabCardButton(label: buttonLabel)
+                PlayTabCardButton(label: buttonLabel, color: buttonColor)
                     .withStyles(variant)
             }
+            .padding(.top, 10)
         }
     }
 }
@@ -80,7 +85,7 @@ struct PlayTabCardHeader: View {
         } else {
             return self
                 .font(.title2)
-                .fontWeight(.regular)
+                .fontWeight(.medium)
         }
     }
     
@@ -95,22 +100,21 @@ struct PlayTabCardHeader: View {
 
 struct PlayTabCardButton: View {
     var label: String = ""
+    var color: Color = Color.clear
     
     func withStyles(_ variant: PlayTabCard.Variant) -> some View {
         if (variant == .primary) {
             return self
-                .padding(.all, 8)
-                .background(Color(UIColor.tintColor))
-                .foregroundColor(Color(.white))
-                .font(.title3)
-                .fontWeight(.semibold)
+                .background(color)
+                .foregroundColor(Color(UIColor.black))
+                .font(.headline)
+                .fontWeight(.medium)
                 .cornerRadius(10)
         } else {
             return self
-                .padding(.all, 5)
-                .background(Color(UIColor.tintColor).opacity(0.35))
+                .background(Color(UIColor.quaternarySystemFill))
                 .foregroundColor(Color(UIColor.label))
-                .font(.title3)
+                .font(.headline)
                 .fontWeight(.medium)
                 .cornerRadius(10)
         }

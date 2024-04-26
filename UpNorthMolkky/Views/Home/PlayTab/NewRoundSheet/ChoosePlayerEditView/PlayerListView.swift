@@ -17,8 +17,9 @@ struct PlayerListView: View {
     @State private var searchText = ""
     @FocusState private var searchIsFocused: Bool
     
-    @State private var newPlayers: [Player] = []
-    @State private var selectedPlayers = Set<UUID>()
+    private var selectedPlayers: [UUID] {
+        round.contenders.map{$0.id}
+    }
     
     var body: some View {
         ScrollView(showsIndicators: false, content: {
@@ -60,7 +61,7 @@ struct PlayerListView: View {
                 .cornerRadius(5)
                 .onTapGesture {
                     viewAddPlayerField = true
-                    // newPlayerIsFocused = true
+                    newPlayerIsFocused = true
                 }
                 //
                 Divider()
@@ -75,10 +76,8 @@ struct PlayerListView: View {
                                 if (newPlayerNameText != "") {
                                     // BAD
                                     let newPlayer = Player(playerName: newPlayerNameText)
-                                    newPlayers.append(newPlayer)
-                                    selectedPlayers.insert(newPlayer.id)
-                                    round.contenders = newPlayers.filter{selectedPlayers.contains($0.id)}
-                                        .enumerated().map{Contender(id: $1.id, name: $1.playerName, orderKey: $0)}
+                                    store.userData.addPlayers([newPlayer])
+                                    round.contenders.append(Contender(id: newPlayer.id, name: newPlayer.playerName, orderKey: round.contenders.count))
                                     newPlayerNameText = ""
                                 }
                                 viewAddPlayerField = false
@@ -98,19 +97,17 @@ struct PlayerListView: View {
                         newPlayerIsFocused = false
                     }
                 }
-                ForEach(newPlayers
+                ForEach(store.userData.players
                     .sorted(by: {selectedPlayers.contains($0.id) && !selectedPlayers.contains($1.id)})
                     .filter{$0.playerName.hasPrefix(searchText) || selectedPlayers.contains($0.id) || searchText == ""
                 }, id: \.self) { player in
                     PlayerItemView(player: player, selected: selectedPlayers.contains(player.id))
                         .onTapGesture {
-                            if(selectedPlayers.contains(player.id)) {
-                                selectedPlayers.remove(player.id)
+                            if (selectedPlayers.contains(player.id)) {
+                                round.contenders.remove(at: round.contenders.firstIndex(where: {con in con.id == player.id}) ?? -1)
                             } else {
-                                selectedPlayers.insert(player.id)
+                                round.contenders.append(Contender(id: player.id, name: player.playerName, orderKey: round.contenders.count))
                             }
-                            round.contenders = newPlayers.filter{selectedPlayers.contains($0.id)}
-                                .enumerated().map{Contender(id: $1.id, name: $1.playerName, orderKey: $0)}
                         }
                 }
                 //

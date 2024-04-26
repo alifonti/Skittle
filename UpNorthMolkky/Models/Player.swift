@@ -14,11 +14,17 @@ import Foundation
 
 struct Player: Identifiable, Codable, Hashable {
     let id: UUID
-    let playerName: String
+    let createTime: Date
+    var playerName: String
     
     init(id: UUID = UUID(), playerName: String) {
         self.id = id
         self.playerName = playerName
+        self.createTime = Date.now
+    }
+    
+    mutating func updateName(name: String) {
+        playerName = name
     }
 }
 

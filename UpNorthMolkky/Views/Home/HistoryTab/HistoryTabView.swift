@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct HistoryTabView: View {
-    @Binding var rounds: [MolkkyRound]
-    @Binding var players: [Player]
+    @Binding var userData: SkittleData
     @Binding var navPath: NavigationPath
     
     @State var selectedTab: HistoryTabView.Tab = HistoryTabView.Tab.rounds
@@ -17,7 +16,7 @@ struct HistoryTabView: View {
     var people: [Player] = []
     
     func getColor(tab: HistoryTabView.Tab) -> Color {
-        return tab == selectedTab ? Color(hue: 0.8, saturation: 0.6, brightness: 0.8) : Color(UIColor.label)
+        return tab == selectedTab ? Color(named: "s.accent2.main") : Color(UIColor.label)
     }
     
     func setSelectedTab(_ tab: HistoryTabView.Tab) {
@@ -51,21 +50,31 @@ struct HistoryTabView: View {
                 Spacer()
             }
             .padding()
-            if (selectedTab == HistoryTabView.Tab.rounds) {
-                RoundsView(rounds: $rounds, navPath: $navPath)
-            } else if (selectedTab == HistoryTabView.Tab.people) {
-                PlayersView(players: players)
-            } else if (selectedTab == HistoryTabView.Tab.stats) {
-                Text("Stats")
+            TabView(selection: $selectedTab) {
+                RoundsView(rounds: $userData.rounds, navPath: $navPath)
+                    .tabItem {
+                        Text("Rounds")
+                    }
+                    .tag(HistoryTabView.Tab.rounds)
+                PlayersView(userData: $userData)
+                    .tabItem {
+                        Text("People")
+                    }
+                    .tag(HistoryTabView.Tab.people)
+                StatsTabView(userData: $userData)
+                    .tabItem {
+                        Text("Stats")
+                    }
+                    .tag(HistoryTabView.Tab.stats)
             }
-            Spacer()
+            .tabViewStyle(.page(indexDisplayMode: .never))
         }
     }
 }
 
 struct HistoryTabView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryTabView(rounds: .constant([MolkkyRound.sampleData]), players: .constant(Player.sampleData), navPath: .constant(NavigationPath()))
+        HistoryTabView(userData: .constant(SkittleData.sampleData), navPath: .constant(NavigationPath()))
             .environmentObject(MolkkyStore())
     }
 }

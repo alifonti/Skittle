@@ -62,11 +62,40 @@ struct SkittleData: Codable {
         }
     }
     
+    mutating func removePlayer(_ player: Player) {
+        if let index = players.firstIndex(of: player) {
+            players.remove(at: index)
+        }
+    }
+    
     mutating func addRound(_ round: MolkkyRound) {
         rounds.append(round)
+    }
+    
+    func getPlayerStats() -> [String: [UUID: any Numeric]] {
+        var roundCountDict: [UUID: Int] = [:]
+        var attemptDict: [UUID: [Int]] = [:]
+        var winsDict: [UUID: Int] = [:]
+        
+        rounds.forEach { round in
+            round.contenders.forEach { contender in
+                roundCountDict.updateValue((roundCountDict[contender.id] ?? 0) + 1, forKey: contender.id)
+                if (round.contenderScores.first(where: {score in score.contender.id == contender.id})?.finishPosition == 0) {
+                    winsDict.updateValue((winsDict[contender.id] ?? 0) + 1, forKey: contender.id)
+                }
+            }
+            round.attempts.forEach { attempt in
+                attemptDict.updateValue((attemptDict[attempt.contender.id] ?? []) + [attempt.score], forKey: attempt.contender.id)
+            }
+        }
+        
+        let attemptCountDict: [UUID: Int] = attemptDict.mapValues { array in array.count }
+        let attemptAverageDict: [UUID: Double] = attemptDict.mapValues { array in Double(array.reduce(0, { x, y in x + y })) / Double(array.count) }
+        
+        return ["RoundCount": roundCountDict, "AttemptCount": attemptCountDict, "AttemptAverage": attemptAverageDict, "WinCount": winsDict]
     }
 }
 
 extension SkittleData {
-    static let sampleData: SkittleData = SkittleData()
+    static let sampleData: SkittleData = SkittleData(rounds: [], players: [Player(playerName: "Anthony"), Player(playerName: "Emma")])
 }

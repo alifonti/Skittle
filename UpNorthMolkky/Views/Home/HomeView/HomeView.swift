@@ -27,7 +27,7 @@ struct HomeView: View {
                             Text("Play")
                         }
                         .tag("play")
-                    HistoryTabView(rounds: $store.userData.rounds, players: $store.userData.players, navPath: $path)
+                    HistoryTabView(userData: $store.userData, navPath: $path)
                         .tabItem {
                             Image(systemName: "book.pages.fill")
                             Text("History")

@@ -24,6 +24,7 @@
 		FD90A3A92BD35A9600FCA297 /* SlidingSelectionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD90A3A82BD35A9600FCA297 /* SlidingSelectionInput.swift */; };
 		FD90A3AB2BD373F400FCA297 /* PlayTabCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD90A3AA2BD373F400FCA297 /* PlayTabCard.swift */; };
 		FD90A3AF2BD5DA5E00FCA297 /* HomeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD90A3AE2BD5DA5E00FCA297 /* HomeHeader.swift */; };
+		FD90A3B22BDB1E0B00FCA297 /* StatsTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD90A3B12BDB1E0A00FCA297 /* StatsTabView.swift */; };
 		FD90BD022AB2872B00D7CF3B /* MolkkyRound.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD90BD012AB2872B00D7CF3B /* MolkkyRound.swift */; };
 		FD90BD042AB663FC00D7CF3B /* MolkkyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD90BD032AB663FC00D7CF3B /* MolkkyStore.swift */; };
 		FD90BD062AB665A900D7CF3B /* RoundsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD90BD052AB665A900D7CF3B /* RoundsView.swift */; };
@@ -78,6 +79,7 @@
 		FD90A3A82BD35A9600FCA297 /* SlidingSelectionInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingSelectionInput.swift; sourceTree = "<group>"; };
 		FD90A3AA2BD373F400FCA297 /* PlayTabCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayTabCard.swift; sourceTree = "<group>"; };
 		FD90A3AE2BD5DA5E00FCA297 /* HomeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeader.swift; sourceTree = "<group>"; };
+		FD90A3B12BDB1E0A00FCA297 /* StatsTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTabView.swift; sourceTree = "<group>"; };
 		FD90BD012AB2872B00D7CF3B /* MolkkyRound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MolkkyRound.swift; sourceTree = "<group>"; };
 		FD90BD032AB663FC00D7CF3B /* MolkkyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MolkkyStore.swift; sourceTree = "<group>"; };
 		FD90BD052AB665A900D7CF3B /* RoundsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundsView.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 		FD90A3A32BD1E18700FCA297 /* HistoryTab */ = {
 			isa = PBXGroup;
 			children = (
+				FD90A3B02BDB1DED00FCA297 /* StatsTab */,
 				FDD8C7E12BC23A5E0082B523 /* PlayersTab */,
 				FDD8C7E02BC239E20082B523 /* RoundsTab */,
 				FD90A3A62BD1F78300FCA297 /* HistoryTabView.swift */,
@@ -209,6 +212,14 @@
 				FD90A3AE2BD5DA5E00FCA297 /* HomeHeader.swift */,
 			);
 			path = HomeView;
+			sourceTree = "<group>";
+		};
+		FD90A3B02BDB1DED00FCA297 /* StatsTab */ = {
+			isa = PBXGroup;
+			children = (
+				FD90A3B12BDB1E0A00FCA297 /* StatsTabView.swift */,
+			);
+			path = StatsTab;
 			sourceTree = "<group>";
 		};
 		FD95BC4D2ABFAE0B001A9CFF /* Home */ = {
@@ -428,6 +439,7 @@
 				FDD8C7E32BC23A770082B523 /* PlayersView.swift in Sources */,
 				FD7928712AB15A0C00FF25CE /* PlayerScoresListView.swift in Sources */,
 				FD79285B2AB14D3700FF25CE /* UpNorthMolkkyApp.swift in Sources */,
+				FD90A3B22BDB1E0B00FCA297 /* StatsTabView.swift in Sources */,
 				FDD8C7CC2BBE20F90082B523 /* PlayerEditView.swift in Sources */,
 				FD90BD082AB6673700D7CF3B /* ErrorWrapper.swift in Sources */,
 				FD3F12AE2AD20E4B005F5BF5 /* Player.swift in Sources */,

@@ -31,9 +31,6 @@ struct ScoreboardOptionsSheet: View {
 
 struct ScoreboardOptionsView: View {
     @Environment(\.dismiss) private var localDismiss
-    
-    @State var isPresentingEditHistoryView = false
-    
     @Binding var round: MolkkyRound
     
     var dismiss: DismissAction
@@ -50,17 +47,25 @@ struct ScoreboardOptionsView: View {
                 }
                 .padding()
                 Divider()
-                Label("End round", systemImage: "flag.checkered")
-                    .padding()
+                Button(action: {
+                    //
+                }) {
+                    Label("End round early", systemImage: "flag.checkered")
+                        .padding()
+                }
                 Divider()
                 Button(action: {
-                    isPresentingEditHistoryView = true;
+                    //
                 }) {
-                    Label("Edit previous throws", systemImage: "pencil")
+                    Label("Rules Review", systemImage: "book")
                         .padding()
-                        .sheet(isPresented: $isPresentingEditHistoryView) {
-                            EditScoreHistorySheet(round: $round, isPresentingEditScoreView: $isPresentingEditHistoryView)
-                        }
+                }
+                Divider()
+                Button(action: {
+                    //
+                }) {
+                    Label("View Game Settings", systemImage: "gear")
+                        .padding()
                 }
                 Divider()
             }

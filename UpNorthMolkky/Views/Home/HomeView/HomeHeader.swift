@@ -11,11 +11,11 @@ struct HomeHeaderView: View {
     @Binding var selectedTab: String
     
     @State private var headerText: String = "play"
-    @State private var headerColor: Color = Color(hue: 0.6, saturation: 0.6, brightness: 0.8)
+    @State private var headerColor: Color = Color(named: "s.accent1.main")
     @State private var headerBackgroundColor: Gradient = Gradient(
-        colors: [Color(hue: 0.6, saturation: 0.6, brightness: 0.8, opacity: 0.25), Color(hue: 0.6, saturation: 0.6, brightness: 0.8, opacity: 0)])
+        colors: [Color(named: "s.accent1.main").opacity(0.25), Color(named: "s.accent1.main").opacity(0)])
     @State private var nextHeaderBackgroundColor: Gradient = Gradient(
-        colors: [Color(hue: 0.6, saturation: 0.6, brightness: 0.8, opacity: 0.25), Color(hue: 0.6, saturation: 0.6, brightness: 0.8, opacity: 0)])
+        colors: [Color(named: "s.accent1.main").opacity(0.25), Color(named: "s.accent1.main").opacity(0)])
     
     @State private var animationProgress: CGFloat = 0
     
@@ -25,6 +25,7 @@ struct HomeHeaderView: View {
                 Text("Skittle")
                     .font(.largeTitle)
                     .fontWeight(.bold)
+                Spacer()
                 Text(headerText)
                     .id(headerText)
                     .foregroundStyle(headerColor)
@@ -60,13 +61,13 @@ struct HomeHeaderView: View {
 extension HomeHeaderView {
     static func getHeaderColor(tab: String) -> Color {
         if (tab == "play") {
-            return Color(hue: 0.6, saturation: 0.6, brightness: 0.8)
+            return Color(named: "s.accent1.main")
         } else if (tab == "history") {
-            return Color(hue: 0.8, saturation: 0.6, brightness: 0.8)
+            return Color(named: "s.accent2.main")
         } else if (tab == "more") {
-            return Color(hue: 0.0, saturation: 0.6, brightness: 0.8)
+            return Color(named: "s.accent3.main")
         } else {
-            return Color(hue: 0.6, saturation: 0.6, brightness: 0.8)
+            return Color.gray
         }
     }
 }

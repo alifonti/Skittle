@@ -16,9 +16,11 @@ struct PlayTabView: View {
     var body: some View {
         VStack(spacing: 15) {
             PlayTabCard(variant: .secondary, title: "Rules of the game", imageName: "book", buttonLabel: "View rules")
-            PlayTabCard(variant: .primary, title: "Ready to play?", imageName: "play.circle", buttonLabel: "Start a new round", onClick: {
-                isPresentingNewRoundView = true
-            })
+            PlayTabCard(variant: .primary, title: "Ready to play?", imageName: "play.circle", buttonLabel: "Start a new round", buttonColor: Color(named: "s.accent1.main"),
+                onClick: {
+                    isPresentingNewRoundView = true
+                }
+            )
             Spacer()
         }
         .sheet(isPresented: $isPresentingNewRoundView) {
