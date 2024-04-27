@@ -13,34 +13,43 @@ struct HomeView: View {
     
     @State private var selectedTab = "play"
     
+    @State private var isNavigationActive: Bool = false
+    @State private var newRound: MolkkyRound = MolkkyRound(players: [])
+    
     let saveAction: () -> Void
     
     var body: some View {
         NavigationStack {
-            HomeHeaderView(selectedTab: $selectedTab)
-            TabView(selection: $selectedTab) {
-                Group {
-                    PlayTabView(userData: $store.userData)
-                        .tabItem {
-                            Image(systemName: "play.fill")
-                            Text("Play")
-                        }
-                        .tag("play")
-                    HistoryTabView(userData: $store.userData)
-                        .tabItem {
-                            Image(systemName: "book.pages.fill")
-                            Text("History")
-                        }
-                        .tag("history")
-                    Text("More Screen")
-                        .tabItem {
-                            Image(systemName: "ellipsis")
-                            Text("More")
-                        }
-                        .tag("more")
+            Group {
+                HomeHeaderView(selectedTab: $selectedTab)
+                TabView(selection: $selectedTab) {
+                    Group {
+                        PlayTabView(userData: $store.userData, isNavigationActive: $isNavigationActive, newRound: $newRound)
+                            .tabItem {
+                                Image(systemName: "play.fill")
+                                Text("Play")
+                            }
+                            .tag("play")
+                        HistoryTabView(userData: $store.userData)
+                            .tabItem {
+                                Image(systemName: "book.pages.fill")
+                                Text("History")
+                            }
+                            .tag("history")
+                        Text("More Screen")
+                            .tabItem {
+                                Image(systemName: "ellipsis")
+                                Text("More")
+                            }
+                            .tag("more")
+                    }
                 }
+                .tint(HomeHeaderView.getHeaderColor(tab: selectedTab))
             }
-            .tint(HomeHeaderView.getHeaderColor(tab: selectedTab))
+            // .onChange(of: isNavigationActive) {print(isNavigationActive)}
+            .navigationDestination(isPresented: $isNavigationActive) {
+                ScoreboardView(round: $newRound)
+            }
         }
         .onChange(of: scenePhase) {
             if scenePhase == .inactive { saveAction() }

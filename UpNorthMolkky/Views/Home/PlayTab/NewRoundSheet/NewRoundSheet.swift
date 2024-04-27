@@ -7,45 +7,27 @@
 import SwiftUI
 
 struct NewRoundSheet: View {
-    @State private var newRound: MolkkyRound = MolkkyRound(players: [])
-    
     @Binding var userData: SkittleData
     @Binding var isPresentingNewRoundView: Bool
+    @Binding var shouldNavigate: Bool
+    @Binding var newRound: MolkkyRound
     
     var body: some View {
-        NavigationStack {
-            DetailEditView(round: $newRound)
-                .toolbar {
-                    ToolbarItem(placement: .cancellationAction) {
-                        Button("Dismiss") {
-                            isPresentingNewRoundView = false
-                        }
-                    }
-                    ToolbarItem(placement: .confirmationAction) {
-                        NavigationLink(destination: ScoreboardView(round: $newRound)) {
-                            Button("Start") {
-                                if (newRound.contenders.count >= 2) {
-                                    userData.addRound(newRound)
-                                    isPresentingNewRoundView = false
-                                }
-                            }
-                            .disabled(newRound.contenders.count <= 1)
-                        }
-                    }
+        VStack {
+            HStack {
+                Button("Dismiss") {
+                    isPresentingNewRoundView = false
                 }
-                .navigationBarTitleDisplayMode(.inline)
-//                .navigationDestination(item: $testRound, destination: {_ in
-//                    ScoreboardView(round: $newRound)
-//                })
-//                .navigationDestination(for: Int.self) { _ in
-//                    ScoreboardView(round: $newRound)
-//                }
+                Spacer()
+                Button("Start") {
+                    userData.addRound(newRound)
+                    isPresentingNewRoundView = false
+                    shouldNavigate = true
+                }
+                .disabled(newRound.contenders.count <= 1)
+            }
+            .padding()
+            DetailEditView(round: $newRound)
         }
-    }
-}
-
-struct NewRoundSheet_Previews: PreviewProvider {
-    static var previews: some View {
-        NewRoundSheet(userData: .constant(SkittleData.sampleData), isPresentingNewRoundView: .constant(true))
     }
 }
