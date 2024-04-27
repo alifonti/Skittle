@@ -28,8 +28,11 @@ struct RoundsView: View {
                     }
                 }
                 .onDelete { rounds.remove(atOffsets: $0) }
+                .listRowBackground(Color(named: "s.fill.tertiary"))
             }
-            .listStyle(.automatic)
+            .animation(nil, value: editMode)
+            .scrollContentBackground(.hidden)
+            .background(Color(named: "s.background.primary"))
             .environment(\.editMode, $editMode)
         }
     }

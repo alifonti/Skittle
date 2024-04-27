@@ -41,7 +41,10 @@ struct PlayersView: View {
                     }
                 }
             }
+            .listRowBackground(Color(named: "s.fill.tertiary"))
         }
+        .scrollContentBackground(.hidden)
+        .background(Color(named: "s.background.primary"))
     }
 }
 
