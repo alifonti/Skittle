@@ -10,17 +10,25 @@ import SwiftUI
 struct StatsTabView: View {
     @Binding var userData: SkittleData
     
-    var playerStats: [String: [UUID: any Numeric]] {
-        userData.getPlayerStats()
+    var playerStats: [String: Int] {
+        userData.getGeneralStats()
     }
     
     var body: some View {
         VStack {
             HStack {
-                Text("Stats")
+                Text("Rounds played:")
+                Spacer()
+                Text("\(playerStats["RoundCount"] ?? 0)")
             }
+            HStack {
+                Text("Unique players:")
+                Spacer()
+                Text("\(playerStats["RoundCount"] ?? 0)")
+            }
+            Spacer()
         }
-            
+        .padding()
     }
 }
 

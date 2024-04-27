@@ -32,7 +32,7 @@ struct SortToggleButton: View {
             }
             .accessibilityLabel("Sort")
             .onChange(of: timeOfClick) {
-                withAnimation(Animation.linear(duration: 0.4).delay(0.2)) {
+                withAnimation(Animation.linear(duration: 0.5).delay(0.2)) {
                     self.isShowingLabel = true
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {

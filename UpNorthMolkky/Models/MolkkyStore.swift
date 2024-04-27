@@ -94,6 +94,16 @@ struct SkittleData: Codable {
         
         return ["RoundCount": roundCountDict, "AttemptCount": attemptCountDict, "AttemptAverage": attemptAverageDict, "WinCount": winsDict]
     }
+    
+    func getGeneralStats() -> [String: Int] {
+        var attemptTotal: Int = 0
+        
+        rounds.forEach { round in
+            attemptTotal += round.attempts.count
+        }
+        
+        return ["RoundCount": rounds.count, "PlayerCount": players.count, "TotalThrows": attemptTotal]
+    }
 }
 
 extension SkittleData {

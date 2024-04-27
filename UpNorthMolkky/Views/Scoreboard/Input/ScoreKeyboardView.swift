@@ -47,13 +47,11 @@ struct ScoreKeyboardView: View {
                 KeyboardButton(disabled: round.attempts.count == 0, isPrimary: false, onAction: {round.undo()}, content: {
                     Image(systemName: "arrow.uturn.backward")
                 })
-                if (canRedo) {
-                    KeyboardButton(disabled: false, isPrimary: false, onAction: {round.redo()}, content: {
-                        Image(systemName: "arrow.uturn.forward")
-                    })
-                }
+                KeyboardButton(disabled: !canRedo, isPrimary: false, onAction: {round.redo()}, content: {
+                    Image(systemName: "arrow.uturn.forward")
+                })
                 KeyboardButtonBuilder(value: 0)
-                    .gridCellColumns(canRedo ? 2 : 3)
+                    .gridCellColumns(2)
             }
         }
     }
@@ -66,18 +64,19 @@ struct KeyboardButton<Content: View>: View {
     @ViewBuilder var content: Content
     
     var foregroundColor: Color {
-        Color(UIColor.label)
-        // disabled ? Color(UIColor.secondaryLabel) : Color(UIColor.label)
+        disabled ? Color(UIColor.secondaryLabel) : Color(UIColor.label)
     }
     var backgroundColor: Color {
-        isPrimary ? Color(named: "s.fill.primary") : Color(named: "s.fill.tertiary")
+        disabled ? Color(named: "s.fill.tertiary").opacity(0.5) :
+            isPrimary ? Color(named: "s.fill.primary") : Color(named: "s.fill.tertiary")
     }
     
     var body: some View {
         Button(action: {onAction()}) {
             content
+                .font(.title3)
                 .frame(maxWidth: .infinity)
-                .padding()
+                .padding(.all, 13)
         }
         .foregroundColor(foregroundColor)
         .background(backgroundColor)
