@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HistoryTabView: View {
     @Binding var userData: SkittleData
-    @Binding var navPath: NavigationPath
     
     @State var selectedTab: HistoryTabView.Tab = HistoryTabView.Tab.rounds
     
@@ -51,7 +50,7 @@ struct HistoryTabView: View {
             }
             .padding()
             TabView(selection: $selectedTab) {
-                RoundsView(rounds: $userData.rounds, navPath: $navPath)
+                RoundsView(rounds: $userData.rounds)
                     .tabItem {
                         Text("Rounds")
                     }
@@ -74,7 +73,7 @@ struct HistoryTabView: View {
 
 struct HistoryTabView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryTabView(userData: .constant(SkittleData.sampleData), navPath: .constant(NavigationPath()))
+        HistoryTabView(userData: .constant(SkittleData.sampleData))
             .environmentObject(MolkkyStore())
     }
 }

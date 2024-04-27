@@ -11,23 +11,22 @@ struct HomeView: View {
     @EnvironmentObject var store: MolkkyStore
     @Environment(\.scenePhase) private var scenePhase
     
-    @State private var path = NavigationPath()
     @State private var selectedTab = "play"
     
     let saveAction: () -> Void
     
     var body: some View {
-        NavigationStack(path: $path) {
+        NavigationStack {
             HomeHeaderView(selectedTab: $selectedTab)
             TabView(selection: $selectedTab) {
                 Group {
-                    PlayTabView(userData: $store.userData, navPath: $path)
+                    PlayTabView(userData: $store.userData)
                         .tabItem {
                             Image(systemName: "play.fill")
                             Text("Play")
                         }
                         .tag("play")
-                    HistoryTabView(userData: $store.userData, navPath: $path)
+                    HistoryTabView(userData: $store.userData)
                         .tabItem {
                             Image(systemName: "book.pages.fill")
                             Text("History")

@@ -11,7 +11,6 @@ struct NewRoundSheet: View {
     
     @Binding var userData: SkittleData
     @Binding var isPresentingNewRoundView: Bool
-    @Binding var navPath: NavigationPath
     
     var body: some View {
         NavigationStack {
@@ -47,6 +46,6 @@ struct NewRoundSheet: View {
 
 struct NewRoundSheet_Previews: PreviewProvider {
     static var previews: some View {
-        NewRoundSheet(userData: .constant(SkittleData.sampleData), isPresentingNewRoundView: .constant(true), navPath: .constant(NavigationPath()))
+        NewRoundSheet(userData: .constant(SkittleData.sampleData), isPresentingNewRoundView: .constant(true))
     }
 }

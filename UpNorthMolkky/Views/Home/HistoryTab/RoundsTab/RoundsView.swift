@@ -9,7 +9,6 @@ import SwiftUI
 
 struct RoundsView: View {
     @Binding var rounds: [MolkkyRound]
-    @Binding var navPath: NavigationPath
     
     var body: some View {
         VStack {
@@ -25,6 +24,6 @@ struct RoundsView: View {
 
 struct RoundsView_Previews: PreviewProvider {
     static var previews: some View {
-        RoundsView(rounds: .constant([MolkkyRound.sampleData]), navPath: .constant(NavigationPath()))
+        RoundsView(rounds: .constant([MolkkyRound.sampleData]))
     }
 }

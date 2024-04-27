@@ -9,7 +9,6 @@ import SwiftUI
 
 struct PlayTabView: View {
     @Binding var userData: SkittleData
-    @Binding var navPath: NavigationPath
     
     @State private var isPresentingNewRoundView = false
     
@@ -24,7 +23,7 @@ struct PlayTabView: View {
             Spacer()
         }
         .sheet(isPresented: $isPresentingNewRoundView) {
-            NewRoundSheet(userData: $userData, isPresentingNewRoundView: $isPresentingNewRoundView, navPath: $navPath)
+            NewRoundSheet(userData: $userData, isPresentingNewRoundView: $isPresentingNewRoundView)
         }
         .padding()
     }
@@ -32,6 +31,6 @@ struct PlayTabView: View {
 
 struct PlayTabView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayTabView(userData: .constant(SkittleData.sampleData), navPath: .constant(NavigationPath()))
+        PlayTabView(userData: .constant(SkittleData.sampleData))
     }
 }
