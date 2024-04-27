@@ -12,6 +12,7 @@ struct RoundsView: View {
     
     var body: some View {
         VStack {
+            EditButton()
             List($rounds, id: \.id, editActions: .delete) { $round in
                 NavigationLink(destination: ScoreboardView(round: $round)) {
                     CardView(round: round)
