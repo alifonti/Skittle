@@ -46,9 +46,8 @@ struct HomeView: View {
                 }
                 .tint(HomeHeaderView.getHeaderColor(tab: selectedTab))
             }
-            // .onChange(of: isNavigationActive) {print(isNavigationActive)}
             .navigationDestination(isPresented: $isNavigationActive) {
-                ScoreboardView(round: $newRound)
+                ScoreboardView(round: $store.userData.rounds.last ?? .constant(MolkkyRound.sampleData))
             }
         }
         .onChange(of: scenePhase) {
