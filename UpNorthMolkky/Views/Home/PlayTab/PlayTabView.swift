@@ -16,27 +16,40 @@ struct PlayTabView: View {
     @State private var shouldNavigate: Bool = false
     
     var body: some View {
-        VStack(spacing: 15) {
-            PlayTabCard(variant: .secondary, title: "Rules of the game", imageName: "book", buttonLabel: "View rules")
-            PlayTabCard(variant: .primary, title: "Ready to play?", imageName: "play.circle", buttonLabel: "Start a new round", buttonColor: Color(named: "s.accent1.main"),
-                onClick: {
-                    isPresentingNewRoundView = true
-                    newRound = MolkkyRound(players: [])
+        ZStack {
+            Group {
+                VStack(spacing: 15) {
+                    PlayTabCard(variant: .secondary, title: "Rules of the game", imageName: "book", buttonLabel: "View rules")
+                    PlayTabCard(variant: .primary, title: "Ready to play?", imageName: "play.circle", buttonLabel: "Start a new round", buttonColor: Color(named: "s.accent1.main"),
+                                onClick: {
+                        isPresentingNewRoundView = true
+                        newRound = MolkkyRound(players: [])
+                    }
+                    )
+                    Spacer()
                 }
-            )
-            if (shouldNavigate) {
-                ProgressView()
+                .sheet(isPresented: $isPresentingNewRoundView, onDismiss: {
+                    if (shouldNavigate) {
+                        isNavigationActive = true
+                        shouldNavigate = false
+                    }}) {
+                        NewRoundSheet(userData: $userData, isPresentingNewRoundView: $isPresentingNewRoundView, shouldNavigate: $shouldNavigate, newRound: $newRound)
+                    }
+                    .padding()
             }
-            Spacer()
+            Group {
+                if (shouldNavigate) {
+                    VStack {
+                        Text("Creating a new round")
+                        ProgressView()
+                    }
+                    .padding()
+                    .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
+                } else {
+                    EmptyView()
+                }
+            }
         }
-        .sheet(isPresented: $isPresentingNewRoundView, onDismiss: {
-            if (shouldNavigate) {
-                isNavigationActive = true
-                shouldNavigate = false
-            }}) {
-            NewRoundSheet(userData: $userData, isPresentingNewRoundView: $isPresentingNewRoundView, shouldNavigate: $shouldNavigate, newRound: $newRound)
-        }
-        .padding()
     }
 }
 
