@@ -24,7 +24,12 @@ struct StatsTabView: View {
             HStack {
                 Text("Unique players:")
                 Spacer()
-                Text("\(playerStats["RoundCount"] ?? 0)")
+                Text("\(playerStats["PlayerCount"] ?? 0)")
+            }
+            HStack {
+                Text("Number of attempts:")
+                Spacer()
+                Text("\(playerStats["TotalThrows"] ?? 0)")
             }
             Spacer()
         }
