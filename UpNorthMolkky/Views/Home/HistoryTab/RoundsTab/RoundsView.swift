@@ -14,13 +14,13 @@ struct RoundsView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Spacer()
-                Button(editMode == EditMode.inactive ? "Edit" : "Done") {
-                    editMode = editMode == EditMode.inactive ? EditMode.active : EditMode.inactive
-                }
-            }
-            .padding()
+//            HStack {
+//                Spacer()
+//                Button(editMode == EditMode.inactive ? "Edit" : "Done") {
+//                    editMode = editMode == EditMode.inactive ? EditMode.active : EditMode.inactive
+//                }
+//            }
+//            .padding()
             List {
                 ForEach($rounds, id: \.id) { $round in
                     NavigationLink(destination: ScoreboardView(round: $round)) {
@@ -28,6 +28,7 @@ struct RoundsView: View {
                     }
                 }
                 .onDelete { rounds.remove(atOffsets: $0) }
+                .deleteDisabled(!self.editMode.isEditing)
                 .listRowBackground(Color(named: "s.fill.tertiary"))
             }
             .animation(nil, value: editMode)

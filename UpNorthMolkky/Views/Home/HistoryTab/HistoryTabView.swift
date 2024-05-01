@@ -14,42 +14,16 @@ struct HistoryTabView: View {
     
     var people: [Player] = []
     
-    func getColor(tab: HistoryTabView.Tab) -> Color {
-        return tab == selectedTab ? Color(named: "s.accent2.main") : Color(UIColor.label)
-    }
-    
     func setSelectedTab(_ tab: HistoryTabView.Tab) {
-        selectedTab = tab
+        withAnimation {
+            selectedTab = tab
+        }
     }
     
     var body: some View {
         VStack(alignment: .leading) {
-            HStack(alignment:.bottom) {
-                Spacer()
-                Button(action: {
-                    setSelectedTab(HistoryTabView.Tab.rounds)
-                }, label: {
-                    Image(systemName: "clipboard.fill")
-                        .foregroundStyle(getColor(tab: HistoryTabView.Tab.rounds))
-                })
-                Spacer()
-                Button(action: {
-                    setSelectedTab(HistoryTabView.Tab.people)
-                }, label: {
-                    Image(systemName: "person.2.fill")
-                        .foregroundStyle(getColor(tab: HistoryTabView.Tab.people))
-                })
-                Spacer()
-                Button(action: {
-                    setSelectedTab(HistoryTabView.Tab.stats)
-                }, label: {
-                    Image(systemName: "chart.bar.fill")
-                        .foregroundStyle(getColor(tab: HistoryTabView.Tab.stats))
-                })
-                Spacer()
-            }
-            .padding()
-            TabView(selection: $selectedTab) {
+            HistoryTabSelector(selectedTab: selectedTab, setSelectedTab: setSelectedTab(_:))
+            TabView(selection: $selectedTab.animation(.smooth)) {
                 RoundsView(rounds: $userData.rounds)
                     .tabItem {
                         Text("Rounds")
@@ -66,7 +40,8 @@ struct HistoryTabView: View {
                     }
                     .tag(HistoryTabView.Tab.stats)
             }
-            .tabViewStyle(.page(indexDisplayMode: .never))
+            .tabViewStyle(.page(indexDisplayMode: .always))
+            .indexViewStyle(.page(backgroundDisplayMode: .always))
         }
     }
 }

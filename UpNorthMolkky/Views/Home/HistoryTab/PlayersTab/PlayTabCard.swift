@@ -106,7 +106,7 @@ struct PlayTabCardButton: View {
         if (variant == .primary) {
             return self
                 .background(color)
-                .foregroundColor(Color(UIColor.black))
+                .foregroundColor(Color(UIColor.white))
                 .font(.headline)
                 .fontWeight(.medium)
                 .cornerRadius(10)
