@@ -36,7 +36,7 @@ struct HomeView: View {
                                 Text("History")
                             }
                             .tag("history")
-                        Text("More Screen")
+                        MoreTabView()
                             .tabItem {
                                 Image(systemName: "ellipsis")
                                 Text("More")
