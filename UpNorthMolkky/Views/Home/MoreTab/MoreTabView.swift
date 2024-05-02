@@ -16,12 +16,12 @@ struct MoreTabView: View {
             }
             VStack {
                 MoreTabViewListTitle(title: "Reference")
-                MoreTabViewListItem(text: "Rules of Molkky", image: "book")
-                MoreTabViewListItem(text: "Skittle Tips", image: "lightbulb")
+                MoreTabViewListItem(text: "Rules of the game", image: "book")
+                MoreTabViewListItem(text: "Skittle tips", image: "lightbulb")
             }
             VStack {
                 MoreTabViewListTitle(title: "Information")
-                MoreTabViewListItem(text: "Provide Feedback", image: "star.bubble")
+                MoreTabViewListItem(text: "Provide feedback", image: "star.bubble")
                 MoreTabViewListItem(text: "App information", image: "info.circle")
             }
             VStack {
