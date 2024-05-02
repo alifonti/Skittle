@@ -26,20 +26,20 @@ struct RoundsView: View {
         .animation(nil, value: editMode)
         .scrollContentBackground(.hidden)
         .background(Color(named: "s.background.primary"))
-        .overlay {
-            VStack {
-                Rectangle()
-                    .fill(Color(named: "s.background.primary"))
-                    .shadow(radius: 10, x: 0, y: 5)
-                    .frame(height: 20)
-                Spacer()
-                Rectangle()
-                    .fill(Color(named: "s.background.primary"))
-                    .shadow(radius: 10, x: 0, y: -5)
-                    .frame(height: 20)
-            }
-            .ignoresSafeArea()
-        }
+//        .overlay {
+//            VStack {
+//                Rectangle()
+//                    .fill(Color(named: "s.background.primary"))
+//                    .shadow(radius: 10, x: 0, y: 5)
+//                    .frame(height: 20)
+//                Spacer()
+//                Rectangle()
+//                    .fill(Color(named: "s.background.primary"))
+//                    .shadow(radius: 10, x: 0, y: -5)
+//                    .frame(height: 20)
+//            }
+//            .ignoresSafeArea()
+//        }
         .environment(\.editMode, $editMode)
     }
 }
