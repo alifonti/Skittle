@@ -13,29 +13,34 @@ struct RoundsView: View {
     @State var editMode = EditMode.inactive
     
     var body: some View {
-        VStack {
-//            HStack {
-//                Spacer()
-//                Button(editMode == EditMode.inactive ? "Edit" : "Done") {
-//                    editMode = editMode == EditMode.inactive ? EditMode.active : EditMode.inactive
-//                }
-//            }
-//            .padding()
-            List {
-                ForEach($rounds, id: \.id) { $round in
-                    NavigationLink(destination: ScoreboardView(round: $round)) {
-                        CardView(round: round)
-                    }
+        List {
+            ForEach($rounds, id: \.id) { $round in
+                NavigationLink(destination: ScoreboardView(round: $round)) {
+                    CardView(round: round)
                 }
-                .onDelete { rounds.remove(atOffsets: $0) }
-                .deleteDisabled(!self.editMode.isEditing)
-                .listRowBackground(Color(named: "s.fill.tertiary"))
             }
-            .animation(nil, value: editMode)
-            .scrollContentBackground(.hidden)
-            .background(Color(named: "s.background.primary"))
-            .environment(\.editMode, $editMode)
+            .onDelete { rounds.remove(atOffsets: $0) }
+            .deleteDisabled(!self.editMode.isEditing)
+            .listRowBackground(Color(named: "s.fill.tertiary"))
         }
+        .animation(nil, value: editMode)
+        .scrollContentBackground(.hidden)
+        .background(Color(named: "s.background.primary"))
+        .overlay {
+            VStack {
+                Rectangle()
+                    .fill(Color(named: "s.background.primary"))
+                    .shadow(radius: 10, x: 0, y: 5)
+                    .frame(height: 20)
+                Spacer()
+                Rectangle()
+                    .fill(Color(named: "s.background.primary"))
+                    .shadow(radius: 10, x: 0, y: -5)
+                    .frame(height: 20)
+            }
+            .ignoresSafeArea()
+        }
+        .environment(\.editMode, $editMode)
     }
 }
 

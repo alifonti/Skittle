@@ -57,6 +57,7 @@ struct MoreTabViewListTitle: View {
                 Text(title)
                     .font(.title3)
                     .fontWeight(.semibold)
+                    .foregroundStyle(Color(UIColor.secondaryLabel))
                 Spacer()
             }
             Divider()

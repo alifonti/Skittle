@@ -22,7 +22,13 @@ struct HistoryTabView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            HistoryTabSelector(selectedTab: selectedTab, setSelectedTab: setSelectedTab(_:))
+            HStack {
+                HistoryTabSelector(selectedTab: selectedTab, setSelectedTab: setSelectedTab(_:))
+                // Spacer()
+                // Button(editMode == EditMode.inactive ? "Edit" : "Done") {
+                //     editMode = editMode == EditMode.inactive ? EditMode.active : EditMode.inactive
+                // }
+            }
             TabView(selection: $selectedTab.animation(.smooth)) {
                 RoundsView(rounds: $userData.rounds)
                     .tabItem {
@@ -40,7 +46,7 @@ struct HistoryTabView: View {
                     }
                     .tag(HistoryTabView.Tab.stats)
             }
-            .tabViewStyle(.page(indexDisplayMode: .always))
+            .tabViewStyle(.page(indexDisplayMode: .never))
             .indexViewStyle(.page(backgroundDisplayMode: .always))
         }
     }
