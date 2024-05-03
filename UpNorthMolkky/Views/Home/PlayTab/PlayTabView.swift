@@ -19,12 +19,12 @@ struct PlayTabView: View {
         ZStack {
             Group {
                 VStack(spacing: 15) {
-                    PlayTabCard(variant: .secondary, title: "Rules of the game", imageName: "book", buttonLabel: "View rules")
-                    PlayTabCard(variant: .primary, title: "Ready to play?", imageName: "play.circle", buttonLabel: "Start a new round", buttonColor: Color(named: "s.accent1.main"),
-                                onClick: {
-                        isPresentingNewRoundView = true
-                        newRound = MolkkyRound(players: [])
-                    }
+                    PlayTabCard(title: "Rules of the game", imageName: "book", buttonLabel: "View rules")
+                    PlayTabCard(title: "Ready to play?", imageName: "play.circle", buttonLabel: "Start a new round", buttonColor: Color(named: "s.accent1.main"),
+                        onClick: {
+                            isPresentingNewRoundView = true
+                            newRound = MolkkyRound(players: [])
+                        }
                     )
                     Spacer()
                 }
