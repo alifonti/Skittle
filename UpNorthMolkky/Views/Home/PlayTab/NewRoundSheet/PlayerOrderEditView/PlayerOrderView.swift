@@ -11,26 +11,24 @@ struct PlayerOrderView: View {
     @Binding var round: MolkkyRound
     
     @State private var isShuffle: Bool = true
-    
-    @State private var isDragging = false
-    
-    var drag: some Gesture {
-        DragGesture()
-            .onChanged { _ in 
-                self.isDragging = true
-                print("dragging")
-            }
-            .onEnded { _ in
-                self.isDragging = false
-                print("ended")
-            }
-    }
+    @State private var isTeams: Bool = false
     
     var body: some View {
         VStack {
-            BarToggleInput(value: $isShuffle, leftLabel: "Set Order", rightLabel: "Random Order")
-            .padding(.bottom, 10)
+            VStack(alignment: .leading) {
+                Text("Options")
+                    .font(.title3)
+                Picker("Grouping", selection: $isTeams) {
+                    Text("Singles").tag(false)
+                    Text("Teams").tag(true)
+                }.pickerStyle(.segmented)
+                Picker("Turn Order", selection: $isShuffle) {
+                    Text("Set order").tag(false)
+                    Text("Random order").tag(true)
+                }.pickerStyle(.segmented)
+            }
             Divider()
+                .padding(.vertical, 10)
             ScrollView(showsIndicators: false, content: {
                 VStack(spacing: 10, content: {
                     ForEach(round.contenders, id: \.self) { contender in
