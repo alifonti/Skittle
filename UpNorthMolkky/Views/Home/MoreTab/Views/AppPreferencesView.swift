@@ -31,6 +31,7 @@ struct AppPreferencesView: View {
                 }
             }
         }
+        .navigationTitle("Preferences")
         .onChange(of: preferredColorScheme) {
             UserDefaults.standard.set(preferredColorScheme.rawValue, forKey: "PreferredColorScheme")
         }
