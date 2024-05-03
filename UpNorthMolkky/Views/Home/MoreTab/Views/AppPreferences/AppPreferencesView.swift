@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct AppPreferencesView: View {
-//    @State private var preferredColorScheme: String = UserDefaults.standard.string(forKey: "PreferredColorScheme") ?? "auto"
     @State private var preferDetailedScoreView: Bool = false
-    
-    @AppStorage("PreferredColorScheme", store: .standard) var preferredColorSchemePreference: String = "auto"
     
     var body: some View {
         Form {
