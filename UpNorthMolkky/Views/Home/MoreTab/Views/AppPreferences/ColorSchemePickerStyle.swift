@@ -131,7 +131,7 @@ struct ColorSchemeCheckmarkButton: View {
                 .frame(width: 20, height: 20)
         } else {
             Circle()
-                .fill(Color(UIColor.systemBackground))
+                .fill(Color(UIColor.clear))
                 .stroke(Color(UIColor.secondaryLabel))
                 .frame(width: 20, height: 20)
         }
