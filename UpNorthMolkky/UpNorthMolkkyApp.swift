@@ -16,9 +16,9 @@ struct UpNorthMolkkyApp: App {
     @AppStorage("PreferredColorScheme", store: .standard) var preferredColorSchemePreference: String = ""
     
     var preferredColorScheme: ColorScheme? {
-        if (preferredColorSchemePreference == AppPreferencesView.PreferredColorScheme.light.rawValue) {
+        if (preferredColorSchemePreference == "light") {
             return .light
-        } else if (preferredColorSchemePreference == AppPreferencesView.PreferredColorScheme.dark.rawValue) {
+        } else if (preferredColorSchemePreference == "dark") {
             return .dark
         } else {
             return nil
