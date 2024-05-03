@@ -18,7 +18,7 @@ struct MoreTabView: View {
             }
             VStack(spacing: 5) {
                 MoreTabViewListTitle(title: "Reference")
-                NavigationLink(destination: AppPreferencesView()) {
+                NavigationLink(destination: RulesView()) {
                     MoreTabViewListItem(text: "Rules of the game", image: "book")
                 }
                 NavigationLink(destination: AppPreferencesView()) {

@@ -44,6 +44,7 @@
 		FD9EC8032BE2FDE600006205 /* HistoryTabSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9EC8022BE2FDE600006205 /* HistoryTabSelector.swift */; };
 		FD9EC8062BE31ADD00006205 /* MoreTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9EC8052BE31ADD00006205 /* MoreTabView.swift */; };
 		FDC0DF732BE45F570007EB32 /* AppPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC0DF722BE45F570007EB32 /* AppPreferencesView.swift */; };
+		FDC0DF752BE4951E0007EB32 /* RulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC0DF742BE4951E0007EB32 /* RulesView.swift */; };
 		FDD8C7C72BBE180E0082B523 /* NewRoundSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8C7C62BBE180D0082B523 /* NewRoundSheet.swift */; };
 		FDD8C7CA2BBE19090082B523 /* DetailEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8C7C92BBE19090082B523 /* DetailEditView.swift */; };
 		FDD8C7CC2BBE20F90082B523 /* PlayerEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8C7CB2BBE20F90082B523 /* PlayerEditView.swift */; };
@@ -102,6 +103,7 @@
 		FD9EC8022BE2FDE600006205 /* HistoryTabSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTabSelector.swift; sourceTree = "<group>"; };
 		FD9EC8052BE31ADD00006205 /* MoreTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTabView.swift; sourceTree = "<group>"; };
 		FDC0DF722BE45F570007EB32 /* AppPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferencesView.swift; sourceTree = "<group>"; };
+		FDC0DF742BE4951E0007EB32 /* RulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulesView.swift; sourceTree = "<group>"; };
 		FDD8C7C62BBE180D0082B523 /* NewRoundSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRoundSheet.swift; sourceTree = "<group>"; };
 		FDD8C7C92BBE19090082B523 /* DetailEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEditView.swift; sourceTree = "<group>"; };
 		FDD8C7CB2BBE20F90082B523 /* PlayerEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerEditView.swift; sourceTree = "<group>"; };
@@ -301,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				FDC0DF722BE45F570007EB32 /* AppPreferencesView.swift */,
+				FDC0DF742BE4951E0007EB32 /* RulesView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -491,6 +494,7 @@
 				FD90A3A92BD35A9600FCA297 /* SlidingSelectionInput.swift in Sources */,
 				FDD8C7EA2BC8D9AE0082B523 /* BarToggleInput.swift in Sources */,
 				FD90A3A72BD1F78300FCA297 /* HistoryTabView.swift in Sources */,
+				FDC0DF752BE4951E0007EB32 /* RulesView.swift in Sources */,
 				FD90BD042AB663FC00D7CF3B /* MolkkyStore.swift in Sources */,
 				FD7928732AB15DE800FF25CE /* Contender.swift in Sources */,
 				FD95BC472ABBE98C001A9CFF /* MissScoreView.swift in Sources */,

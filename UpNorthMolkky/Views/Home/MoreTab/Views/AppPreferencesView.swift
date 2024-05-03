@@ -8,19 +8,17 @@
 import SwiftUI
 
 struct AppPreferencesView: View {
-    @State private var preferredColorScheme: PreferredColorScheme =
-    UserDefaults.standard.string(forKey: "PreferredColorScheme") ?? "" == PreferredColorScheme.light.rawValue
-        ? PreferredColorScheme.light : UserDefaults.standard.string(forKey: "PreferredColorScheme") ?? "" == PreferredColorScheme.dark.rawValue
-        ? PreferredColorScheme.dark : PreferredColorScheme.auto
-    
+    @State private var preferredColorScheme: String = UserDefaults.standard.string(forKey: "PreferredColorScheme") ?? "auto"
     @State private var preferDetailedScoreView: Bool = false
+    
+    @AppStorage("PreferredColorScheme", store: .standard) var preferredColorSchemePreference: String = ""
     
     var body: some View {
         Form {
             Section(header: Text("Appearance")) {
-                Picker("Color Scheme", selection: $preferredColorScheme) {
+                Picker("Color Scheme", selection: $preferredColorSchemePreference) {
                     ForEach(PreferredColorScheme.allCases) { colorScheme in
-                        Text(colorScheme.rawValue.capitalized)
+                        Text(colorScheme.rawValue.capitalized).tag(colorScheme.rawValue)
                     }
                 }
             }
@@ -33,7 +31,7 @@ struct AppPreferencesView: View {
         }
         .navigationTitle("Preferences")
         .onChange(of: preferredColorScheme) {
-            UserDefaults.standard.set(preferredColorScheme.rawValue, forKey: "PreferredColorScheme")
+            UserDefaults.standard.set(preferredColorScheme, forKey: "PreferredColorScheme")
         }
     }
 }
