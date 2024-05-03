@@ -41,6 +41,9 @@
 		FD95BC6B2AC1264D001A9CFF /* PlayerScoreShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD95BC6A2AC1264D001A9CFF /* PlayerScoreShimmerView.swift */; };
 		FD9A52172AC3B28C0082B9B7 /* MolkkyKeyboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9A52162AC3B28C0082B9B7 /* MolkkyKeyboardController.swift */; };
 		FD9A52192AC3B9320082B9B7 /* MolkkyKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9A52182AC3B9320082B9B7 /* MolkkyKeyboardView.swift */; };
+		FD9EC8032BE2FDE600006205 /* HistoryTabSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9EC8022BE2FDE600006205 /* HistoryTabSelector.swift */; };
+		FD9EC8062BE31ADD00006205 /* MoreTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9EC8052BE31ADD00006205 /* MoreTabView.swift */; };
+		FDC0DF732BE45F570007EB32 /* AppPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC0DF722BE45F570007EB32 /* AppPreferencesView.swift */; };
 		FDD8C7C72BBE180E0082B523 /* NewRoundSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8C7C62BBE180D0082B523 /* NewRoundSheet.swift */; };
 		FDD8C7CA2BBE19090082B523 /* DetailEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8C7C92BBE19090082B523 /* DetailEditView.swift */; };
 		FDD8C7CC2BBE20F90082B523 /* PlayerEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8C7CB2BBE20F90082B523 /* PlayerEditView.swift */; };
@@ -96,6 +99,9 @@
 		FD95BC6A2AC1264D001A9CFF /* PlayerScoreShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreShimmerView.swift; sourceTree = "<group>"; };
 		FD9A52162AC3B28C0082B9B7 /* MolkkyKeyboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MolkkyKeyboardController.swift; sourceTree = "<group>"; };
 		FD9A52182AC3B9320082B9B7 /* MolkkyKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MolkkyKeyboardView.swift; sourceTree = "<group>"; };
+		FD9EC8022BE2FDE600006205 /* HistoryTabSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTabSelector.swift; sourceTree = "<group>"; };
+		FD9EC8052BE31ADD00006205 /* MoreTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTabView.swift; sourceTree = "<group>"; };
+		FDC0DF722BE45F570007EB32 /* AppPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferencesView.swift; sourceTree = "<group>"; };
 		FDD8C7C62BBE180D0082B523 /* NewRoundSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRoundSheet.swift; sourceTree = "<group>"; };
 		FDD8C7C92BBE19090082B523 /* DetailEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailEditView.swift; sourceTree = "<group>"; };
 		FDD8C7CB2BBE20F90082B523 /* PlayerEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerEditView.swift; sourceTree = "<group>"; };
@@ -201,6 +207,7 @@
 				FDD8C7E12BC23A5E0082B523 /* PlayersTab */,
 				FDD8C7E02BC239E20082B523 /* RoundsTab */,
 				FD90A3A62BD1F78300FCA297 /* HistoryTabView.swift */,
+				FD9EC8022BE2FDE600006205 /* HistoryTabSelector.swift */,
 			);
 			path = HistoryTab;
 			sourceTree = "<group>";
@@ -225,6 +232,7 @@
 		FD95BC4D2ABFAE0B001A9CFF /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				FD9EC8042BE31A9500006205 /* MoreTab */,
 				FD90A3AC2BD5DA2600FCA297 /* HomeView */,
 				FD90A3A32BD1E18700FCA297 /* HistoryTab */,
 				FD90A3A22BD1E17600FCA297 /* PlayTab */,
@@ -278,6 +286,23 @@
 				FD9A52182AC3B9320082B9B7 /* MolkkyKeyboardView.swift */,
 			);
 			path = UIInputView;
+			sourceTree = "<group>";
+		};
+		FD9EC8042BE31A9500006205 /* MoreTab */ = {
+			isa = PBXGroup;
+			children = (
+				FDC0DF712BE45F310007EB32 /* Views */,
+				FD9EC8052BE31ADD00006205 /* MoreTabView.swift */,
+			);
+			path = MoreTab;
+			sourceTree = "<group>";
+		};
+		FDC0DF712BE45F310007EB32 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FDC0DF722BE45F570007EB32 /* AppPreferencesView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		FDD8C7C82BBE18F40082B523 /* NewRoundSheet */ = {
@@ -445,6 +470,7 @@
 				FD3F12AE2AD20E4B005F5BF5 /* Player.swift in Sources */,
 				FD90BD022AB2872B00D7CF3B /* MolkkyRound.swift in Sources */,
 				FDD8C7EE2BC8E8010082B523 /* PartyToggleStyle.swift in Sources */,
+				FD9EC8032BE2FDE600006205 /* HistoryTabSelector.swift in Sources */,
 				FD79286F2AB151DD00FF25CE /* ScoreKeyboardView.swift in Sources */,
 				FD79286B2AB14E1600FF25CE /* ScoreboardView.swift in Sources */,
 				FD95BC6B2AC1264D001A9CFF /* PlayerScoreShimmerView.swift in Sources */,
@@ -454,6 +480,7 @@
 				FD95BC492ABFA6A5001A9CFF /* PlayerRoundResults.swift in Sources */,
 				FD90BD0A2AB6677B00D7CF3B /* ErrorView.swift in Sources */,
 				FDD8C7EC2BC8DEBE0082B523 /* CheckmarkToggleStyle.swift in Sources */,
+				FDC0DF732BE45F570007EB32 /* AppPreferencesView.swift in Sources */,
 				FD7928752AB166B200FF25CE /* ScoreHistoryView.swift in Sources */,
 				FD90A3A52BD1E23C00FCA297 /* PlayTabView.swift in Sources */,
 				FD9A52192AC3B9320082B9B7 /* MolkkyKeyboardView.swift in Sources */,
@@ -472,6 +499,7 @@
 				FD90A3AB2BD373F400FCA297 /* PlayTabCard.swift in Sources */,
 				FD9A52172AC3B28C0082B9B7 /* MolkkyKeyboardController.swift in Sources */,
 				FDD8C7D02BBF85940082B523 /* PlayerListView.swift in Sources */,
+				FD9EC8062BE31ADD00006205 /* MoreTabView.swift in Sources */,
 				FD90BD062AB665A900D7CF3B /* RoundsView.swift in Sources */,
 				FD95BC4B2ABFA743001A9CFF /* SortToggleButton.swift in Sources */,
 				FDD8C7D72BBF9AC40082B523 /* PlayerOrderItemView.swift in Sources */,

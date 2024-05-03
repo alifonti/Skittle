@@ -10,23 +10,35 @@ import SwiftUI
 struct MoreTabView: View {
     var body: some View {
         VStack(spacing: 20) {
-            VStack {
+            VStack(spacing: 5) {
                 MoreTabViewListTitle(title: "Customize")
-                MoreTabViewListItem(text: "App preferences", image: "gear")
+                NavigationLink(destination: AppPreferencesView()) {
+                    MoreTabViewListItem(text: "App preferences", image: "gear")
+                }
             }
-            VStack {
+            VStack(spacing: 5) {
                 MoreTabViewListTitle(title: "Reference")
-                MoreTabViewListItem(text: "Rules of the game", image: "book")
-                MoreTabViewListItem(text: "Skittle tips", image: "lightbulb")
+                NavigationLink(destination: AppPreferencesView()) {
+                    MoreTabViewListItem(text: "Rules of the game", image: "book")
+                }
+                NavigationLink(destination: AppPreferencesView()) {
+                    MoreTabViewListItem(text: "Skittle tips", image: "lightbulb")
+                }
             }
-            VStack {
-                MoreTabViewListTitle(title: "Information")
-                MoreTabViewListItem(text: "Provide feedback", image: "star.bubble")
-                MoreTabViewListItem(text: "App information", image: "info.circle")
+            VStack(spacing: 5) {
+                MoreTabViewListTitle(title: "Application")
+                NavigationLink(destination: AppPreferencesView()) {
+                    MoreTabViewListItem(text: "Review Skittle", image: "star.bubble")
+                }
+                NavigationLink(destination: AppPreferencesView()) {
+                    MoreTabViewListItem(text: "About", image: "info.circle")
+                }
             }
-            VStack {
+            VStack(spacing: 5) {
                 MoreTabViewListTitle(title: "Data")
-                MoreTabViewListItem(text: "Clear app data", image: "trash")
+                NavigationLink(destination: AppPreferencesView()) {
+                    MoreTabViewListItem(text: "Clear app data", image: "trash")
+                }
             }
             Spacer()
         }
@@ -45,6 +57,7 @@ struct MoreTabViewListItem: View {
             Spacer()
             Image(systemName: "chevron.forward")
         }
+        .foregroundStyle(Color(UIColor.label))
         .padding(.vertical, 10)
     }
 }
