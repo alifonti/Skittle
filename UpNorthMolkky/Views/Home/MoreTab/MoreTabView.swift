@@ -8,6 +8,16 @@
 import SwiftUI
 
 struct MoreTabView: View {
+    @Environment(\.openURL) private var openURL
+    
+    func openReviewUrl() {
+        let url = "https://apps.apple.com/app/id00000000?action=write-review"
+        guard let writeReviewURL = URL(string: url) else {
+            fatalError("Expected a valid URL")
+        }
+        openURL(writeReviewURL)
+    }
+    
     var body: some View {
         VStack(spacing: 20) {
             VStack(spacing: 5) {
@@ -19,7 +29,7 @@ struct MoreTabView: View {
             VStack(spacing: 5) {
                 MoreTabViewListTitle(title: "Reference")
                 NavigationLink(destination: RulesView()) {
-                    MoreTabViewListItem(text: "Rules of the game", image: "book")
+                    MoreTabViewListItem(text: "Game rules", image: "book")
                 }
                 NavigationLink(destination: AppPreferencesView()) {
                     MoreTabViewListItem(text: "Skittle tips", image: "lightbulb")
@@ -27,10 +37,10 @@ struct MoreTabView: View {
             }
             VStack(spacing: 5) {
                 MoreTabViewListTitle(title: "Application")
-                NavigationLink(destination: AppPreferencesView()) {
+                Button(action: openReviewUrl) {
                     MoreTabViewListItem(text: "Review Skittle", image: "star.bubble")
                 }
-                NavigationLink(destination: AppPreferencesView()) {
+                NavigationLink(destination: AboutView()) {
                     MoreTabViewListItem(text: "About", image: "info.circle")
                 }
             }

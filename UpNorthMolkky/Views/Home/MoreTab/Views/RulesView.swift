@@ -9,15 +9,18 @@ import SwiftUI
 
 struct RulesView: View {
     var body: some View {
-        VStack(alignment: .leading) {
-            HStack {
-                Text("Rules")
-                    .font(.title)
-                Spacer()
+        Group {
+            VStack(alignment: .leading) {
+                HStack {
+                    Text("Rules")
+                        .font(.title)
+                    Spacer()
+                }
+                Text("Paragraph")
             }
-            Text("Paragraph")
+            .padding()
         }
-        .padding()
+        .navigationTitle("Rules")
     }
 }
 

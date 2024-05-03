@@ -15,17 +15,22 @@ struct PlayTabView: View {
     @State private var isPresentingNewRoundView: Bool = false
     @State private var shouldNavigate: Bool = false
     
+    func startNewRound() {
+        isPresentingNewRoundView = true
+        newRound = MolkkyRound(players: [])
+    }
+    
     var body: some View {
         ZStack {
             Group {
                 VStack(spacing: 15) {
-                    PlayTabCard(title: "Rules of the game", imageName: "book", buttonLabel: "View rules")
-                    PlayTabCard(title: "Ready to play?", imageName: "play.circle", buttonLabel: "Start a new round", buttonColor: Color(named: "s.accent1.main"),
-                        onClick: {
-                            isPresentingNewRoundView = true
-                            newRound = MolkkyRound(players: [])
-                        }
-                    )
+                    GenericPlayTabCard(title: "Rules of the game", imageName: "book",
+                                       buttonLabel: "View rules", buttonColor: Color(UIColor.quaternarySystemFill),
+                                       buttonLabelColor: Color(UIColor.label))
+                    GenericPlayTabCard(title: "Ready to play?", imageName: "play.circle",
+                                       buttonLabel: "Start a new round", buttonColor: Color(named: "s.accent1.main"),
+                                       buttonLabelColor: .white, onClick: startNewRound)
+                    RoundInProgressCard(primaryOnClick: startNewRound, secondaryOnClick: startNewRound)
                     Spacer()
                 }
                 .sheet(isPresented: $isPresentingNewRoundView, onDismiss: {
@@ -40,11 +45,13 @@ struct PlayTabView: View {
             Group {
                 if (shouldNavigate) {
                     VStack {
-                        Text("Creating a new round")
+                        Text("Starting a new round")
+                            .font(.title3)
                         ProgressView()
                     }
                     .padding()
-                    .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
+                    .background(RoundedRectangle(cornerRadius: 10)
+                        .fill(.thinMaterial))
                 } else {
                     EmptyView()
                 }
