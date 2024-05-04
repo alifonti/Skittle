@@ -8,18 +8,13 @@
 import SwiftUI
 
 struct AppPreferencesView: View {
-    @State private var preferDetailedScoreView: Bool = false
-    
     var body: some View {
         Form {
             Section(header: Text("Appearance")) {
                 ColorSchemePicker()
             }
             Section(header: Text("Scoreboard")) {
-                Picker("Default score view", selection: $preferDetailedScoreView) {
-                    Text("Simple").tag(false)
-                    Text("Detailed").tag(true)
-                }
+                PreferDetailedScorePickerView()
             }
         }
         .navigationTitle("Preferences")

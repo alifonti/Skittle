@@ -40,6 +40,7 @@
 		FD95BC672AC10AAE001A9CFF /* ShimmerBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD95BC662AC10AAE001A9CFF /* ShimmerBox.swift */; };
 		FD95BC6B2AC1264D001A9CFF /* PlayerScoreShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD95BC6A2AC1264D001A9CFF /* PlayerScoreShimmerView.swift */; };
 		FD991FCC2BE6B49C0089B6A6 /* SkittleTipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD991FCB2BE6B49C0089B6A6 /* SkittleTipsView.swift */; };
+		FD991FCF2BE6C5240089B6A6 /* PreferDetailedScorePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD991FCE2BE6C5240089B6A6 /* PreferDetailedScorePickerView.swift */; };
 		FD9A52172AC3B28C0082B9B7 /* MolkkyKeyboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9A52162AC3B28C0082B9B7 /* MolkkyKeyboardController.swift */; };
 		FD9A52192AC3B9320082B9B7 /* MolkkyKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9A52182AC3B9320082B9B7 /* MolkkyKeyboardView.swift */; };
 		FD9EC8032BE2FDE600006205 /* HistoryTabSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9EC8022BE2FDE600006205 /* HistoryTabSelector.swift */; };
@@ -102,6 +103,7 @@
 		FD95BC662AC10AAE001A9CFF /* ShimmerBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShimmerBox.swift; sourceTree = "<group>"; };
 		FD95BC6A2AC1264D001A9CFF /* PlayerScoreShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreShimmerView.swift; sourceTree = "<group>"; };
 		FD991FCB2BE6B49C0089B6A6 /* SkittleTipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkittleTipsView.swift; sourceTree = "<group>"; };
+		FD991FCE2BE6C5240089B6A6 /* PreferDetailedScorePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferDetailedScorePickerView.swift; sourceTree = "<group>"; };
 		FD9A52162AC3B28C0082B9B7 /* MolkkyKeyboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MolkkyKeyboardController.swift; sourceTree = "<group>"; };
 		FD9A52182AC3B9320082B9B7 /* MolkkyKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MolkkyKeyboardView.swift; sourceTree = "<group>"; };
 		FD9EC8022BE2FDE600006205 /* HistoryTabSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTabSelector.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 			children = (
 				FDC0DF722BE45F570007EB32 /* AppPreferencesView.swift */,
 				FDC0DF772BE592DA0007EB32 /* ColorSchemePicker.swift */,
+				FD991FCE2BE6C5240089B6A6 /* PreferDetailedScorePickerView.swift */,
 			);
 			path = AppPreferences;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				FD91B2FB2AB9532100EFE503 /* EditScoreHistorySheet.swift in Sources */,
 				FD90A3A92BD35A9600FCA297 /* SlidingSelectionInput.swift in Sources */,
 				FDD8C7EA2BC8D9AE0082B523 /* BarToggleInput.swift in Sources */,
+				FD991FCF2BE6C5240089B6A6 /* PreferDetailedScorePickerView.swift in Sources */,
 				FD90A3A72BD1F78300FCA297 /* HistoryTabView.swift in Sources */,
 				FDC0DF752BE4951E0007EB32 /* RulesView.swift in Sources */,
 				FD90BD042AB663FC00D7CF3B /* MolkkyStore.swift in Sources */,

@@ -8,7 +8,14 @@
 import SwiftUI
 
 struct PlayerScoreView: View {
+    @AppStorage("PreferDetailedScoreView") var preferDetailedScoreView: Bool = false
     @State var isSimpleView: Bool = true
+    
+    init(playerScore: MolkkyRound.ContenderScore, currentPlayer: Bool) {
+        self.playerScore = playerScore
+        self.currentPlayer = currentPlayer
+        _isSimpleView = State(initialValue: !preferDetailedScoreView)
+    }
     
     var playerScore: MolkkyRound.ContenderScore
     var currentPlayer: Bool
