@@ -10,6 +10,8 @@ import SwiftUI
 struct MoreTabView: View {
     @Environment(\.openURL) private var openURL
     
+    @State private var showingDeleteDataPopover = false
+    
     func openReviewUrl() {
         let url = "https://apps.apple.com/app/id00000000?action=write-review"
         guard let writeReviewURL = URL(string: url) else {
@@ -31,7 +33,7 @@ struct MoreTabView: View {
                 NavigationLink(destination: RulesView()) {
                     MoreTabViewListItem(text: "Game rules", image: "book")
                 }
-                NavigationLink(destination: AppPreferencesView()) {
+                NavigationLink(destination: SkittleTipsView()) {
                     MoreTabViewListItem(text: "Skittle tips", image: "lightbulb")
                 }
             }
@@ -46,8 +48,20 @@ struct MoreTabView: View {
             }
             VStack(spacing: 5) {
                 MoreTabViewListTitle(title: "Data")
-                NavigationLink(destination: AppPreferencesView()) {
+                Button(action: {showingDeleteDataPopover = true}) {
                     MoreTabViewListItem(text: "Clear app data", image: "trash")
+                        .alert(
+                            "Delete all data?",
+                            isPresented: $showingDeleteDataPopover
+                        ) {
+                            Button(role: .destructive) {
+                                // delete
+                            } label: {
+                                Text("Delete")
+                            }
+                        } message: {
+                            Text("This action is permanant.")
+                        }
                 }
             }
             Spacer()

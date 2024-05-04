@@ -43,6 +43,8 @@ struct HomeView: View {
                             }
                             .tag("more")
                     }
+                    // .toolbarBackground(Material.regular, for: .tabBar)
+                    // .toolbarBackground(.visible, for: .tabBar)
                 }
                 .tint(HomeHeaderView.getHeaderColor(tab: selectedTab))
             }

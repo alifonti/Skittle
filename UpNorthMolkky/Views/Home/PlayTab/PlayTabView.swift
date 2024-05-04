@@ -24,9 +24,7 @@ struct PlayTabView: View {
         ZStack {
             Group {
                 VStack(spacing: 15) {
-                    GenericPlayTabCard(title: "Rules of the game", imageName: "book",
-                                       buttonLabel: "View rules", buttonColor: Color(UIColor.quaternarySystemFill),
-                                       buttonLabelColor: Color(UIColor.label))
+                    RulesPlayTabCard()
                     MainPlayCard(newGameOnClick: startNewRound, rounds: $userData.rounds)
                     Spacer()
                 }

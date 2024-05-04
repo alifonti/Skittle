@@ -7,6 +7,39 @@
 
 import SwiftUI
 
+struct RulesPlayTabCard: View {
+    var body: some View {
+        VStack {
+            HStack {
+                Text("Rules of the game")
+                Spacer()
+                Image(systemName: "book")
+            }
+            .font(.title2)
+            .fontWeight(.medium)
+            NavigationLink(destination: RulesView()) {
+                HStack() {
+                    Text("View rules")
+                        .accessibilityLabel("View rules")
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                }
+                .background(Color(UIColor.quaternarySystemFill))
+                .foregroundColor(Color(UIColor.label))
+                .font(.headline)
+                .fontWeight(.medium)
+                .cornerRadius(10)
+            }
+            .padding(.top, 10)
+        }
+        .padding([.horizontal], 16)
+        .padding([.vertical], 18)
+        .frame(maxWidth: .infinity)
+        .background(Color(UIColor.tertiarySystemFill))
+        .clipShape(RoundedRectangle(cornerRadius: 10.0))
+    }
+}
+
 struct GenericPlayTabCard: View {
     var title: String = ""
     var imageName: String = ""
