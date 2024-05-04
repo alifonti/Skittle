@@ -49,7 +49,7 @@ struct GenericPlayTabCard: View {
 
 struct RoundInProgressCard: View {
     var primaryOnClick: () -> Void = {}
-    var secondaryOnClick: () -> Void = {}
+    @Binding var latestGame: MolkkyRound
     
     var body: some View {
         VStack {
@@ -70,7 +70,7 @@ struct RoundInProgressCard: View {
                     }
                 }
             }
-            Button(action: primaryOnClick) {
+            NavigationLink(destination: ScoreboardView(round: $latestGame)) {
                 HStack() {
                     Text("Continue round")
                         .accessibilityLabel("Continue round in progress")
@@ -84,7 +84,7 @@ struct RoundInProgressCard: View {
                 .cornerRadius(10)
             }
             .padding(.top, 10)
-            Button(action: secondaryOnClick) {
+            Button(action: primaryOnClick) {
                 HStack() {
                     Text("Start a new round")
                         .accessibilityLabel("Start new round")
@@ -107,3 +107,23 @@ struct RoundInProgressCard: View {
     }
 }
 
+struct MainPlayCard: View {
+    var newGameOnClick: () -> Void = {}
+    @Binding var rounds: [MolkkyRound]
+    
+    var body: some View {
+        let showInProgress: Bool = $rounds.count > 0 && !$rounds[$rounds.count - 1].wrappedValue.hasGameEnded
+        
+        // Hack: Persist the in-progress card so that binding isn't lost on round completion
+        ZStack(alignment: .top) {
+            if ($rounds.count > 0) {
+                RoundInProgressCard(primaryOnClick: newGameOnClick, latestGame: $rounds[$rounds.count - 1])
+                    .opacity(showInProgress ? 1 : 0)
+            }
+            GenericPlayTabCard(title: "Ready to play?", imageName: "play.circle",
+                               buttonLabel: "Start a new round", buttonColor: Color(named: "s.accent1.main"),
+                               buttonLabelColor: .white, onClick: newGameOnClick)
+                .opacity(!showInProgress ? 1 : 0)
+        }
+    }
+}

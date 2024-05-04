@@ -44,8 +44,8 @@ struct DetailEditView: View {
 }
 
 
-struct DetailEditView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailEditView(round: .constant(MolkkyRound.sampleData))
-    }
-}
+//struct DetailEditView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DetailEditView(round: .constant(MolkkyRound.sampleData))
+//    }
+//}

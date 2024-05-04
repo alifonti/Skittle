@@ -27,10 +27,7 @@ struct PlayTabView: View {
                     GenericPlayTabCard(title: "Rules of the game", imageName: "book",
                                        buttonLabel: "View rules", buttonColor: Color(UIColor.quaternarySystemFill),
                                        buttonLabelColor: Color(UIColor.label))
-                    GenericPlayTabCard(title: "Ready to play?", imageName: "play.circle",
-                                       buttonLabel: "Start a new round", buttonColor: Color(named: "s.accent1.main"),
-                                       buttonLabelColor: .white, onClick: startNewRound)
-                    RoundInProgressCard(primaryOnClick: startNewRound, secondaryOnClick: startNewRound)
+                    MainPlayCard(newGameOnClick: startNewRound, rounds: $userData.rounds)
                     Spacer()
                 }
                 .sheet(isPresented: $isPresentingNewRoundView, onDismiss: {

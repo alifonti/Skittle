@@ -202,6 +202,7 @@
 			children = (
 				FDD8C7C82BBE18F40082B523 /* NewRoundSheet */,
 				FD90A3A42BD1E23C00FCA297 /* PlayTabView.swift */,
+				FD90A3AA2BD373F400FCA297 /* PlayTabCard.swift */,
 			);
 			path = PlayTab;
 			sourceTree = "<group>";
@@ -383,7 +384,6 @@
 		FDD8C7E12BC23A5E0082B523 /* PlayersTab */ = {
 			isa = PBXGroup;
 			children = (
-				FD90A3AA2BD373F400FCA297 /* PlayTabCard.swift */,
 				FDD8C7E22BC23A770082B523 /* PlayersView.swift */,
 				FDD8C7E42BC242270082B523 /* PlayerDetailsView.swift */,
 			);

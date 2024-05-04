@@ -68,7 +68,7 @@ struct MoreTabViewListItem: View {
             Image(systemName: "chevron.forward")
         }
         .foregroundStyle(Color(UIColor.label))
-        .padding(.vertical, 10)
+        .padding(.vertical, 12)
     }
 }
 

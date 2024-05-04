@@ -19,6 +19,8 @@ struct NewRoundSheet: View {
                     isPresentingNewRoundView = false
                 }
                 Spacer()
+                Text("Setup")
+                Spacer()
                 Button("Start") {
                     userData.addRound(newRound)
                     isPresentingNewRoundView = false
