@@ -98,8 +98,8 @@ struct RoundInProgressCard: View {
                             .fontWeight(.medium)
                     }
                     HStack {
-                        Label("\(Date().formatted(date: .numeric, time: .shortened))", systemImage: "clock")
-                        Label("2", systemImage: "person.2")
+                        Label("\(latestGame.date.formatted(date: .numeric, time: .shortened))", systemImage: "clock")
+                        Label("\(latestGame.contenders.count)", systemImage: "person.2")
                     }
                 }
             }
