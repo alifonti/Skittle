@@ -44,6 +44,7 @@
 		FD991FD22BE73DAD0089B6A6 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD991FD12BE73DAD0089B6A6 /* ResultView.swift */; };
 		FD991FD42BE835A70089B6A6 /* ResultsLeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD991FD32BE835A70089B6A6 /* ResultsLeaderboardView.swift */; };
 		FD991FD62BE836A10089B6A6 /* ResultsAwardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD991FD52BE836A10089B6A6 /* ResultsAwardsView.swift */; };
+		FD991FD92BE840CA0089B6A6 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = FD991FD82BE840CA0089B6A6 /* ConfettiSwiftUI */; };
 		FD9A52172AC3B28C0082B9B7 /* MolkkyKeyboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9A52162AC3B28C0082B9B7 /* MolkkyKeyboardController.swift */; };
 		FD9A52192AC3B9320082B9B7 /* MolkkyKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9A52182AC3B9320082B9B7 /* MolkkyKeyboardView.swift */; };
 		FD9EC8032BE2FDE600006205 /* HistoryTabSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9EC8022BE2FDE600006205 /* HistoryTabSelector.swift */; };
@@ -142,6 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD991FD92BE840CA0089B6A6 /* ConfettiSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +460,7 @@
 			);
 			name = UpNorthMolkky;
 			packageProductDependencies = (
+				FD991FD82BE840CA0089B6A6 /* ConfettiSwiftUI */,
 			);
 			productName = UpNorthMolkky;
 			productReference = FD7928572AB14D3700FF25CE /* UpNorthMolkky.app */;
@@ -488,6 +491,7 @@
 			);
 			mainGroup = FD79284E2AB14D3600FF25CE;
 			packageReferences = (
+				FD991FD72BE840CA0089B6A6 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
 			);
 			productRefGroup = FD7928582AB14D3700FF25CE /* Products */;
 			projectDirPath = "";
@@ -781,6 +785,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FD991FD72BE840CA0089B6A6 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FD991FD82BE840CA0089B6A6 /* ConfettiSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FD991FD72BE840CA0089B6A6 /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
+			productName = ConfettiSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FD79284F2AB14D3600FF25CE /* Project object */;
 }

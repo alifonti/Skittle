@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import ConfettiSwiftUI
 
 struct ScoreboardResultsView: View {
-    @State private var isPresenting = true
+    @State private var isPresenting = false
+    @State private var confettiAnimationCounter = 0
+    
     var body: some View {
         Button("Present Full-Screen Cover") {
             isPresenting.toggle()
@@ -21,6 +24,10 @@ struct ScoreboardResultsView: View {
                             .font(.title)
                             .foregroundColor(.white)
                         Spacer()
+                        
+                        EmptyView()
+                            .confettiCannon(counter: $confettiAnimationCounter, num: 60, rainHeight: 1000, radius: 600)
+                            .onAppear { confettiAnimationCounter += 1 }
                         HStack {
                             Text("Button")
                                 .font(.title)
