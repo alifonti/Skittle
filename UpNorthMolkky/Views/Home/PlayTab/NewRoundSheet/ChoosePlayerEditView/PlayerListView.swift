@@ -22,9 +22,8 @@ struct PlayerListView: View {
     }
     
     var body: some View {
-        ScrollView(showsIndicators: false, content: {
-            VStack(spacing: 10, content: {
-                Spacer()
+        VStack {
+            VStack(spacing: 10) {
                 HStack {
                     Image(systemName: "magnifyingglass")
                     TextField("Search", text: $searchText, onEditingChanged: { isEditing in
@@ -57,64 +56,69 @@ struct PlayerListView: View {
                     .padding()
                     Spacer()
                 }
-                .background(Color(UIColor.tintColor))
+                .foregroundStyle(.white)
+                .background(Color(named: "s.accent1.main"))
                 .cornerRadius(5)
                 .onTapGesture {
                     viewAddPlayerField = true
                     newPlayerIsFocused = true
                 }
-                //
-                Divider()
+            }
+            .padding()
+            .background(Color(hue: 0.1, saturation: 0.5, brightness: 0.9, opacity: 0.25))
+            //
+            VStack(spacing: 10) {
                 HStack {
                     Text("\(selectedPlayers.count)")
                     Image(systemName: "person.fill")
                 }
-                if (viewAddPlayerField) {
-                    HStack {
-                        TextField("Add new player", text: $newPlayerNameText)
-                            .onSubmit {
-                                if (newPlayerNameText != "") {
-                                    // BAD
-                                    let newPlayer = Player(playerName: newPlayerNameText)
-                                    store.userData.addPlayers([newPlayer])
-                                    round.contenders.append(Contender(id: newPlayer.id, name: newPlayer.playerName, orderKey: round.contenders.count))
-                                    newPlayerNameText = ""
+                ScrollView(showsIndicators: false, content: {
+                    if (viewAddPlayerField) {
+                        HStack {
+                            TextField("Add new player", text: $newPlayerNameText)
+                                .onSubmit {
+                                    if (newPlayerNameText != "") {
+                                        // BAD
+                                        let newPlayer = Player(playerName: newPlayerNameText)
+                                        store.userData.addPlayers([newPlayer])
+                                        round.contenders.append(Contender(id: newPlayer.id, name: newPlayer.playerName, orderKey: round.contenders.count))
+                                        newPlayerNameText = ""
+                                    }
+                                    viewAddPlayerField = false
                                 }
-                                viewAddPlayerField = false
-                            }
-                            .submitLabel(.done)
-                            .padding()
-                            .focused($newPlayerIsFocused)
-                            .autocorrectionDisabled()
-                        Spacer()
-                    }
-                    .background(Color(UIColor.secondarySystemFill))
-                    .cornerRadius(5)
-                    .onAppear {
-                        newPlayerIsFocused = true
-                    }
-                    .onDisappear {
-                        newPlayerIsFocused = false
-                    }
-                }
-                ForEach(store.userData.players
-                    .sorted(by: {selectedPlayers.contains($0.id) && !selectedPlayers.contains($1.id)})
-                    .filter{$0.playerName.hasPrefix(searchText) || selectedPlayers.contains($0.id) || searchText == ""
-                }, id: \.self) { player in
-                    PlayerItemView(player: player, selected: selectedPlayers.contains(player.id))
-                        .onTapGesture {
-                            if (selectedPlayers.contains(player.id)) {
-                                round.contenders.remove(at: round.contenders.firstIndex(where: {con in con.id == player.id}) ?? -1)
-                            } else {
-                                round.contenders.append(Contender(id: player.id, name: player.playerName, orderKey: round.contenders.count))
-                            }
+                                .submitLabel(.done)
+                                .padding()
+                                .focused($newPlayerIsFocused)
+                                .autocorrectionDisabled()
+                            Spacer()
                         }
-                }
-                //
-                Spacer()
-            })
-            .padding(.horizontal, 20)
-        })
+                        .background(Color(UIColor.secondarySystemFill))
+                        .cornerRadius(5)
+                        .onAppear {
+                            newPlayerIsFocused = true
+                        }
+                        .onDisappear {
+                            newPlayerIsFocused = false
+                        }
+                    }
+                    ForEach(store.userData.players
+                        .sorted(by: {selectedPlayers.contains($0.id) && !selectedPlayers.contains($1.id)})
+                        .filter{$0.playerName.hasPrefix(searchText) || selectedPlayers.contains($0.id) || searchText == ""
+                        }, id: \.self) { player in
+                            PlayerItemView(player: player, selected: selectedPlayers.contains(player.id))
+                                .onTapGesture {
+                                    if (selectedPlayers.contains(player.id)) {
+                                        round.contenders.remove(at: round.contenders.firstIndex(where: {con in con.id == player.id}) ?? -1)
+                                    } else {
+                                        round.contenders.append(Contender(id: player.id, name: player.playerName, orderKey: round.contenders.count))
+                                    }
+                                }
+                        }
+                    Spacer()
+                })
+                .padding(.horizontal, 20)
+            }
+        }
     }
 }
 

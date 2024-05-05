@@ -13,13 +13,11 @@ struct NewRoundSheet: View {
     @Binding var newRound: MolkkyRound
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             HStack {
                 Button("Dismiss") {
                     isPresentingNewRoundView = false
                 }
-                Spacer()
-                Text("Setup")
                 Spacer()
                 Button("Start") {
                     userData.addRound(newRound)
@@ -29,6 +27,7 @@ struct NewRoundSheet: View {
                 .disabled(newRound.contenders.count <= 1)
             }
             .padding()
+            .background(Color(hue: 0.1, saturation: 0.75, brightness: 0.9, opacity: 0.25))
             DetailEditView(round: $newRound)
         }
     }

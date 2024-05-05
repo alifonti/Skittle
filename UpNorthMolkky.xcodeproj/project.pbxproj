@@ -41,6 +41,9 @@
 		FD95BC6B2AC1264D001A9CFF /* PlayerScoreShimmerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD95BC6A2AC1264D001A9CFF /* PlayerScoreShimmerView.swift */; };
 		FD991FCC2BE6B49C0089B6A6 /* SkittleTipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD991FCB2BE6B49C0089B6A6 /* SkittleTipsView.swift */; };
 		FD991FCF2BE6C5240089B6A6 /* PreferDetailedScorePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD991FCE2BE6C5240089B6A6 /* PreferDetailedScorePickerView.swift */; };
+		FD991FD22BE73DAD0089B6A6 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD991FD12BE73DAD0089B6A6 /* ResultView.swift */; };
+		FD991FD42BE835A70089B6A6 /* ResultsLeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD991FD32BE835A70089B6A6 /* ResultsLeaderboardView.swift */; };
+		FD991FD62BE836A10089B6A6 /* ResultsAwardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD991FD52BE836A10089B6A6 /* ResultsAwardsView.swift */; };
 		FD9A52172AC3B28C0082B9B7 /* MolkkyKeyboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9A52162AC3B28C0082B9B7 /* MolkkyKeyboardController.swift */; };
 		FD9A52192AC3B9320082B9B7 /* MolkkyKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9A52182AC3B9320082B9B7 /* MolkkyKeyboardView.swift */; };
 		FD9EC8032BE2FDE600006205 /* HistoryTabSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9EC8022BE2FDE600006205 /* HistoryTabSelector.swift */; };
@@ -104,6 +107,9 @@
 		FD95BC6A2AC1264D001A9CFF /* PlayerScoreShimmerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreShimmerView.swift; sourceTree = "<group>"; };
 		FD991FCB2BE6B49C0089B6A6 /* SkittleTipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkittleTipsView.swift; sourceTree = "<group>"; };
 		FD991FCE2BE6C5240089B6A6 /* PreferDetailedScorePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferDetailedScorePickerView.swift; sourceTree = "<group>"; };
+		FD991FD12BE73DAD0089B6A6 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
+		FD991FD32BE835A70089B6A6 /* ResultsLeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsLeaderboardView.swift; sourceTree = "<group>"; };
+		FD991FD52BE836A10089B6A6 /* ResultsAwardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsAwardsView.swift; sourceTree = "<group>"; };
 		FD9A52162AC3B28C0082B9B7 /* MolkkyKeyboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MolkkyKeyboardController.swift; sourceTree = "<group>"; };
 		FD9A52182AC3B9320082B9B7 /* MolkkyKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MolkkyKeyboardView.swift; sourceTree = "<group>"; };
 		FD9EC8022BE2FDE600006205 /* HistoryTabSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTabSelector.swift; sourceTree = "<group>"; };
@@ -255,6 +261,7 @@
 		FD95BC4E2ABFAE48001A9CFF /* Scoreboard */ = {
 			isa = PBXGroup;
 			children = (
+				FD991FD02BE73D8C0089B6A6 /* Results */,
 				FD95BC552AC08AE3001A9CFF /* Input */,
 				FD95BC542AC08AD9001A9CFF /* PlayerList */,
 				FD79286A2AB14E1600FF25CE /* ScoreboardView.swift */,
@@ -313,6 +320,16 @@
 				FDC0DF742BE4951E0007EB32 /* RulesView.swift */,
 			);
 			path = Rules;
+			sourceTree = "<group>";
+		};
+		FD991FD02BE73D8C0089B6A6 /* Results */ = {
+			isa = PBXGroup;
+			children = (
+				FD991FD12BE73DAD0089B6A6 /* ResultView.swift */,
+				FD991FD32BE835A70089B6A6 /* ResultsLeaderboardView.swift */,
+				FD991FD52BE836A10089B6A6 /* ResultsAwardsView.swift */,
+			);
+			path = Results;
 			sourceTree = "<group>";
 		};
 		FD9EC8042BE31A9500006205 /* MoreTab */ = {
@@ -503,6 +520,7 @@
 				FDD8C7DD2BC20BA90082B523 /* PlayerOrderEditView.swift in Sources */,
 				FD991FCC2BE6B49C0089B6A6 /* SkittleTipsView.swift in Sources */,
 				FD8F2E702AC2546B00A1A17C /* MedalView.swift in Sources */,
+				FD991FD62BE836A10089B6A6 /* ResultsAwardsView.swift in Sources */,
 				FD91B2F92AB92F8600EFE503 /* ScoreboardOptionsSheet.swift in Sources */,
 				FDD8C7DF2BC20CC10082B523 /* GameRulesView.swift in Sources */,
 				FD7928772AB1670600FF25CE /* ScoreControlsView.swift in Sources */,
@@ -539,6 +557,7 @@
 				FDD8C7CA2BBE19090082B523 /* DetailEditView.swift in Sources */,
 				FD91B2FB2AB9532100EFE503 /* EditScoreHistorySheet.swift in Sources */,
 				FD90A3A92BD35A9600FCA297 /* SlidingSelectionInput.swift in Sources */,
+				FD991FD22BE73DAD0089B6A6 /* ResultView.swift in Sources */,
 				FDD8C7EA2BC8D9AE0082B523 /* BarToggleInput.swift in Sources */,
 				FD991FCF2BE6C5240089B6A6 /* PreferDetailedScorePickerView.swift in Sources */,
 				FD90A3A72BD1F78300FCA297 /* HistoryTabView.swift in Sources */,
@@ -546,6 +565,7 @@
 				FD90BD042AB663FC00D7CF3B /* MolkkyStore.swift in Sources */,
 				FD7928732AB15DE800FF25CE /* Contender.swift in Sources */,
 				FD95BC472ABBE98C001A9CFF /* MissScoreView.swift in Sources */,
+				FD991FD42BE835A70089B6A6 /* ResultsLeaderboardView.swift in Sources */,
 				FD841A212AB6BEA700E4AD1B /* EditScoreSheet.swift in Sources */,
 				FDD8C7D22BBF861E0082B523 /* PlayerItemView.swift in Sources */,
 				FD90A3AB2BD373F400FCA297 /* PlayTabCard.swift in Sources */,

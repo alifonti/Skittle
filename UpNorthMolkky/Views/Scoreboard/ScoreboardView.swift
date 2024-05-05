@@ -12,7 +12,13 @@ struct ScoreboardView: View {
     
     @Binding var round: MolkkyRound
     
-    @State var isPresentingOptionsView = false
+    @State private var isPresentingOptionsView = false
+    @State private var isPresentingResultsView = false
+    
+    init(round: Binding<MolkkyRound>) {
+        _round = round
+        _isPresentingResultsView = State(initialValue: round.wrappedValue.hasGameEnded)
+    }
     
     var body: some View {
         NavigationStack {
@@ -39,6 +45,9 @@ struct ScoreboardView: View {
             .sheet(isPresented: $isPresentingOptionsView) {
                 ScoreboardOptionsSheet(round: $round, isPresentingOptionsView: $isPresentingOptionsView, dismiss: dismiss)
                     .presentationDetents([.medium])
+            }
+            .fullScreenCover(isPresented: $isPresentingResultsView, onDismiss: {}) {
+                ScoreboardResultsView()
             }
         }
     }

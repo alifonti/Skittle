@@ -16,15 +16,13 @@ struct PlayerOrderView: View {
     var body: some View {
         VStack {
             VStack(alignment: .leading) {
-                Text("Options")
-                    .font(.title3)
                 Picker("Grouping", selection: $isTeams) {
                     Text("Singles").tag(false)
                     Text("Teams").tag(true)
                 }.pickerStyle(.segmented)
                 Picker("Turn Order", selection: $isShuffle) {
-                    Text("Set order").tag(false)
                     Text("Random order").tag(true)
+                    Text("Set order").tag(false)
                 }.pickerStyle(.segmented)
             }
             Divider()
