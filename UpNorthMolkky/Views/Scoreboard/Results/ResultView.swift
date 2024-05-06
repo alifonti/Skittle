@@ -23,118 +23,121 @@ struct ScoreboardResultsView: View {
     }
     
     var body: some View {
-        Group {
-            VStack(spacing: 0) {
-                VStack {
-                    HStack {
-                        Label("Home", systemImage: "chevron.backward")
-                            .font(.title3)
-                            .foregroundColor(.white)
-                        Spacer()
-                    }
-                    Spacer()
-                    Text("\(winner.contender.name) wins!")
-                        .font(.largeTitle)
-                        .foregroundColor(.white)
-                    Spacer()
-                    EmptyView()
-                        .confettiCannon(counter: $confettiAnimationCounter, num: 60, rainHeight: 1500, radius: 600)
-                        .onAppear { confettiAnimationCounter += 1 }
-                    HStack {
-                        Button(action: {}) {
-                            Label("Play again", systemImage: "play")
-                                .font(.headline)
+        ZStack(alignment: .center) {
+            Group {
+                VStack(spacing: 0) {
+                    VStack {
+                        HStack {
+                            Label("Home", systemImage: "chevron.backward")
+                                .font(.title3)
                                 .foregroundColor(.white)
-                                .padding()
-                                .background(RoundedRectangle(cornerRadius: 10).fill(Color(named: "s.accent2.main")))
-                        }
-                        Button(action: {}) {
-                            Label("Continue playing", systemImage: "chevron.forward")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                                .padding()
-                                .background(RoundedRectangle(cornerRadius: 10).fill(Color(named: "s.accent2.main")))
-                        }
-                    }
-                    Button(action: {
-                        isPresenting.toggle()
-                        round.undo()
-                    }) {
-                        Label("Undo last throw", systemImage: "arrow.uturn.backward")
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .padding()
-                            .background(RoundedRectangle(cornerRadius: 10).stroke(.white, lineWidth: 1))
-                    }
-                }
-                .padding()
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                VStack(spacing: 5) {
-                    HStack {
-                        Button(action: {withAnimation{selectedTab = ScoreboardResultsView.Tab.leaderboard}}) {
-                            Text("Leaderboard")
-                                .font(.title2)
-                                .foregroundStyle(selectedTab == ScoreboardResultsView.Tab.leaderboard ? Color(UIColor.label) : Color(UIColor.secondaryLabel))
+                            Spacer()
                         }
                         Spacer()
-                        Button(action: {withAnimation{selectedTab = ScoreboardResultsView.Tab.awards}}) {
-                            Text("Awards")
-                                .font(.title2)
-                                .foregroundStyle(selectedTab == ScoreboardResultsView.Tab.awards ? Color(UIColor.label) : Color(UIColor.secondaryLabel))
+                        Text("\(winner.contender.name) wins!")
+                            .font(.largeTitle)
+                            .foregroundColor(.white)
+                        Spacer()
+                        HStack {
+                            Button(action: {}) {
+                                Label("Play again", systemImage: "play")
+                                    .font(.headline)
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .background(RoundedRectangle(cornerRadius: 10).fill(Color(named: "s.accent2.main")))
+                            }
+                            Button(action: {}) {
+                                Label("Continue playing", systemImage: "chevron.forward")
+                                    .font(.headline)
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .background(RoundedRectangle(cornerRadius: 10).fill(Color(named: "s.accent2.main")))
+                            }
+                        }
+                        Button(action: {
+                            isPresenting.toggle()
+                            round.undo()
+                        }) {
+                            Label("Undo last throw", systemImage: "arrow.uturn.backward")
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(RoundedRectangle(cornerRadius: 10).stroke(.white, lineWidth: 1))
                         }
                     }
-                    .padding(.top, 25)
-                    .padding(.bottom, 10)
-                    .padding(.horizontal, 20)
-                    .background(
-                        ZStack {
-                            tabShape
-                                .fill(Color(UIColor.gray).opacity(0.2))
-                            Group {
-                                tabShape
-                                    .fill(Color(UIColor.systemBackground))
-                            }
-                            .padding(.trailing, 195)
-                            .shadow(radius: 5, x: 0, y: 0)
-                            .opacity(selectedTab == ScoreboardResultsView.Tab.leaderboard ? 1 : 0)
-                            Group {
-                                tabShape
-                                    .fill(Color(UIColor.systemBackground))
-                            }
-                            .padding(.leading, 205)
-                            .shadow(radius: 5, x: 0, y: 0)
-                            .opacity(selectedTab == ScoreboardResultsView.Tab.awards ? 1 : 0)
-                        }.clipShape(tabShape)
-                    )
-                    TabView(selection: $selectedTab) {
-                        ResultsLeaderboardView(round: round)
-                            .tag(ScoreboardResultsView.Tab.leaderboard)
-                            .ignoresSafeArea(.all, edges: .bottom)
-                        ResultsAwardsView()
-                            .tag(ScoreboardResultsView.Tab.awards)
-                            .ignoresSafeArea(.all, edges: .bottom)
-                    }
-                    .tabViewStyle(.page(indexDisplayMode: .never))
+                    .padding()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    VStack(spacing: 10) {
+                        ZStack {
+                            HStack(spacing: 0) {
+                                ScoreboardResultsTabView(selectedTab: $selectedTab, tabId: ScoreboardResultsView.Tab.leaderboard)
+                                ScoreboardResultsTabView(selectedTab: $selectedTab, tabId: ScoreboardResultsView.Tab.awards)
+                            }
+                            .clipShape(Rectangle())
+                        }
+                        .background(tabShape.fill(Color(named: "s.accent1.main")))
+                        TabView(selection: $selectedTab) {
+                            ResultsLeaderboardView(round: round)
+                                .tag(ScoreboardResultsView.Tab.leaderboard)
+                                .ignoresSafeArea(.all, edges: .bottom)
+                            ResultsAwardsView()
+                                .tag(ScoreboardResultsView.Tab.awards)
+                                .ignoresSafeArea(.all, edges: .bottom)
+                        }
+                        .tabViewStyle(.page(indexDisplayMode: .never))
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    }
+                    .background(tabShape
+                        .fill(Color(UIColor.systemBackground))
+                        .ignoresSafeArea(.all, edges: .bottom)
+                    )
                 }
-                .background(tabShape
-                    .fill(Color(UIColor.systemBackground))
-                    .ignoresSafeArea(.all, edges: .bottom)
-                )
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .ignoresSafeArea(.all, edges: .bottom)
+            .background(Color(named: "s.accent1.main"))
+            EmptyView()
+                .confettiCannon(counter: $confettiAnimationCounter, num: 50, rainHeight: 1500, radius: 600)
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                        confettiAnimationCounter += 1
+                    }
+                }
         }
-        .onTapGesture {
-            isPresenting.toggle()
+    }
+}
+
+
+struct ScoreboardResultsTabView: View {
+    @Binding var selectedTab: ScoreboardResultsView.Tab
+    let tabId: ScoreboardResultsView.Tab
+    
+    let tabShape = UnevenRoundedRectangle(topLeadingRadius: 20, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 20)
+    
+    var isSelected: Bool {
+        selectedTab == tabId
+    }
+    
+    var body: some View {
+        Button(action: {withAnimation{selectedTab = tabId}}) {
+            Text(tabId.rawValue.capitalized)
+                .font(.title2)
+                .foregroundStyle(isSelected ? Color(UIColor.label) : Color(UIColor.secondaryLabel))
+                .padding(.top, 20)
+                .padding(.bottom, 10)
+                .padding(.horizontal, 20)
+                .frame(maxWidth: .infinity)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .ignoresSafeArea(.all, edges: .bottom)
-        .background(Color(named: "s.accent1.main"))
+        .background(tabShape.fill(isSelected ? Color(UIColor.systemBackground) : Color(UIColor.lightGray)))
+        .clipShape(tabShape)
+        .shadow(radius: isSelected ? 4 : 0, x: 0, y: 0)
+        .zIndex(isSelected ? 1 : 0)
     }
 }
 
 extension ScoreboardResultsView {
-    enum Tab {
+    enum Tab: String, CaseIterable, Identifiable {
         case leaderboard, awards
+        var id: Self { self }
     }
 }
 struct ScoreboardResultsView_Previews: PreviewProvider {
