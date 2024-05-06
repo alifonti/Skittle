@@ -42,12 +42,15 @@ struct ScoreboardView: View {
                     SortToggleButton(round: $round)
                 }
             }
+            .onChange(of: $round.wrappedValue.hasGameEnded) {
+                isPresentingResultsView = round.hasGameEnded
+            }
             .sheet(isPresented: $isPresentingOptionsView) {
                 ScoreboardOptionsSheet(round: $round, isPresentingOptionsView: $isPresentingOptionsView, dismiss: dismiss)
                     .presentationDetents([.medium])
             }
             .fullScreenCover(isPresented: $isPresentingResultsView, onDismiss: {}) {
-                ScoreboardResultsView()
+                ScoreboardResultsView(round: $round, isPresenting: $isPresentingResultsView)
             }
         }
     }

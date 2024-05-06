@@ -8,12 +8,33 @@
 import SwiftUI
 
 struct ResultsLeaderboardView: View {
+    let round: MolkkyRound
+    
+    var sortedContenders: [MolkkyRound.ContenderScore] {
+        // TODO: Don't duplicate this from MolkkyRound
+        round.contenderScores.sorted { (lhs, rhs) in
+            let predicates: [(MolkkyRound.ContenderScore, MolkkyRound.ContenderScore) -> Bool] = [
+                { !$0.isEliminated && $1.isEliminated },
+                { $0.totalScore > $1.totalScore },
+                { $0.finishPosition < $1.finishPosition },
+                { $0.contender.orderKey < $1.contender.orderKey }
+            ]
+            for predicate in predicates {
+                if !predicate(lhs, rhs) && !predicate(rhs, lhs) {
+                    continue
+                }
+                return predicate(lhs, rhs)
+            }
+            return false
+        }
+    }
+    
     var body: some View {
         VStack {
             ScrollView {
                 VStack(alignment: .leading) {
-                    ForEach(0..<10) { _ in
-                        LeaderboardView()
+                    ForEach(sortedContenders) { contenderScore in
+                        LeaderboardView(score: contenderScore)
                     }
                 }
             }
@@ -24,12 +45,14 @@ struct ResultsLeaderboardView: View {
 }
 
 struct LeaderboardView: View {
+    let score: MolkkyRound.ContenderScore
+    
     var body: some View {
         HStack {
-            Image(systemName: "1.circle")
-            Text("Name")
+            Image(systemName: "\(score.finishPosition + 1).circle")
+            Text(score.contender.name)
             Spacer()
-            Text("50")
+            Text(String(score.totalScore))
         }
         .font(.title3)
         .padding(20)
@@ -40,7 +63,7 @@ struct LeaderboardView: View {
 
 struct ResultsLeaderboardView_Previews: PreviewProvider {
     static var previews: some View {
-        ResultsLeaderboardView()
+        ResultsLeaderboardView(round: MolkkyRound.sampleData)
     }
 }
 
