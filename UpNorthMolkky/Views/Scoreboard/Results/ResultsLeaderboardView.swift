@@ -10,11 +10,6 @@ import SwiftUI
 struct ResultsLeaderboardView: View {
     var body: some View {
         VStack {
-            HStack {
-                Text("Leaderboard")
-                    .font(.title)
-                Spacer()
-            }
             ScrollView {
                 VStack(alignment: .leading) {
                     ForEach(0..<10) { _ in
@@ -24,7 +19,6 @@ struct ResultsLeaderboardView: View {
             }
             Spacer()
         }
-        .padding(.top, 30)
         .padding(.horizontal, 20)
     }
 }
@@ -33,11 +27,11 @@ struct LeaderboardView: View {
     var body: some View {
         HStack {
             Image(systemName: "1.circle")
-            Text("Anthony")
+            Text("Name")
             Spacer()
             Text("50")
         }
-        .font(.title2)
+        .font(.title3)
         .padding(20)
         .background(RoundedRectangle(cornerRadius: 15)
             .fill(Color(named: "s.accent1.main").opacity(0.15)))

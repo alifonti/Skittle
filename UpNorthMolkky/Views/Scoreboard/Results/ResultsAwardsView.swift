@@ -10,11 +10,6 @@ import SwiftUI
 struct ResultsAwardsView: View {
     var body: some View {
         VStack {
-            HStack {
-                Text("Awards")
-                    .font(.title)
-                Spacer()
-            }
             ScrollView {
                 VStack(alignment: .leading) {
                     ForEach(0..<5) { _ in
@@ -24,7 +19,6 @@ struct ResultsAwardsView: View {
             }
             Spacer()
         }
-        .padding(.top, 30)
         .padding(.horizontal, 20)
     }
 }
@@ -43,7 +37,7 @@ struct AwardView: View {
                 Text("50")
             }
         }
-        .font(.title2)
+        .font(.title3)
         .padding(20)
         .background(RoundedRectangle(cornerRadius: 15)
             .fill(Color.gray.opacity(0.15)))

@@ -9,8 +9,12 @@ import SwiftUI
 import ConfettiSwiftUI
 
 struct ScoreboardResultsView: View {
-    @State private var isPresenting = false
+    @State private var isPresenting = true
     @State private var confettiAnimationCounter = 0
+    
+    @State var selectedTab: ScoreboardResultsView.Tab = ScoreboardResultsView.Tab.leaderboard
+    
+    let tabShape = UnevenRoundedRectangle(topLeadingRadius: 20, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 20)
     
     var body: some View {
         Button("Present Full-Screen Cover") {
@@ -20,22 +24,22 @@ struct ScoreboardResultsView: View {
             Group {
                 VStack(spacing: 0) {
                     VStack {
-                        Text("Results")
-                            .font(.title)
+                        Spacer()
+                        Text("[player] wins!")
+                            .font(.largeTitle)
                             .foregroundColor(.white)
                         Spacer()
-                        
                         EmptyView()
-                            .confettiCannon(counter: $confettiAnimationCounter, num: 60, rainHeight: 1000, radius: 600)
+                            .confettiCannon(counter: $confettiAnimationCounter, num: 60, rainHeight: 1500, radius: 600)
                             .onAppear { confettiAnimationCounter += 1 }
                         HStack {
-                            Text("Button")
-                                .font(.title)
+                            Text("Play again")
+                                .font(.title2)
                                 .foregroundColor(.white)
                                 .padding()
                                 .background(RoundedRectangle(cornerRadius: 10).fill(.gray))
-                            Text("Button")
-                                .font(.title)
+                            Text("Continue")
+                                .font(.title2)
                                 .foregroundColor(.white)
                                 .padding()
                                 .background(RoundedRectangle(cornerRadius: 10).fill(.gray))
@@ -43,15 +47,55 @@ struct ScoreboardResultsView: View {
                     }
                     .padding()
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    TabView {
-                        ResultsLeaderboardView()
-                            .ignoresSafeArea(.all, edges: .bottom)
-                        ResultsAwardsView()
-                            .ignoresSafeArea(.all, edges: .bottom)
+                    VStack {
+                        HStack {
+                            Button(action: {withAnimation{selectedTab = ScoreboardResultsView.Tab.leaderboard}}) {
+                                Text("Leaderboard")
+                                    .font(.title2)
+                                    .foregroundStyle(selectedTab == ScoreboardResultsView.Tab.leaderboard ? Color(UIColor.label) : Color(UIColor.secondaryLabel))
+                            }
+                            Spacer()
+                            Button(action: {withAnimation{selectedTab = ScoreboardResultsView.Tab.awards}}) {
+                                Text("Awards")
+                                    .font(.title2)
+                                    .foregroundStyle(selectedTab == ScoreboardResultsView.Tab.awards ? Color(UIColor.label) : Color(UIColor.secondaryLabel))
+                            }
+                        }
+                        .padding(.top, 25)
+                        .padding(.bottom, 10)
+                        .padding(.horizontal, 20)
+                        .background(
+                            ZStack {
+                                tabShape
+                                    .fill(Color(UIColor.gray).opacity(0.2))
+                                Group {
+                                    tabShape
+                                        .fill(Color(UIColor.systemBackground))
+                                }
+                                .padding(.trailing, 195)
+                                .shadow(radius: 5, x: 0, y: 0)
+                                .opacity(selectedTab == ScoreboardResultsView.Tab.leaderboard ? 1 : 0)
+                                Group {
+                                    tabShape
+                                        .fill(Color(UIColor.systemBackground))
+                                }
+                                .padding(.leading, 205)
+                                .shadow(radius: 5, x: 0, y: 0)
+                                .opacity(selectedTab == ScoreboardResultsView.Tab.awards ? 1 : 0)
+                            }.clipShape(tabShape)
+                        )
+                        TabView(selection: $selectedTab) {
+                            ResultsLeaderboardView()
+                                .tag(ScoreboardResultsView.Tab.leaderboard)
+                                .ignoresSafeArea(.all, edges: .bottom)
+                            ResultsAwardsView()
+                                .tag(ScoreboardResultsView.Tab.awards)
+                                .ignoresSafeArea(.all, edges: .bottom)
+                        }
+                        .tabViewStyle(.page(indexDisplayMode: .never))
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
-                    .tabViewStyle(.page(indexDisplayMode: .never))
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(UnevenRoundedRectangle(topLeadingRadius: 30, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 30)
+                    .background(tabShape
                         .fill(Color(UIColor.systemBackground))
                         .ignoresSafeArea(.all, edges: .bottom)
                     )
@@ -72,6 +116,11 @@ struct ScoreboardResultsView: View {
     }
 }
 
+extension ScoreboardResultsView {
+    enum Tab {
+        case leaderboard, awards
+    }
+}
 struct ScoreboardResultsView_Previews: PreviewProvider {
     static var previews: some View {
         ScoreboardResultsView()
