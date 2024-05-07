@@ -10,9 +10,10 @@ import SwiftUI
 struct ResultsLeaderboardView: View {
     let round: MolkkyRound
     
-    var sortedContenders: [MolkkyRound.ContenderScore] {
-        // TODO: Don't duplicate this from MolkkyRound
-        round.contenderScores.sorted { (lhs, rhs) in
+    var sortedContenders: [(UUID, MolkkyRound.ContenderScore, Int)] {
+        var array: [(UUID, MolkkyRound.ContenderScore, Int)] = []
+        
+        let sorted = round.contenderScores.sorted { (lhs, rhs) in
             let predicates: [(MolkkyRound.ContenderScore, MolkkyRound.ContenderScore) -> Bool] = [
                 { !$0.isEliminated && $1.isEliminated },
                 { $0.totalScore > $1.totalScore },
@@ -27,14 +28,31 @@ struct ResultsLeaderboardView: View {
             }
             return false
         }
+        
+        var lastScore: Int = -1
+        var lastScoreIndex: Int = 0
+        
+        for (index, element) in sorted.enumerated() {
+            if element.finishPosition >= 0 {
+                array.append((UUID(), element, element.finishPosition + 1))
+            } else if (element.totalScore != lastScore) {
+                array.append((UUID(), element, index + 1))
+                lastScore = element.totalScore
+                lastScoreIndex = index
+            } else {
+                array.append((UUID(), element, lastScoreIndex + 1))
+            }
+        }
+        
+        return array
     }
     
     var body: some View {
         VStack {
             ScrollView {
                 VStack(alignment: .leading) {
-                    ForEach(sortedContenders) { contenderScore in
-                        LeaderboardView(score: contenderScore)
+                    ForEach(sortedContenders, id: \.0) { contenderScoreTuple in
+                        LeaderboardView(score: contenderScoreTuple.1, position: contenderScoreTuple.2)
                     }
                 }
             }
@@ -46,10 +64,11 @@ struct ResultsLeaderboardView: View {
 
 struct LeaderboardView: View {
     let score: MolkkyRound.ContenderScore
+    let position: Int
     
     var body: some View {
         HStack {
-            Image(systemName: "\(score.finishPosition + 1).circle")
+            Image(systemName: "\(position).circle")
             Text(score.contender.name)
             Spacer()
             Text(String(score.totalScore))

@@ -39,7 +39,7 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
     
     // --- Calculated Values
     var hasGameEnded: Bool {
-        contenderScores.lazy.filter({ $0.isFinished }).count >= contenderScores.count - 1
+        contenderScores.filter({ $0.isFinished }).count >= 1 // contenderScores.count - 1
     }
     
     var currentContender: Contender {
