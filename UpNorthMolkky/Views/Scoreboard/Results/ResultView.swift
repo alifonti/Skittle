@@ -120,9 +120,9 @@ struct ScoreboardResultsTabView: View {
     var body: some View {
         Button(action: {withAnimation{selectedTab = tabId}}) {
             Text(tabId.rawValue.capitalized)
-                .font(.title2)
+                .font(.title3)
                 .foregroundStyle(isSelected ? Color(UIColor.label) : Color(UIColor.secondaryLabel))
-                .padding(.top, 20)
+                .padding(.top, 15)
                 .padding(.bottom, 10)
                 .padding(.horizontal, 20)
                 .frame(maxWidth: .infinity)
