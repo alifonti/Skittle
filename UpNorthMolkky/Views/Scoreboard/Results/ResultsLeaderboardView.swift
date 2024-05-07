@@ -69,9 +69,12 @@ struct LeaderboardView: View {
     var body: some View {
         HStack {
             Image(systemName: "\(position).circle")
+                .font(.title)
             Text(score.contender.name)
+                .font(.title2)
             Spacer()
             Text(String(score.totalScore))
+                .font(.title2)
         }
         .font(.title3)
         .padding(20)
