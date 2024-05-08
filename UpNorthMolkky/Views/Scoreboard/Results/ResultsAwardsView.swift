@@ -128,9 +128,9 @@ struct AwardViewTemplate: View {
                     .frame(width: 40)
                 VStack(alignment: .leading) {
                     Text(title)
+                        .fontWeight(.medium)
                     Text(description)
                         .font(.caption)
-                        .foregroundStyle(Color(UIColor.secondaryLabel))
                 }
                 Spacer()
                 Text("50")

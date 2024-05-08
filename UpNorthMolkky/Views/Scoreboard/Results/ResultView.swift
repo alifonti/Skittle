@@ -46,12 +46,14 @@ struct ScoreboardResultsView: View {
                                     .padding()
                                     .background(RoundedRectangle(cornerRadius: 10).fill(Color(named: "s.accent2.main")))
                             }
-                            Button(action: {}) {
-                                Label("Continue playing", systemImage: "chevron.forward")
-                                    .font(.headline)
-                                    .foregroundColor(.white)
-                                    .padding()
-                                    .background(RoundedRectangle(cornerRadius: 10).fill(Color(named: "s.accent2.main")))
+                            if (!round.continueUntilAllFinished && round.contenders.count > 2) {
+                                Button(action: {round.continueUntilAllFinished.toggle()}) {
+                                    Label("Continue playing", systemImage: "chevron.forward")
+                                        .font(.headline)
+                                        .foregroundColor(.white)
+                                        .padding()
+                                        .background(RoundedRectangle(cornerRadius: 10).fill(Color(named: "s.accent2.main")))
+                                }
                             }
                         }
                         Button(action: {
@@ -127,7 +129,7 @@ struct ScoreboardResultsTabView: View {
                 .padding(.horizontal, 20)
                 .frame(maxWidth: .infinity)
         }
-        .background(tabShape.fill(isSelected ? Color(UIColor.systemBackground) : Color(UIColor.lightGray)))
+        .background(tabShape.fill(isSelected ? Color(UIColor.systemBackground) : Color(UIColor.systemGroupedBackground)))
         .clipShape(tabShape)
         .shadow(radius: isSelected ? 4 : 0, x: 0, y: 0)
         .zIndex(isSelected ? 1 : 0)
