@@ -14,7 +14,6 @@ struct HomeView: View {
     
     @State private var selectedTab = "play"
     
-    // @State private var isNavigationActive: Bool = false
     @State private var newRound: MolkkyRound = MolkkyRound(players: [])
     
     let saveAction: () -> Void

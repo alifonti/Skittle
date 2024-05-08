@@ -11,7 +11,6 @@ struct PlayTabView: View {
     @EnvironmentObject var newGameState: NewGameState
     
     @Binding var userData: SkittleData
-    // @Binding var isNavigationActive: Bool
     @Binding var newRound: MolkkyRound
     
     @State private var isPresentingNewRoundView: Bool = false
