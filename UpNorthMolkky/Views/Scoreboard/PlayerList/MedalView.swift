@@ -10,14 +10,15 @@ import SwiftUI
 struct MedalView : View {
     @Environment(\.colorScheme) var colorScheme
     
-    var playerScore: MolkkyRound.ContenderScore
+    var finishPosition: Int
     var accentColor: Color
     
     var iconString: String {
-        "\(playerScore.finishPosition + 1).circle\(playerScore.finishPosition <= 2 ? ".fill" : "")"
+        "\(finishPosition).circle\(finishPosition <= 3 ? ".fill" : "")"
     }
+    
     var isMedal: Bool {
-        playerScore.finishPosition >= 0 && playerScore.finishPosition <= 2
+        finishPosition >= 1 && finishPosition <= 3
     }
     
     var body: some View {
@@ -27,7 +28,7 @@ struct MedalView : View {
                 .foregroundColor(accentColor)
                 .font(.title)
                 .clipShape(Circle())
-            if(isMedal) {
+            if (isMedal) {
                 ShimmerBox(show: true)
                     .allowsHitTesting(false)
                     .mask(

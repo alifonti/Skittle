@@ -45,8 +45,6 @@
 		FD991FD42BE835A70089B6A6 /* ResultsLeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD991FD32BE835A70089B6A6 /* ResultsLeaderboardView.swift */; };
 		FD991FD62BE836A10089B6A6 /* ResultsAwardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD991FD52BE836A10089B6A6 /* ResultsAwardsView.swift */; };
 		FD991FD92BE840CA0089B6A6 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = FD991FD82BE840CA0089B6A6 /* ConfettiSwiftUI */; };
-		FD9A52172AC3B28C0082B9B7 /* MolkkyKeyboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9A52162AC3B28C0082B9B7 /* MolkkyKeyboardController.swift */; };
-		FD9A52192AC3B9320082B9B7 /* MolkkyKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9A52182AC3B9320082B9B7 /* MolkkyKeyboardView.swift */; };
 		FD9EC8032BE2FDE600006205 /* HistoryTabSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9EC8022BE2FDE600006205 /* HistoryTabSelector.swift */; };
 		FD9EC8062BE31ADD00006205 /* MoreTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9EC8052BE31ADD00006205 /* MoreTabView.swift */; };
 		FDC0DF732BE45F570007EB32 /* AppPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC0DF722BE45F570007EB32 /* AppPreferencesView.swift */; };
@@ -111,8 +109,6 @@
 		FD991FD12BE73DAD0089B6A6 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		FD991FD32BE835A70089B6A6 /* ResultsLeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsLeaderboardView.swift; sourceTree = "<group>"; };
 		FD991FD52BE836A10089B6A6 /* ResultsAwardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsAwardsView.swift; sourceTree = "<group>"; };
-		FD9A52162AC3B28C0082B9B7 /* MolkkyKeyboardController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MolkkyKeyboardController.swift; sourceTree = "<group>"; };
-		FD9A52182AC3B9320082B9B7 /* MolkkyKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MolkkyKeyboardView.swift; sourceTree = "<group>"; };
 		FD9EC8022BE2FDE600006205 /* HistoryTabSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTabSelector.swift; sourceTree = "<group>"; };
 		FD9EC8052BE31ADD00006205 /* MoreTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTabView.swift; sourceTree = "<group>"; };
 		FDC0DF722BE45F570007EB32 /* AppPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferencesView.swift; sourceTree = "<group>"; };
@@ -294,18 +290,8 @@
 				FD7928742AB166B200FF25CE /* ScoreHistoryView.swift */,
 				FD841A202AB6BEA700E4AD1B /* EditScoreSheet.swift */,
 				FD91B2FA2AB9532100EFE503 /* EditScoreHistorySheet.swift */,
-				FD95BC562AC08B3F001A9CFF /* UIInputView */,
 			);
 			path = Input;
-			sourceTree = "<group>";
-		};
-		FD95BC562AC08B3F001A9CFF /* UIInputView */ = {
-			isa = PBXGroup;
-			children = (
-				FD9A52162AC3B28C0082B9B7 /* MolkkyKeyboardController.swift */,
-				FD9A52182AC3B9320082B9B7 /* MolkkyKeyboardView.swift */,
-			);
-			path = UIInputView;
 			sourceTree = "<group>";
 		};
 		FD991FCA2BE6B48C0089B6A6 /* SkittleTips */ = {
@@ -555,7 +541,6 @@
 				FDC0DF732BE45F570007EB32 /* AppPreferencesView.swift in Sources */,
 				FD7928752AB166B200FF25CE /* ScoreHistoryView.swift in Sources */,
 				FD90A3A52BD1E23C00FCA297 /* PlayTabView.swift in Sources */,
-				FD9A52192AC3B9320082B9B7 /* MolkkyKeyboardView.swift in Sources */,
 				FDD8C7E72BC8D42F0082B523 /* NumberInput.swift in Sources */,
 				FDD8C7D52BBF99490082B523 /* PlayerOrderView.swift in Sources */,
 				FDD8C7CA2BBE19090082B523 /* DetailEditView.swift in Sources */,
@@ -573,7 +558,6 @@
 				FD841A212AB6BEA700E4AD1B /* EditScoreSheet.swift in Sources */,
 				FDD8C7D22BBF861E0082B523 /* PlayerItemView.swift in Sources */,
 				FD90A3AB2BD373F400FCA297 /* PlayTabCard.swift in Sources */,
-				FD9A52172AC3B28C0082B9B7 /* MolkkyKeyboardController.swift in Sources */,
 				FDD8C7D02BBF85940082B523 /* PlayerListView.swift in Sources */,
 				FD9EC8062BE31ADD00006205 /* MoreTabView.swift in Sources */,
 				FD90BD062AB665A900D7CF3B /* RoundsView.swift in Sources */,

@@ -95,7 +95,7 @@ struct PlayerScoreView: View {
                             .foregroundColor(playerScore.isFinished ? accentColor : Color(UIColor.label))
                             .frame(width: 40, alignment: .trailing)
                     } else {
-                        MedalView(playerScore: playerScore, accentColor: accentColor)
+                        MedalView(finishPosition: playerScore.finishPosition + 1, accentColor: accentColor)
                             .frame(width: 40, alignment: .center)
                     }
                 }

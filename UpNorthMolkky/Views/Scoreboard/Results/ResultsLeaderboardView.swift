@@ -66,10 +66,23 @@ struct LeaderboardView: View {
     let score: MolkkyRound.ContenderScore
     let position: Int
     
+    // TODO: Reuse code across 2 (3?) locations
+    var accentColor: Color {
+        if (position == 1) {
+            return Color(red: 0.99, green: 0.86, blue: 0.36)
+        } else if (position == 2) {
+            return Color(red: 0.8, green: 0.8, blue: 0.8)
+        } else if (position == 3) {
+            return Color(red: 0.9, green: 0.72, blue: 0.47)
+        } else {
+            return Color(UIColor.label)
+        }
+    }
+    
     var body: some View {
         HStack {
-            Image(systemName: "\(position).circle")
-                .font(.title)
+            MedalView(finishPosition: position, accentColor: accentColor)
+                .frame(width: 40, alignment: .center)
             Text(score.contender.name)
                 .font(.title2)
             Spacer()

@@ -12,7 +12,7 @@ struct PlayerScoreShimmerView: View {
     var currentPlayer: Bool
     
     func getFinishColor() -> Color {
-        if(!playerScore.isFinished) {
+        if (!playerScore.isFinished) {
             return .orange
         } else if (playerScore.finishPosition == 0) {
             return Color(red: 0.99, green: 0.86, blue: 0.36).opacity(0.7)
