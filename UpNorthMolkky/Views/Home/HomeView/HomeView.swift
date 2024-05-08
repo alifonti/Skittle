@@ -9,11 +9,12 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var store: MolkkyStore
+    @EnvironmentObject var newGameState: NewGameState
     @Environment(\.scenePhase) private var scenePhase
     
     @State private var selectedTab = "play"
     
-    @State private var isNavigationActive: Bool = false
+    // @State private var isNavigationActive: Bool = false
     @State private var newRound: MolkkyRound = MolkkyRound(players: [])
     
     let saveAction: () -> Void
@@ -24,7 +25,7 @@ struct HomeView: View {
                 HomeHeaderView(selectedTab: $selectedTab)
                 TabView(selection: $selectedTab) {
                     Group {
-                        PlayTabView(userData: $store.userData, isNavigationActive: $isNavigationActive, newRound: $newRound)
+                        PlayTabView(userData: $store.userData, newRound: $newRound)
                             .tabItem {
                                 Image(systemName: "play.fill")
                                 Text("Play")
@@ -48,7 +49,7 @@ struct HomeView: View {
                 }
                 .tint(HomeHeaderView.getHeaderColor(tab: selectedTab))
             }
-            .navigationDestination(isPresented: $isNavigationActive) {
+            .navigationDestination(isPresented: $newGameState.isNavigationActive) {
                 ScoreboardView(round: $store.userData.rounds.last ?? .constant(MolkkyRound.sampleData))
             }
         }

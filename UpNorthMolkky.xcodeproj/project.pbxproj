@@ -45,6 +45,7 @@
 		FD991FD42BE835A70089B6A6 /* ResultsLeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD991FD32BE835A70089B6A6 /* ResultsLeaderboardView.swift */; };
 		FD991FD62BE836A10089B6A6 /* ResultsAwardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD991FD52BE836A10089B6A6 /* ResultsAwardsView.swift */; };
 		FD991FD92BE840CA0089B6A6 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = FD991FD82BE840CA0089B6A6 /* ConfettiSwiftUI */; };
+		FD991FDB2BEB29970089B6A6 /* NewGameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD991FDA2BEB29970089B6A6 /* NewGameState.swift */; };
 		FD9EC8032BE2FDE600006205 /* HistoryTabSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9EC8022BE2FDE600006205 /* HistoryTabSelector.swift */; };
 		FD9EC8062BE31ADD00006205 /* MoreTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9EC8052BE31ADD00006205 /* MoreTabView.swift */; };
 		FDC0DF732BE45F570007EB32 /* AppPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC0DF722BE45F570007EB32 /* AppPreferencesView.swift */; };
@@ -109,6 +110,7 @@
 		FD991FD12BE73DAD0089B6A6 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		FD991FD32BE835A70089B6A6 /* ResultsLeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsLeaderboardView.swift; sourceTree = "<group>"; };
 		FD991FD52BE836A10089B6A6 /* ResultsAwardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsAwardsView.swift; sourceTree = "<group>"; };
+		FD991FDA2BEB29970089B6A6 /* NewGameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameState.swift; sourceTree = "<group>"; };
 		FD9EC8022BE2FDE600006205 /* HistoryTabSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTabSelector.swift; sourceTree = "<group>"; };
 		FD9EC8052BE31ADD00006205 /* MoreTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTabView.swift; sourceTree = "<group>"; };
 		FDC0DF722BE45F570007EB32 /* AppPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferencesView.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				FD90BD032AB663FC00D7CF3B /* MolkkyStore.swift */,
 				FD90BD072AB6673700D7CF3B /* ErrorWrapper.swift */,
 				FD95BC482ABFA6A5001A9CFF /* PlayerRoundResults.swift */,
+				FD991FDA2BEB29970089B6A6 /* NewGameState.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				FDD8C7E72BC8D42F0082B523 /* NumberInput.swift in Sources */,
 				FDD8C7D52BBF99490082B523 /* PlayerOrderView.swift in Sources */,
 				FDD8C7CA2BBE19090082B523 /* DetailEditView.swift in Sources */,
+				FD991FDB2BEB29970089B6A6 /* NewGameState.swift in Sources */,
 				FD91B2FB2AB9532100EFE503 /* EditScoreHistorySheet.swift in Sources */,
 				FD90A3A92BD35A9600FCA297 /* SlidingSelectionInput.swift in Sources */,
 				FD991FD22BE73DAD0089B6A6 /* ResultView.swift in Sources */,

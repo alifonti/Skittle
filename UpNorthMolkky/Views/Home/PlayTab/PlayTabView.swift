@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct PlayTabView: View {
+    @EnvironmentObject var newGameState: NewGameState
+    
     @Binding var userData: SkittleData
-    @Binding var isNavigationActive: Bool
+    // @Binding var isNavigationActive: Bool
     @Binding var newRound: MolkkyRound
     
     @State private var isPresentingNewRoundView: Bool = false
@@ -30,7 +32,7 @@ struct PlayTabView: View {
                 }
                 .sheet(isPresented: $isPresentingNewRoundView, onDismiss: {
                     if (shouldNavigate) {
-                        isNavigationActive = true
+                        newGameState.isNavigationActive = true
                         shouldNavigate = false
                     }}) {
                         NewRoundSheet(userData: $userData, isPresentingNewRoundView: $isPresentingNewRoundView, shouldNavigate: $shouldNavigate, newRound: $newRound)
@@ -57,6 +59,6 @@ struct PlayTabView: View {
 
 struct PlayTabView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayTabView(userData: .constant(SkittleData.sampleData), isNavigationActive: .constant(false), newRound: .constant(MolkkyRound.sampleData))
+        PlayTabView(userData: .constant(SkittleData.sampleData), newRound: .constant(MolkkyRound.sampleData))
     }
 }

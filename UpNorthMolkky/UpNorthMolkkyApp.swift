@@ -11,6 +11,7 @@ import TipKit
 @main
 struct UpNorthMolkkyApp: App {
     @StateObject private var store = MolkkyStore()
+    @StateObject private var newGameState = NewGameState()
     @State private var errorWrapper: ErrorWrapper?
     
     @AppStorage("PreferredColorScheme", store: .standard) var preferredColorSchemePreference: String = ""
@@ -60,6 +61,7 @@ struct UpNorthMolkkyApp: App {
             .preferredColorScheme(preferredColorScheme)
         }
         .environmentObject(store)
+        .environmentObject(newGameState)
     }
 }
 

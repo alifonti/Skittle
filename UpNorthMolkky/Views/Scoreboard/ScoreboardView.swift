@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ScoreboardView: View {
+    @EnvironmentObject var newGameState: NewGameState
     @Environment(\.dismiss) private var dismiss
     
     @Binding var round: MolkkyRound
