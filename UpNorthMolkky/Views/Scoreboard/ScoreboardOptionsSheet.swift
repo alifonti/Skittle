@@ -13,7 +13,7 @@ struct ScoreboardOptionsSheet: View {
     
     var body: some View {
         NavigationStack {
-            ScoreboardOptionsView(round: $round)
+            ScoreboardOptionsView(round: $round, isPresentingOptionsView: $isPresentingOptionsView)
                 .navigationTitle("Options")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
@@ -30,6 +30,7 @@ struct ScoreboardOptionsSheet: View {
 struct ScoreboardOptionsView: View {
     @EnvironmentObject var navigationState: NavigationState
     @Binding var round: MolkkyRound
+    @Binding var isPresentingOptionsView: Bool
     
     var body: some View {
         VStack {
@@ -43,7 +44,8 @@ struct ScoreboardOptionsView: View {
                 .padding()
                 Divider()
                 Button(action: {
-                    //
+                    isPresentingOptionsView = false
+                    round.endedEarly.toggle()
                 }) {
                     Label("End round early", systemImage: "flag.checkered")
                         .padding()

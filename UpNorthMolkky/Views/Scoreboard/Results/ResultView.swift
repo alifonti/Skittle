@@ -57,8 +57,14 @@ struct ScoreboardResultsView: View {
                                     .padding()
                                     .background(RoundedRectangle(cornerRadius: 10).fill(Color(named: "s.accent2.main")))
                             }
-                            if (!round.continueUntilAllFinished && round.contenders.count > 2) {
-                                Button(action: {round.continueUntilAllFinished.toggle()}) {
+                            if (round.endedEarly || (!round.continueUntilAllFinished && round.contenders.count > 2)) {
+                                Button(action: {
+                                    if round.endedEarly {
+                                        round.endedEarly.toggle()
+                                    } else {
+                                        round.continueUntilAllFinished.toggle()
+                                    }
+                                }) {
                                     Label("Continue playing", systemImage: "chevron.forward")
                                         .font(.headline)
                                         .foregroundColor(.white)
@@ -67,14 +73,16 @@ struct ScoreboardResultsView: View {
                                 }
                             }
                         }
-                        Button(action: {
-                            isPresenting.toggle()
-                            round.undo()
-                        }) {
-                            Label("Undo last throw", systemImage: "arrow.uturn.backward")
-                                .foregroundColor(.white)
-                                .padding()
-                                .background(RoundedRectangle(cornerRadius: 10).stroke(.white, lineWidth: 1))
+                        if (!round.endedEarly) {
+                            Button(action: {
+                                isPresenting.toggle()
+                                round.undo()
+                            }) {
+                                Label("Undo last throw", systemImage: "arrow.uturn.backward")
+                                    .foregroundColor(.white)
+                                    .padding()
+                                    .background(RoundedRectangle(cornerRadius: 10).stroke(.white, lineWidth: 1))
+                            }
                         }
                     }
                     .padding()

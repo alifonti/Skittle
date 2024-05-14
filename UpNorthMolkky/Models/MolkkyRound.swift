@@ -18,6 +18,7 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
     var attempts: [ContenderAttempt] = []
     var undoStack: [ContenderAttempt] = []
     var currentContenderIndex: Int = 0
+    var endedEarly: Bool = false
     
     // - Game Preferences
     var targetScore: Int = 50
@@ -39,7 +40,7 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
     
     // --- Calculated Values
     var hasGameEnded: Bool {
-        contenderScores.filter({ $0.isFinished }).count >=
+        endedEarly || contenderScores.filter({ $0.isFinished }).count >=
             (continueUntilAllFinished ? contenderScores.count - 1 : 1)
     }
     
