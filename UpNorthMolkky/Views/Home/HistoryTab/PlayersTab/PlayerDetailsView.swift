@@ -33,80 +33,90 @@ struct PlayerDetailsView: View {
     }
     
     var body: some View {
-        VStack {
-            HStack(alignment: .center) {
-                if (!viewNameTextField) {
-                    Text(player.playerName)
+        VStack(spacing: 25) {
+            VStack {
+                HStack(alignment: .center) {
+                    if (!viewNameTextField) {
+                        Text(player.playerName)
+                            .font(.largeTitle)
+                    } else {
+                        TextField(player.playerName, text: $newValue, onEditingChanged: { _ in }, onCommit: {
+                            if (!newValue.isEmpty) {
+                                player.updateName(name: newValue)
+                                newValue = ""
+                            }
+                            viewNameTextField = false
+                            nameFieldIsFocused = false
+                        })
                         .font(.largeTitle)
-                } else {
-                    TextField(player.playerName, text: $newValue, onEditingChanged: { _ in }, onCommit: {
-                        if (!newValue.isEmpty) {
-                            player.updateName(name: newValue)
-                            newValue = ""
-                        }
-                        viewNameTextField = false
-                        nameFieldIsFocused = false
-                    })
-                    .font(.largeTitle)
-                    .fixedSize(horizontal: true, vertical: false)
-                    .textInputAutocapitalization(.never)
-                    .disableAutocorrection(true)
-                    .focused($nameFieldIsFocused)
-                    .onAppear {nameFieldIsFocused = true}
+                        .fixedSize(horizontal: true, vertical: false)
+                        .textInputAutocapitalization(.never)
+                        .disableAutocorrection(true)
+                        .focused($nameFieldIsFocused)
+                        .onAppear {nameFieldIsFocused = true}
+                    }
+                    Button {
+                        viewNameTextField = true
+                    } label: {
+                        Image(systemName: "pencil")
+                            .font(.title2)
+                            .opacity(viewNameTextField ? 0 : 1)
+                    }
                 }
-                Button {
-                    viewNameTextField = true
-                } label: {
-                    Image(systemName: "pencil")
-                        .font(.title2)
-                        .opacity(viewNameTextField ? 0 : 1)
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            Text("Added on \(dateString)")
                 .frame(maxWidth: .infinity, alignment: .leading)
-            VStack(spacing: 1) {
-                HStack {
-                    Text("Rounds played:")
-                    Spacer()
-                    Text("\(playerRoundCount)")
+                Text("Added on \(dateString)")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                VStack(spacing: 1) {
+                    HStack {
+                        Text("Rounds played:")
+                        Spacer()
+                        Text("\(playerRoundCount)")
+                    }
+                    HStack {
+                        Text("Attempts made:")
+                        Spacer()
+                        Text("\(playerAttemptCount)")
+                    }
+                    HStack {
+                        Text("Average points per attempt:")
+                        Spacer()
+                        Text(String(format: "%.1f", playerAttemptAverage))
+                    }
+                    HStack {
+                        Text("Wins:")
+                        Spacer()
+                        Text("\(playerWinCount)")
+                    }
                 }
-                HStack {
-                    Text("Attempts made:")
-                    Spacer()
-                    Text("\(playerAttemptCount)")
-                }
-                HStack {
-                    Text("Average points per attempt:")
-                    Spacer()
-                    Text(String(format: "%.1f", playerAttemptAverage))
-                }
-                HStack {
-                    Text("Wins:")
-                    Spacer()
-                    Text("\(playerWinCount)")
-                }
+                .padding()
+                .background(Color(named: "s.fill.tertiary"))
+                .clipShape(RoundedRectangle(cornerRadius: 10))
             }
-            .padding()
-            .background(Color(named: "s.fill.tertiary"))
-            Spacer()
-            Button("Delete player") {
-                showingDeletePopover = true
+            VStack(spacing: 10) {
+                Text("Trophy Case")
+                    .font(.title)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                HistoryAwardView()
             }
-            .foregroundStyle(.red)
-            .alert(
-                "Delete \(player.playerName)?",
-                isPresented: $showingDeletePopover,
-                presenting: player
-            ) { player in
-                Button(role: .destructive) {
-                    userData.removePlayer(player)
-                    dismiss()
-                } label: {
-                    Text("Delete")
+            VStack {
+                Button("Delete player") {
+                    showingDeletePopover = true
                 }
-            } message: { player in
-                Text("This action is permanant.")
+                .foregroundStyle(.red)
+                .alert(
+                    "Delete \(player.playerName)?",
+                    isPresented: $showingDeletePopover,
+                    presenting: player
+                ) { player in
+                    Button(role: .destructive) {
+                        userData.removePlayer(player)
+                        dismiss()
+                    } label: {
+                        Text("Delete")
+                    }
+                } message: { player in
+                    Text("This action is permanant.")
+                }
             }
         }
         .padding()

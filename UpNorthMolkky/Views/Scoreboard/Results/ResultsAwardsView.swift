@@ -13,7 +13,7 @@ struct ResultsAwardsView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     ForEach(Award.allCases) { award in
-                        AwardView(awardType: award, names: ["Anthony", "Emma"])
+                        AwardView(award: award, names: ["Anthony", "Emma"])
                     }
                 }
             }
@@ -23,84 +23,94 @@ struct ResultsAwardsView: View {
     }
 }
 
-struct AwardView: View {
-    let awardType: Award
-    let names: [String]
-    // let value: Int?
-    
-    var body: some View {
-        switch awardType {
+extension ResultsAwardsView {
+    static func getAwardInfo(award: Award) -> (title: String, description: String, icon: String) {
+        switch award {
         case Award.maximalist:
-            AwardViewTemplate(title: "Maximalist",
-                              description: "Awarded to the player with the most 12s",
-                              icon: "creditcard",
-                              names: names)
+            return (
+                title: "Maximalist",
+                description: "Awarded to the player with the most 12s",
+                icon: "creditcard"
+            )
         case Award.minimalist:
-            AwardViewTemplate(title: "Minimalist",
-                              description: "Awarded to the player with the most 1s",
-                              icon: "centsign",
-                              names: names)
+            return (
+                title: "Minimalist",
+                description: "Awarded to the player with the most 1s",
+                icon: "centsign"
+            )
         case Award.unlucky:
-            AwardViewTemplate(title: "Unlucky",
-                              description: "Awarded to the player with the most misses",
-                              icon: "cloud.rain",
-                              names: names)
+            return (
+                title: "Unlucky",
+                description: "Awarded to the player with the most misses",
+                icon: "cloud.rain"
+            )
         case Award.spotless:
-            AwardViewTemplate(title: "Spotless",
-                              description: "Awarded to players with no misses",
-                              icon: "bubbles.and.sparkles",
-                              names: names)
+            return (
+                title: "Spotless",
+                description: "Awarded to players with no misses",
+                icon: "bubbles.and.sparkles"
+            )
         case Award.reckless:
-            AwardViewTemplate(title: "Reckless",
-                              description: "Awarded to the player with the most resets",
-                              icon: "exclamationmark.triangle",
-                              names: names)
+            return (
+                title: "Reckless",
+                description: "Awarded to the player with the most resets",
+                icon: "exclamationmark.triangle"
+            )
         case Award.efficient:
-            AwardViewTemplate(title: "Efficient",
-                              description: "Awarded to the player with the highest points per throw average",
-                              icon: "leaf",
-                              names: names)
+            return (
+                title: "Efficient",
+                description: "Awarded to the player with the highest points per throw average",
+                icon: "leaf"
+            )
         case Award.survivor:
-            AwardViewTemplate(title: "Survivor",
-                              description: "Awarded to players who escaped elimination",
-                              icon: "tent",
-                              names: names)
+            return (
+                title: "Survivor",
+                description: "Awarded to players who escaped elimination",
+                icon: "tent"
+            )
         case Award.soClose:
-            AwardViewTemplate(title: "So close!",
-                              description: "Awarded to players who finished one point short of the target score",
-                              icon: "alarm.waves.left.and.right",
-                              names: names)
+            return (
+                title: "So close!",
+                description: "Awarded to players who finished one point short of the target score",
+                icon: "alarm.waves.left.and.right"
+            )
         case Award.oops:
-            AwardViewTemplate(title: "Oops?",
-                              description: "Awarded to players who finished with zero points",
-                              icon: "zzz",
-                              names: names)
+            return (
+                title: "Oops?",
+                description: "Awarded to players who finished with zero points",
+                icon: "zzz"
+            )
         case Award.selective:
-            AwardViewTemplate(title: "Selective",
-                              description: "Awarded to players who scored three or fewer different values (excluding 0)",
-                              icon: "lasso",
-                              names: names)
+            return (
+                title: "Selective",
+                description: "Awarded to players who scored three or fewer different values (excluding 0)",
+                icon: "lasso"
+            )
         case Award.variety:
-            AwardViewTemplate(title: "Variety",
-                              description: "Awarded to players who scored seven or more different values (excluding 0)",
-                              icon: "paintpalette",
-                              names: names)
+            return (
+                title: "Variety",
+                description: "Awarded to players who scored seven or more different values (excluding 0)",
+                icon: "paintpalette"
+            )
         case Award.rainbow:
-            AwardViewTemplate(title: "Rainbow Unicorn",
-                              description: "Awarded to players who scored all twelve different values (excluding 0)",
-                              icon: "rainbow",
-                              names: names)
+            return (
+                title: "Unicorn",
+                description: "Awarded to players who scored all twelve different values (excluding 0)",
+                icon: "rainbow"
+            )
         }
     }
 }
-
-struct AwardViewTemplate: View {
-    let title: String
-    let description: String
-    let icon: String
+struct AwardView: View {
+    let award: Award
     let names: [String]
+    var count: Int?
     
     let tabShape = UnevenRoundedRectangle(topLeadingRadius: 20, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 20)
+    
+    var awardInfo: (String, String, String) {
+        ResultsAwardsView.getAwardInfo(award: award)
+    }
     
     @ViewBuilder
     func PlayerTabView(name: String) -> some View {
@@ -123,17 +133,19 @@ struct AwardViewTemplate: View {
             }
             .padding(.leading, 10)
             HStack {
-                Image(systemName: icon)
+                Image(systemName: awardInfo.2)
                     .font(.title3)
                     .frame(width: 40)
                 VStack(alignment: .leading) {
-                    Text(title)
+                    Text(awardInfo.0)
                         .fontWeight(.medium)
-                    Text(description)
+                    Text(awardInfo.1)
                         .font(.caption)
                 }
                 Spacer()
-                Text("50")
+                if let count {
+                    Text(String(count))
+                }
             }
             .padding(.vertical, 20)
             .padding(.horizontal, 10)

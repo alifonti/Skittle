@@ -12,11 +12,12 @@ struct RulesView: View {
         Group {
             VStack(alignment: .leading) {
                 HStack {
-                    Text("Rules")
-                        .font(.title)
+                    Text("Section Header")
+                        .font(.title2)
                     Spacer()
                 }
                 Text("Paragraph")
+                Spacer()
             }
             .padding()
         }

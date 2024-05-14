@@ -46,6 +46,8 @@
 		FD991FD62BE836A10089B6A6 /* ResultsAwardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD991FD52BE836A10089B6A6 /* ResultsAwardsView.swift */; };
 		FD991FD92BE840CA0089B6A6 /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = FD991FD82BE840CA0089B6A6 /* ConfettiSwiftUI */; };
 		FD991FDB2BEB29970089B6A6 /* NavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD991FDA2BEB29970089B6A6 /* NavigationState.swift */; };
+		FD991FDD2BF305170089B6A6 /* CurrentGameRulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD991FDC2BF305170089B6A6 /* CurrentGameRulesView.swift */; };
+		FD991FDF2BF313FA0089B6A6 /* HistoryAwardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD991FDE2BF313FA0089B6A6 /* HistoryAwardView.swift */; };
 		FD9EC8032BE2FDE600006205 /* HistoryTabSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9EC8022BE2FDE600006205 /* HistoryTabSelector.swift */; };
 		FD9EC8062BE31ADD00006205 /* MoreTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD9EC8052BE31ADD00006205 /* MoreTabView.swift */; };
 		FDC0DF732BE45F570007EB32 /* AppPreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC0DF722BE45F570007EB32 /* AppPreferencesView.swift */; };
@@ -111,6 +113,8 @@
 		FD991FD32BE835A70089B6A6 /* ResultsLeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsLeaderboardView.swift; sourceTree = "<group>"; };
 		FD991FD52BE836A10089B6A6 /* ResultsAwardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsAwardsView.swift; sourceTree = "<group>"; };
 		FD991FDA2BEB29970089B6A6 /* NavigationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationState.swift; sourceTree = "<group>"; };
+		FD991FDC2BF305170089B6A6 /* CurrentGameRulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentGameRulesView.swift; sourceTree = "<group>"; };
+		FD991FDE2BF313FA0089B6A6 /* HistoryAwardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryAwardView.swift; sourceTree = "<group>"; };
 		FD9EC8022BE2FDE600006205 /* HistoryTabSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTabSelector.swift; sourceTree = "<group>"; };
 		FD9EC8052BE31ADD00006205 /* MoreTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTabView.swift; sourceTree = "<group>"; };
 		FDC0DF722BE45F570007EB32 /* AppPreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPreferencesView.swift; sourceTree = "<group>"; };
@@ -268,6 +272,7 @@
 				FD79286A2AB14E1600FF25CE /* ScoreboardView.swift */,
 				FD91B2F82AB92F8600EFE503 /* ScoreboardOptionsSheet.swift */,
 				FD95BC4A2ABFA743001A9CFF /* SortToggleButton.swift */,
+				FD991FDC2BF305170089B6A6 /* CurrentGameRulesView.swift */,
 			);
 			path = Scoreboard;
 			sourceTree = "<group>";
@@ -416,6 +421,7 @@
 			children = (
 				FDD8C7E22BC23A770082B523 /* PlayersView.swift */,
 				FDD8C7E42BC242270082B523 /* PlayerDetailsView.swift */,
+				FD991FDE2BF313FA0089B6A6 /* HistoryAwardView.swift */,
 			);
 			path = PlayersTab;
 			sourceTree = "<group>";
@@ -515,6 +521,7 @@
 				FD8F2E702AC2546B00A1A17C /* MedalView.swift in Sources */,
 				FD991FD62BE836A10089B6A6 /* ResultsAwardsView.swift in Sources */,
 				FD91B2F92AB92F8600EFE503 /* ScoreboardOptionsSheet.swift in Sources */,
+				FD991FDD2BF305170089B6A6 /* CurrentGameRulesView.swift in Sources */,
 				FDD8C7DF2BC20CC10082B523 /* GameRulesView.swift in Sources */,
 				FD7928772AB1670600FF25CE /* ScoreControlsView.swift in Sources */,
 				FD95BC672AC10AAE001A9CFF /* ShimmerBox.swift in Sources */,
@@ -548,6 +555,7 @@
 				FDD8C7D52BBF99490082B523 /* PlayerOrderView.swift in Sources */,
 				FDD8C7CA2BBE19090082B523 /* DetailEditView.swift in Sources */,
 				FD991FDB2BEB29970089B6A6 /* NavigationState.swift in Sources */,
+				FD991FDF2BF313FA0089B6A6 /* HistoryAwardView.swift in Sources */,
 				FD91B2FB2AB9532100EFE503 /* EditScoreHistorySheet.swift in Sources */,
 				FD90A3A92BD35A9600FCA297 /* SlidingSelectionInput.swift in Sources */,
 				FD991FD22BE73DAD0089B6A6 /* ResultView.swift in Sources */,

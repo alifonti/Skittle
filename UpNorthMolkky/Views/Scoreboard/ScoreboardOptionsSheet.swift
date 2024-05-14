@@ -51,16 +51,12 @@ struct ScoreboardOptionsView: View {
                         .padding()
                 }
                 Divider()
-                Button(action: {
-                    //
-                }) {
+                NavigationLink(destination: RulesView()) {
                     Label("Rules Review", systemImage: "book")
                         .padding()
                 }
                 Divider()
-                Button(action: {
-                    //
-                }) {
+                NavigationLink(destination: CurrentGameRulesView(round: round)) {
                     Label("View Game Settings", systemImage: "gear")
                         .padding()
                 }
