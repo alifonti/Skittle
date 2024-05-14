@@ -11,40 +11,7 @@ struct ResultsLeaderboardView: View {
     let round: MolkkyRound
     
     var sortedContenders: [(UUID, MolkkyRound.ContenderScore, Int)] {
-        var array: [(UUID, MolkkyRound.ContenderScore, Int)] = []
-        
-        let sorted = round.contenderScores.sorted { (lhs, rhs) in
-            let predicates: [(MolkkyRound.ContenderScore, MolkkyRound.ContenderScore) -> Bool] = [
-                { !$0.isEliminated && $1.isEliminated },
-                { $0.totalScore > $1.totalScore },
-                { $0.finishPosition < $1.finishPosition },
-                { $0.contender.orderKey < $1.contender.orderKey }
-            ]
-            for predicate in predicates {
-                if !predicate(lhs, rhs) && !predicate(rhs, lhs) {
-                    continue
-                }
-                return predicate(lhs, rhs)
-            }
-            return false
-        }
-        
-        var lastScore: Int = -1
-        var lastScoreIndex: Int = 0
-        
-        for (index, element) in sorted.enumerated() {
-            if element.finishPosition >= 0 {
-                array.append((UUID(), element, element.finishPosition + 1))
-            } else if (element.totalScore != lastScore) {
-                array.append((UUID(), element, index + 1))
-                lastScore = element.totalScore
-                lastScoreIndex = index
-            } else {
-                array.append((UUID(), element, lastScoreIndex + 1))
-            }
-        }
-        
-        return array
+        MolkkyRound.getSortedResults(round: round)
     }
     
     var body: some View {

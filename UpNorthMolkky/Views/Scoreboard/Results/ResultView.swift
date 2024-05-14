@@ -26,7 +26,7 @@ struct ScoreboardResultsView: View {
     }
     
     func onNewGameClick() {
-        let newRound: MolkkyRound = MolkkyRound.sampleData // MolkkyRound()
+        let newRound: MolkkyRound = MolkkyRound(round: round)
         store.userData.addRound(newRound)
         navigationState.activeRoundId = newRound.id
     }

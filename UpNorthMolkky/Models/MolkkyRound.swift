@@ -179,11 +179,42 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
         }
     }
     
-//    func getResults() {
-//        for attempt in attempts {
-//            //
-//        }
-//    }
+    static func getSortedResults(round: MolkkyRound) -> [(UUID, MolkkyRound.ContenderScore, Int)] {
+        var array: [(UUID, MolkkyRound.ContenderScore, Int)] = []
+        
+        let sorted = round.contenderScores.sorted { (lhs, rhs) in
+            let predicates: [(MolkkyRound.ContenderScore, MolkkyRound.ContenderScore) -> Bool] = [
+                { !$0.isEliminated && $1.isEliminated },
+                { $0.totalScore > $1.totalScore },
+                { $0.finishPosition < $1.finishPosition },
+                { $0.contender.orderKey < $1.contender.orderKey }
+            ]
+            for predicate in predicates {
+                if !predicate(lhs, rhs) && !predicate(rhs, lhs) {
+                    continue
+                }
+                return predicate(lhs, rhs)
+            }
+            return false
+        }
+        
+        var lastScore: Int = -1
+        var lastScoreIndex: Int = 0
+        
+        for (index, element) in sorted.enumerated() {
+            if element.finishPosition >= 0 {
+                array.append((UUID(), element, element.finishPosition + 1))
+            } else if (element.totalScore != lastScore) {
+                array.append((UUID(), element, index + 1))
+                lastScore = element.totalScore
+                lastScoreIndex = index
+            } else {
+                array.append((UUID(), element, lastScoreIndex + 1))
+            }
+        }
+        
+        return array
+    }
     
     // --- Initializers
     init(id: UUID = UUID(), date: Date = Date.now, players: [Player]) {
@@ -199,6 +230,17 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
         self.targetScore = targetScore
         self.resetScore = resetScore
         self.missesForElimination = missesForElimination
+    }
+    
+    init(id: UUID = UUID(), date: Date = Date.now, round: MolkkyRound) {
+        self.id = id
+        self.date = Date.now
+        self.contenders = MolkkyRound.getSortedResults(round: round).reversed().enumerated().map {
+            Contender(id: $1.1.contender.id, name: $1.1.contender.name, orderKey: $0)
+        }
+        self.targetScore = round.targetScore
+        self.resetScore = round.resetScore
+        self.missesForElimination = round.missesForElimination
     }
 }
 
