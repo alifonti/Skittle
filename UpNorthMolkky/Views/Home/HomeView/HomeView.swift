@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var store: MolkkyStore
-    @EnvironmentObject var newGameState: NewGameState
+    @EnvironmentObject var navigationState: NavigationState
     @Environment(\.scenePhase) private var scenePhase
     
     @State private var selectedTab = "play"
@@ -20,7 +20,7 @@ struct HomeView: View {
     
     var body: some View {
         NavigationStack {
-            Group {
+            VStack(spacing: 0) {
                 HomeHeaderView(selectedTab: $selectedTab)
                 TabView(selection: $selectedTab) {
                     Group {
@@ -48,8 +48,10 @@ struct HomeView: View {
                 }
                 .tint(HomeHeaderView.getHeaderColor(tab: selectedTab))
             }
-            .navigationDestination(isPresented: $newGameState.isNavigationActive) {
-                ScoreboardView(round: $store.userData.rounds.last ?? .constant(MolkkyRound.sampleData))
+            .navigationDestination(isPresented: $navigationState.isNavigationActive) {
+                ScoreboardView(round: $store.userData.rounds.first(where: {
+                    $0.id == navigationState.activeRoundId
+                }) ?? .constant(MolkkyRound.sampleData))
             }
         }
         .onChange(of: scenePhase) {

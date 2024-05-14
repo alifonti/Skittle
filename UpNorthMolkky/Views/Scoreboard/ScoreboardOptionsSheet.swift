@@ -11,11 +11,9 @@ struct ScoreboardOptionsSheet: View {
     @Binding var round: MolkkyRound
     @Binding var isPresentingOptionsView: Bool
     
-    var dismiss: DismissAction
-    
     var body: some View {
         NavigationStack {
-            ScoreboardOptionsView(round: $round, dismiss: dismiss)
+            ScoreboardOptionsView(round: $round)
                 .navigationTitle("Options")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
@@ -30,18 +28,15 @@ struct ScoreboardOptionsSheet: View {
 }
 
 struct ScoreboardOptionsView: View {
-    @Environment(\.dismiss) private var localDismiss
+    @EnvironmentObject var navigationState: NavigationState
     @Binding var round: MolkkyRound
-    
-    var dismiss: DismissAction
     
     var body: some View {
         VStack {
             VStack {
                 Divider()
                 Button(action: {
-                    localDismiss()
-                    dismiss()
+                    navigationState.isNavigationActive = false
                 }) {
                     Label("Return to menu", systemImage: "house")
                 }

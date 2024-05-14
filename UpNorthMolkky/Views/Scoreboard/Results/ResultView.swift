@@ -10,7 +10,7 @@ import ConfettiSwiftUI
 
 struct ScoreboardResultsView: View {
     @EnvironmentObject var store: MolkkyStore
-    @EnvironmentObject var newGameState: NewGameState
+    @EnvironmentObject var navigationState: NavigationState
     
     @Binding var round: MolkkyRound
     @Binding var isPresenting: Bool
@@ -28,7 +28,7 @@ struct ScoreboardResultsView: View {
     func onNewGameClick() {
         let newRound: MolkkyRound = MolkkyRound.sampleData // MolkkyRound()
         store.userData.addRound(newRound)
-        newGameState.isNavigationActive = true
+        navigationState.activeRoundId = newRound.id
     }
     
     var body: some View {
@@ -37,9 +37,11 @@ struct ScoreboardResultsView: View {
                 VStack(spacing: 0) {
                     VStack {
                         HStack {
-                            Label("Home", systemImage: "chevron.backward")
-                                .font(.title3)
-                                .foregroundColor(.white)
+                            Button(action: {navigationState.isNavigationActive = false}) {
+                                Label("Home", systemImage: "chevron.backward")
+                                    .font(.title3)
+                                    .foregroundColor(.white)
+                            }
                             Spacer()
                         }
                         Spacer()
@@ -47,7 +49,8 @@ struct ScoreboardResultsView: View {
                             .font(.largeTitle)
                             .foregroundColor(.white)
                         Spacer()
-                        HStack {Button(action: onNewGameClick) {
+                        HStack {
+                            Button(action: onNewGameClick) {
                                 Label("Play again", systemImage: "play")
                                     .font(.headline)
                                     .foregroundColor(.white)

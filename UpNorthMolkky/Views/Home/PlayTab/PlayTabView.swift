@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PlayTabView: View {
-    @EnvironmentObject var newGameState: NewGameState
+    @EnvironmentObject var navigationState: NavigationState
     
     @Binding var userData: SkittleData
     @Binding var newRound: MolkkyRound
@@ -31,7 +31,7 @@ struct PlayTabView: View {
                 }
                 .sheet(isPresented: $isPresentingNewRoundView, onDismiss: {
                     if (shouldNavigate) {
-                        newGameState.isNavigationActive = true
+                        navigationState.isNavigationActive = true
                         shouldNavigate = false
                     }}) {
                         NewRoundSheet(userData: $userData, isPresentingNewRoundView: $isPresentingNewRoundView, shouldNavigate: $shouldNavigate, newRound: $newRound)

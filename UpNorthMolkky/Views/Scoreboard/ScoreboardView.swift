@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct ScoreboardView: View {
-    @EnvironmentObject var newGameState: NewGameState
-    @Environment(\.dismiss) private var dismiss
-    
     @Binding var round: MolkkyRound
     
     @State private var isPresentingOptionsView = false
@@ -47,7 +44,7 @@ struct ScoreboardView: View {
                 isPresentingResultsView = round.hasGameEnded
             }
             .sheet(isPresented: $isPresentingOptionsView) {
-                ScoreboardOptionsSheet(round: $round, isPresentingOptionsView: $isPresentingOptionsView, dismiss: dismiss)
+                ScoreboardOptionsSheet(round: $round, isPresentingOptionsView: $isPresentingOptionsView)
                     .presentationDetents([.medium])
             }
             .fullScreenCover(isPresented: $isPresentingResultsView, onDismiss: {}) {

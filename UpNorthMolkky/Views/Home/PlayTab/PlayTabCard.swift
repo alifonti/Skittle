@@ -81,7 +81,7 @@ struct GenericPlayTabCard: View {
 }
 
 struct RoundInProgressCard: View {
-    @EnvironmentObject var newGameState: NewGameState
+    @EnvironmentObject var navigationState: NavigationState
     
     var primaryOnClick: () -> Void = {}
     @Binding var latestGame: MolkkyRound
@@ -105,7 +105,10 @@ struct RoundInProgressCard: View {
                     }
                 }
             }
-            Button(action: {newGameState.isNavigationActive = true}) {
+            Button(action: {
+                navigationState.activeRoundId = latestGame.id
+                navigationState.isNavigationActive = true
+            }) {
                 HStack() {
                     Text("Continue round")
                         .accessibilityLabel("Continue round in progress")

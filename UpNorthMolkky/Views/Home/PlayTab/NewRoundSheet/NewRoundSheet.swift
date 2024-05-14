@@ -7,6 +7,8 @@
 import SwiftUI
 
 struct NewRoundSheet: View {
+    @EnvironmentObject var navigationState: NavigationState
+    
     @Binding var userData: SkittleData
     @Binding var isPresentingNewRoundView: Bool
     @Binding var shouldNavigate: Bool
@@ -21,6 +23,7 @@ struct NewRoundSheet: View {
                 Spacer()
                 Button("Start") {
                     userData.addRound(newRound)
+                    navigationState.activeRoundId = newRound.id
                     isPresentingNewRoundView = false
                     shouldNavigate = true
                 }

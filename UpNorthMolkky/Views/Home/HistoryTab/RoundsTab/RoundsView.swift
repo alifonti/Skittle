@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RoundsView: View {
+    @EnvironmentObject var navigationState: NavigationState
     @Binding var rounds: [MolkkyRound]
     
     @State var editMode = EditMode.inactive
@@ -15,7 +16,10 @@ struct RoundsView: View {
     var body: some View {
         List {
             ForEach($rounds, id: \.id) { $round in
-                NavigationLink(destination: ScoreboardView(round: $round)) {
+                Button(action: {
+                    navigationState.activeRoundId = round.id
+                    navigationState.isNavigationActive = true
+                }) {
                     CardView(round: round)
                 }
             }
