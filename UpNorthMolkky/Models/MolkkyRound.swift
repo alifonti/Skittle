@@ -252,6 +252,22 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
         if (spotlessData.count > 0) {
             awards.append((Award.spotless, Array(spotlessData), nil))
         }
+        // Reckless
+        // Efficient
+        // Survivor
+        // So close!
+        let soCloseData = round.contenderScores.filter({$0.totalScore == round.targetScore - 1}).map({$0.contender})
+        if (soCloseData.count > 0) {
+            awards.append((Award.soClose, soCloseData, nil))
+        }
+        // Oops?
+        let oopsData = round.contenderScores.filter({$0.totalScore == 0}).map({$0.contender})
+        if (oopsData.count > 0) {
+            awards.append((Award.oops, oopsData, nil))
+        }
+        // Selective
+        // Variety
+        // Rainbow
         
         return awards
     }

@@ -21,8 +21,8 @@ struct ScoreboardResultsView: View {
     
     let tabShape = UnevenRoundedRectangle(topLeadingRadius: 20, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 20)
     
-    var winner: MolkkyRound.ContenderScore {
-        round.contenderScores[round.contenderScores.firstIndex(where: {$0.finishPosition == 0}) ?? 0]
+    var sortedContenders: [(UUID, MolkkyRound.ContenderScore, Int)] {
+        MolkkyRound.getSortedResults(round: round)
     }
     
     func onNewGameClick() {
@@ -45,9 +45,11 @@ struct ScoreboardResultsView: View {
                             Spacer()
                         }
                         Spacer()
-                        Text("\(winner.contender.name) wins!")
-                            .font(.largeTitle)
-                            .foregroundColor(.white)
+                        if let winner = sortedContenders.first {
+                            Text("\(winner.1.contender.name) wins!")
+                                .font(.largeTitle)
+                                .foregroundColor(.white)
+                        }
                         Spacer()
                         HStack {
                             Button(action: onNewGameClick) {
@@ -97,7 +99,7 @@ struct ScoreboardResultsView: View {
                         }
                         .background(tabShape.fill(Color(named: "s.accent1.main")))
                         TabView(selection: $selectedTab) {
-                            ResultsLeaderboardView(round: round)
+                            ResultsLeaderboardView(round: round, sortedContenders: sortedContenders)
                                 .tag(ScoreboardResultsView.Tab.leaderboard)
                                 .ignoresSafeArea(.all, edges: .bottom)
                             ResultsAwardsView(round: round)

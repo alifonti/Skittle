@@ -9,10 +9,7 @@ import SwiftUI
 
 struct ResultsLeaderboardView: View {
     let round: MolkkyRound
-    
-    var sortedContenders: [(UUID, MolkkyRound.ContenderScore, Int)] {
-        MolkkyRound.getSortedResults(round: round)
-    }
+    let sortedContenders: [(UUID, MolkkyRound.ContenderScore, Int)]
     
     var body: some View {
         VStack {
@@ -65,7 +62,7 @@ struct LeaderboardView: View {
 
 struct ResultsLeaderboardView_Previews: PreviewProvider {
     static var previews: some View {
-        ResultsLeaderboardView(round: MolkkyRound.sampleData)
+        ResultsLeaderboardView(round: MolkkyRound.sampleData, sortedContenders: [])
     }
 }
 
