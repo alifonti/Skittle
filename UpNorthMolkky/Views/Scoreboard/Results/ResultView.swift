@@ -59,7 +59,7 @@ struct ScoreboardResultsView: View {
                                     .padding()
                                     .background(RoundedRectangle(cornerRadius: 10).fill(Color(named: "s.accent2.main")))
                             }
-                            if (round.endedEarly || (!round.continueUntilAllFinished && round.contenders.count > 2)) {
+                            if (round.endedEarly || (!round.continueUntilAllFinished && round.contenderScores.filter({!$0.isFinished}).count > 1)) {
                                 Button(action: {
                                     if round.endedEarly {
                                         round.endedEarly.toggle()

@@ -40,8 +40,9 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
     
     // --- Calculated Values
     var hasGameEnded: Bool {
-        endedEarly || contenderScores.filter({ $0.isFinished }).count >=
-            (continueUntilAllFinished ? contenderScores.count - 1 : 1)
+        endedEarly ||
+        contenderScores.filter({ $0.isFinished }).count >= contenderScores.count - 1 ||
+        (!continueUntilAllFinished && contenderScores.filter({ $0.finishPosition >= 0 }).count == 1)
     }
     
     var currentContender: Contender {
@@ -224,6 +225,7 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
         var twelvesDict: [Contender: Int] = [:]
         var onesDict: [Contender: Int] = [:]
         var zeroesDict: [Contender: Int] = [:]
+        var numbersDict: [Contender: Set<Int>] = [:]
         
         round.attempts.forEach { attempt in
             if (attempt.score == 12) {
@@ -232,6 +234,12 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
                 onesDict.updateValue((onesDict[attempt.contender] ?? 0) + 1, forKey: attempt.contender)
             } else if (attempt.score == 0) {
                 zeroesDict.updateValue((zeroesDict[attempt.contender] ?? 0) + 1, forKey: attempt.contender)
+            }
+            
+            if (!(attempt.score == 0)) {
+                var numberSet = numbersDict[attempt.contender] ?? Set<Int>()
+                numberSet.insert(attempt.score)
+                numbersDict.updateValue(numberSet, forKey: attempt.contender)
             }
         }
         
@@ -248,7 +256,7 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
             awards.append((Award.unlucky, unluckyData.0, unluckyData.1))
         }
         // Spotless
-        let spotlessData = round.contenders.drop(while: {zeroesDict[$0] != nil})
+        let spotlessData = round.contenders.filter({zeroesDict[$0] == nil})
         if (spotlessData.count > 0) {
             awards.append((Award.spotless, Array(spotlessData), nil))
         }
@@ -265,9 +273,30 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
         if (oopsData.count > 0) {
             awards.append((Award.oops, oopsData, nil))
         }
-        // Selective
-        // Variety
-        // Rainbow
+        // Selective, Variety, Rainbow
+        if (numbersDict.count > 0) {
+            var selectiveData: [Contender] = []
+            var varietyData: [Contender] = []
+            var rainbowData: [Contender] = []
+            numbersDict.forEach({
+                if ($0.value.count <= 3) {
+                    selectiveData.append($0.key)
+                } else if ($0.value.count >= 7 && $0.value.count <= 11) {
+                    varietyData.append($0.key)
+                } else if ($0.value.count == 12) {
+                    rainbowData.append($0.key)
+                }
+            })
+            if selectiveData.count > 0 {
+                awards.append((Award.selective, selectiveData, nil))
+            }
+            if varietyData.count > 0 {
+                awards.append((Award.variety, varietyData, nil))
+            }
+            if rainbowData.count > 0 {
+                awards.append((Award.rainbow, rainbowData, nil))
+            }
+        }
         
         return awards
     }
