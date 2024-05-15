@@ -71,6 +71,7 @@ struct AwardView: View {
                     Spacer()
                 }
             }
+            .scrollBounceBehavior(.basedOnSize, axes: [.horizontal])
             .padding(.leading, 10)
             HStack {
                 Image(systemName: awardInfo.2)
@@ -186,11 +187,11 @@ extension ResultsAwardsView {
 struct ResultsAwardsView_Previews: PreviewProvider {
     static var previews: some View {
         var data = MolkkyRound(players: [
-            Player(playerName: "A"),
+            Player(playerName: "Anthony"),
             Player(playerName: "B"),
             Player(playerName: "C"),
             Player(playerName: "D"),
-            Player(playerName: "E"),
+            Player(playerName: "Emma"),
             Player(playerName: "F"),
             Player(playerName: "G"),
             Player(playerName: "H"),
