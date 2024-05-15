@@ -217,9 +217,9 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
         return array
     }
     
-    static func getPlayerAwards(round: MolkkyRound) -> [(Award, [Contender], Int)] {
-        // Use new "Player" (that extends Contender) instead of String for identification
-        var array: [(Award, [Contender], Int)] = []
+    static func getPlayerAwards(round: MolkkyRound) -> [(Award, [Contender], Int?)] {
+        // Use new "Player" (that extends Contender) instead
+        var awards: [(Award, [Contender], Int?)] = []
         
         var twelvesDict: [Contender: Int] = [:]
         var onesDict: [Contender: Int] = [:]
@@ -235,17 +235,25 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
             }
         }
         
+        // Maximalist
         if let maximalistData = MolkkyRound.getMost(dict: twelvesDict) {
-            array.append((Award.maximalist, maximalistData.0, maximalistData.1))
+            awards.append((Award.maximalist, maximalistData.0, maximalistData.1))
         }
+        // Minimalist
         if let minimalistData = MolkkyRound.getMost(dict: onesDict) {
-            array.append((Award.minimalist, minimalistData.0, minimalistData.1))
+            awards.append((Award.minimalist, minimalistData.0, minimalistData.1))
         }
+        // Unlucky
         if let unluckyData = MolkkyRound.getMost(dict: zeroesDict) {
-            array.append((Award.unlucky, unluckyData.0, unluckyData.1))
+            awards.append((Award.unlucky, unluckyData.0, unluckyData.1))
+        }
+        // Spotless
+        let spotlessData = round.contenders.drop(while: {zeroesDict[$0] != nil})
+        if (spotlessData.count > 0) {
+            awards.append((Award.spotless, Array(spotlessData), nil))
         }
         
-        return array
+        return awards
     }
     
     // --- Initializers

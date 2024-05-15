@@ -10,7 +10,7 @@ import SwiftUI
 struct ResultsAwardsView: View {
     let round: MolkkyRound
     
-    var awards: [(Award, [Contender], Int)] {
+    var awards: [(Award, [Contender], Int?)] {
         MolkkyRound.getPlayerAwards(round: round)
     }
     
