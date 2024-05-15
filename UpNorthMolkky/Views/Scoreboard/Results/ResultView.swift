@@ -100,7 +100,7 @@ struct ScoreboardResultsView: View {
                             ResultsLeaderboardView(round: round)
                                 .tag(ScoreboardResultsView.Tab.leaderboard)
                                 .ignoresSafeArea(.all, edges: .bottom)
-                            ResultsAwardsView()
+                            ResultsAwardsView(round: round)
                                 .tag(ScoreboardResultsView.Tab.awards)
                                 .ignoresSafeArea(.all, edges: .bottom)
                         }

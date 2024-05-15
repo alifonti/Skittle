@@ -217,6 +217,37 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
         return array
     }
     
+    static func getPlayerAwards(round: MolkkyRound) -> [(Award, [Contender], Int)] {
+        // Use new "Player" (that extends Contender) instead of String for identification
+        var array: [(Award, [Contender], Int)] = []
+        
+        var twelvesDict: [Contender: Int] = [:]
+        var onesDict: [Contender: Int] = [:]
+        var zeroesDict: [Contender: Int] = [:]
+        
+        round.attempts.forEach { attempt in
+            if (attempt.score == 12) {
+                twelvesDict.updateValue((twelvesDict[attempt.contender] ?? 0) + 1, forKey: attempt.contender)
+            } else if (attempt.score == 1) {
+                onesDict.updateValue((onesDict[attempt.contender] ?? 0) + 1, forKey: attempt.contender)
+            } else if (attempt.score == 0) {
+                zeroesDict.updateValue((zeroesDict[attempt.contender] ?? 0) + 1, forKey: attempt.contender)
+            }
+        }
+        
+        if let maximalistData = MolkkyRound.getMost(dict: twelvesDict) {
+            array.append((Award.maximalist, maximalistData.0, maximalistData.1))
+        }
+        if let minimalistData = MolkkyRound.getMost(dict: onesDict) {
+            array.append((Award.minimalist, minimalistData.0, minimalistData.1))
+        }
+        if let unluckyData = MolkkyRound.getMost(dict: zeroesDict) {
+            array.append((Award.unlucky, unluckyData.0, unluckyData.1))
+        }
+        
+        return array
+    }
+    
     // --- Initializers
     init(id: UUID = UUID(), date: Date = Date.now, players: [Player]) {
         self.id = id
@@ -279,6 +310,16 @@ extension MolkkyRound {
             self.id = id
             self.contender = player
             self.score = score
+        }
+    }
+    
+    static func getMost(dict: [Contender: Int]) -> ([Contender], Int)? {
+        if (!dict.isEmpty) {
+            let sorted = dict.sorted(by: { $0.1 > $1.1 })
+            let filtered = sorted.filter({$0.value == sorted.first?.value ?? -1})
+            return (filtered.map({$0.key}), filtered[0].value)
+        } else {
+            return nil
         }
     }
 }

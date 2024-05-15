@@ -31,8 +31,10 @@ struct PlayersView: View {
         List {
             ForEach($userData.players, id: \.id) { $player in
                 NavigationLink(destination: PlayerDetailsView(userData: $userData, player: $player,
-                                                              playerRoundCount: playerRoundsCount[player.id] ?? 0, playerAttemptCount: playerAttemptCount[player.id] ?? 0,
-                                                              playerAttemptAverage: playerAttemptAverages[player.id] ?? 0, playerWinCount: playerWinCount[player.id] ?? 0)) {
+                                                  playerRoundCount: playerRoundsCount[player.id] ?? 0,
+                                                  playerAttemptCount: playerAttemptCount[player.id] ?? 0,
+                                                  playerAttemptAverage: playerAttemptAverages[player.id] ?? 0,
+                                                  playerWinCount: playerWinCount[player.id] ?? 0)) {
                     HStack {
                         Text(player.playerName)
                         Spacer()

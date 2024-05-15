@@ -8,12 +8,28 @@
 import SwiftUI
 
 struct ResultsAwardsView: View {
+    let round: MolkkyRound
+    
+    var awards: [(Award, [Contender], Int)] {
+        MolkkyRound.getPlayerAwards(round: round)
+    }
+    
+    let colors: [Color] = [
+        .blue, .green, .orange, .pink, .purple, .brown, .cyan, .mint, .yellow, .red, .indigo, .gray
+    ]
+    var playerColors: [Contender:Color] {
+        Dictionary(round.contenders.enumerated().map({($1, colors[$0 % colors.count])}),
+                   uniquingKeysWith: { (first, _) in first })
+    }
+    
     var body: some View {
         VStack {
             ScrollView {
                 VStack(alignment: .leading) {
-                    ForEach(Award.allCases) { award in
-                        AwardView(award: award, names: ["Anthony", "Emma"])
+                    ForEach(awards, id: \.0) { award in
+                        AwardView(award: award.0, names: award.1.map({
+                            (UUID(), $0.name, playerColors[$0] ?? .clear)
+                        }), count: award.2)
                     }
                 }
             }
@@ -21,6 +37,71 @@ struct ResultsAwardsView: View {
         }
         .padding(.horizontal, 20)
     }
+}
+
+struct AwardView: View {
+    let award: Award
+    let names: [(UUID, String, Color)]
+    var count: Int?
+    
+    let tabShape = UnevenRoundedRectangle(topLeadingRadius: 20, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 20)
+    
+    var awardInfo: (String, String, String) {
+        ResultsAwardsView.getAwardInfo(award: award)
+    }
+    
+    @ViewBuilder
+    func PlayerTabView(name: String, color: Color) -> some View {
+        Text(name)
+            .padding(.vertical, 3)
+            .padding(.horizontal, 6)
+            .background(
+                UnevenRoundedRectangle(topLeadingRadius: 5, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 5)
+                    .fill(color.opacity(0.4))
+            )
+    }
+    
+    var body: some View {
+        VStack(spacing: 0) {
+            ScrollView(.horizontal) {
+                HStack(spacing: 2) {
+                    ForEach(names.sorted(by: {$0.1 < $1.1}), id: \.self.0) { name in
+                        PlayerTabView(name: name.1, color: name.2)
+                    }
+                    Spacer()
+                }
+            }
+            .padding(.leading, 10)
+            HStack {
+                Image(systemName: awardInfo.2)
+                    .font(.title3)
+                    .frame(width: 40)
+                VStack(alignment: .leading) {
+                    Text(awardInfo.0)
+                        .fontWeight(.medium)
+                    Text(awardInfo.1)
+                        .font(.caption)
+                }
+                Spacer()
+                if let count {
+                    Text(String(count))
+                }
+            }
+            .padding(.vertical, 20)
+            .padding(.leading, 10)
+            .padding(.trailing, 15)
+            .background(
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.gray.opacity(0.1))
+            )
+        }
+    }
+}
+
+enum Award: String, CaseIterable, Identifiable {
+    case maximalist, minimalist, unlucky, spotless, reckless, efficient,
+         survivor, soClose, oops, selective, variety, rainbow
+    var id: Self { self }
 }
 
 extension ResultsAwardsView {
@@ -101,70 +182,27 @@ extension ResultsAwardsView {
         }
     }
 }
-struct AwardView: View {
-    let award: Award
-    let names: [String]
-    var count: Int?
-    
-    let tabShape = UnevenRoundedRectangle(topLeadingRadius: 20, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 20)
-    
-    var awardInfo: (String, String, String) {
-        ResultsAwardsView.getAwardInfo(award: award)
-    }
-    
-    @ViewBuilder
-    func PlayerTabView(name: String) -> some View {
-        Text(name)
-            .padding(.vertical, 3)
-            .padding(.horizontal, 6)
-            .background(
-                UnevenRoundedRectangle(topLeadingRadius: 5, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 5)
-                    .fill(Color.orange.opacity(0.4))
-            )
-    }
-    
-    var body: some View {
-        VStack(spacing: 0) {
-            HStack(spacing: 2) {
-                ForEach(names, id: \.self) { name in
-                    PlayerTabView(name: name)
-                }
-                Spacer()
-            }
-            .padding(.leading, 10)
-            HStack {
-                Image(systemName: awardInfo.2)
-                    .font(.title3)
-                    .frame(width: 40)
-                VStack(alignment: .leading) {
-                    Text(awardInfo.0)
-                        .fontWeight(.medium)
-                    Text(awardInfo.1)
-                        .font(.caption)
-                }
-                Spacer()
-                if let count {
-                    Text(String(count))
-                }
-            }
-            .padding(.vertical, 20)
-            .padding(.horizontal, 10)
-            .background(
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(Color.gray.opacity(0.1))
-            )
-        }
-    }
-}
-
-enum Award: String, CaseIterable, Identifiable {
-    case maximalist, minimalist, unlucky, spotless, reckless, efficient,
-         survivor, soClose, oops, selective, variety, rainbow
-    var id: Self { self }
-}
 
 struct ResultsAwardsView_Previews: PreviewProvider {
     static var previews: some View {
-        ResultsAwardsView()
+        var data = MolkkyRound(players: [
+            Player(playerName: "A"),
+            Player(playerName: "B"),
+            Player(playerName: "C"),
+            Player(playerName: "D"),
+            Player(playerName: "E"),
+            Player(playerName: "F"),
+            Player(playerName: "G"),
+            Player(playerName: "H"),
+            Player(playerName: "I"),
+            Player(playerName: "J"),
+            Player(playerName: "K"),
+            Player(playerName: "L"),
+        ])
+        data.attempts.append(contentsOf: data.contenders.map({
+            MolkkyRound.ContenderAttempt(player: $0, score: 1)
+        }))
+        
+        return ResultsAwardsView(round: data)
     }
 }
