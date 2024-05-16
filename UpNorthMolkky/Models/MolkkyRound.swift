@@ -258,37 +258,38 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
         if (spotlessData.count > 0) {
             awards.append((Award.spotless, Array(spotlessData), nil))
         }
-        // Reckless
+        // Reckless + Efficient
         var recklessDict: [Contender: Int] = [:]
+        var efficientData: [(Contender, Double)] = []
         round.contenderScores.forEach({
             var resetCount = 0
             var scoreAccum = 0
+            var efficiencyTotal = 0
             $0.attempts.map({$0.score}).forEach({
                 if (scoreAccum + $0 > round.targetScore) {
                     resetCount += 1
                     scoreAccum = round.resetScore
                 } else {
                     scoreAccum += $0
+                    efficiencyTotal += $0
                 }
             })
             if (resetCount > 0) {
                 recklessDict.updateValue(resetCount, forKey: $0.contender)
             }
+            efficientData.append(($0.contender, (Double(efficiencyTotal) / Double($0.attempts.count))))
         })
+        // Reckless
         if let recklessData = MolkkyRound.getMost(dict: recklessDict) {
             awards.append((Award.reckless, recklessData.0, String(recklessData.1)))
         }
         // Efficient
-        // This stat takes (total score / # of throws)
-        // The history stat accumulates all throw totals (ignoring resets)
-        // Neither is quite right...? The best is probably accumulating all throws but counting reset throws as 0
-        let sortedEfficientData: [(Contender, Double)] = round.contenderScores
-            .map({($0.contender, (Double($0.totalScore) / Double($0.attempts.count)))})
+        let sortedEfficientData: [(Contender, Double)] = efficientData
             .sorted(by: { $0.1 > $1.1 })
         let filteredEfficientData: [(Contender, Double)] = sortedEfficientData
             .filter({$0.1 == sortedEfficientData.first?.1 ?? -1})
         if (filteredEfficientData.count > 0) {
-            awards.append((Award.efficient, filteredEfficientData.map({$0.0}), String(format: "%.2f",filteredEfficientData[0].1)))
+            awards.append((Award.efficient, filteredEfficientData.map({$0.0}), String(format: "%.2f", filteredEfficientData[0].1)))
         }
         // Survivor
         var survivorData: [Contender] = []
