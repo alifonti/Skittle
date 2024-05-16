@@ -216,9 +216,9 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
         return array
     }
     
-    static func getPlayerAwards(round: MolkkyRound) -> [(Award, [Contender], Int?)] {
+    static func getPlayerAwards(round: MolkkyRound) -> [(Award, [Contender], String?)] {
         // Use new "Player" (that extends Contender) instead
-        var awards: [(Award, [Contender], Int?)] = []
+        var awards: [(Award, [Contender], String?)] = []
         
         var twelvesDict: [Contender: Int] = [:]
         var onesDict: [Contender: Int] = [:]
@@ -243,15 +243,15 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
         
         // Maximalist
         if let maximalistData = MolkkyRound.getMost(dict: twelvesDict) {
-            awards.append((Award.maximalist, maximalistData.0, maximalistData.1))
+            awards.append((Award.maximalist, maximalistData.0, String(maximalistData.1)))
         }
         // Minimalist
         if let minimalistData = MolkkyRound.getMost(dict: onesDict) {
-            awards.append((Award.minimalist, minimalistData.0, minimalistData.1))
+            awards.append((Award.minimalist, minimalistData.0, String(minimalistData.1)))
         }
         // Unlucky
         if let unluckyData = MolkkyRound.getMost(dict: zeroesDict) {
-            awards.append((Award.unlucky, unluckyData.0, unluckyData.1))
+            awards.append((Award.unlucky, unluckyData.0, String(unluckyData.1)))
         }
         // Spotless
         let spotlessData = round.contenders.filter({zeroesDict[$0] == nil})
@@ -276,9 +276,20 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
             }
         })
         if let recklessData = MolkkyRound.getMost(dict: recklessDict) {
-            awards.append((Award.reckless, recklessData.0, recklessData.1))
+            awards.append((Award.reckless, recklessData.0, String(recklessData.1)))
         }
         // Efficient
+        // This stat takes (total score / # of throws)
+        // The history stat accumulates all throw totals (ignoring resets)
+        // Neither is quite right...? The best is probably accumulating all throws but counting reset throws as 0
+        let sortedEfficientData: [(Contender, Double)] = round.contenderScores
+            .map({($0.contender, (Double($0.totalScore) / Double($0.attempts.count)))})
+            .sorted(by: { $0.1 > $1.1 })
+        let filteredEfficientData: [(Contender, Double)] = sortedEfficientData
+            .filter({$0.1 == sortedEfficientData.first?.1 ?? -1})
+        if (filteredEfficientData.count > 0) {
+            awards.append((Award.efficient, filteredEfficientData.map({$0.0}), String(format: "%.2f",filteredEfficientData[0].1)))
+        }
         // Survivor
         var survivorData: [Contender] = []
         round.contenderScores.forEach({

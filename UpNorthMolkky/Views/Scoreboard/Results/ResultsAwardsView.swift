@@ -10,7 +10,7 @@ import SwiftUI
 struct ResultsAwardsView: View {
     let round: MolkkyRound
     
-    var awards: [(Award, [Contender], Int?)] {
+    var awards: [(Award, [Contender], String?)] {
         MolkkyRound.getPlayerAwards(round: round)
     }
     
@@ -42,7 +42,7 @@ struct ResultsAwardsView: View {
 struct AwardView: View {
     let award: Award
     let names: [(UUID, String, Color)]
-    var count: Int?
+    var count: String?
     
     let tabShape = UnevenRoundedRectangle(topLeadingRadius: 20, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 20)
     
@@ -85,7 +85,7 @@ struct AwardView: View {
                 }
                 Spacer()
                 if let count {
-                    Text(String(count))
+                    Text(count)
                         .font(.title3)
                 }
             }

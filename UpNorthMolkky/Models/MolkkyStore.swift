@@ -95,15 +95,15 @@ struct SkittleData: Codable {
         return ["RoundCount": roundCountDict, "AttemptCount": attemptCountDict, "AttemptAverage": attemptAverageDict, "WinCount": winsDict]
     }
     
-    func getPlayerAwards() -> [UUID: [Award: Int]] {
-        var awardsDict: [UUID: [Award: Int]] = [:]
-        
-        rounds.forEach { round in
-            let awards = MolkkyRound.getPlayerAwards(round: round)
-        }
-        
-        return awardsDict
-    }
+//    func getPlayerAwards() -> [UUID: [Award: Int]] {
+//        var awardsDict: [UUID: [Award: Int]] = [:]
+//        
+//        rounds.forEach { round in
+//            let awards = MolkkyRound.getPlayerAwards(round: round)
+//        }
+//        
+//        return awardsDict
+//    }
     
     func getGeneralStats() -> [String: Int] {
         var attemptTotal: Int = 0
