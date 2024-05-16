@@ -86,6 +86,7 @@ struct AwardView: View {
                 Spacer()
                 if let count {
                     Text(String(count))
+                        .font(.title3)
                 }
             }
             .padding(.vertical, 20)
