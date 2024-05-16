@@ -174,8 +174,6 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
         let nextTotal = total + nextScore
         if (nextTotal <= targetScore) {
             return nextTotal
-        } else if (total == targetScore) {
-            return total
         } else {
             return canBeReset ? resetScore : total
         }
@@ -261,6 +259,25 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
             awards.append((Award.spotless, Array(spotlessData), nil))
         }
         // Reckless
+        var recklessDict: [Contender: Int] = [:]
+        round.contenderScores.forEach({
+            var resetCount = 0
+            var scoreAccum = 0
+            $0.attempts.map({$0.score}).forEach({
+                if (scoreAccum + $0 > round.targetScore) {
+                    resetCount += 1
+                    scoreAccum = round.resetScore
+                } else {
+                    scoreAccum += $0
+                }
+            })
+            if (resetCount > 0) {
+                recklessDict.updateValue(resetCount, forKey: $0.contender)
+            }
+        })
+        if let recklessData = MolkkyRound.getMost(dict: recklessDict) {
+            awards.append((Award.reckless, recklessData.0, recklessData.1))
+        }
         // Efficient
         // Survivor
         var survivorData: [Contender] = []
