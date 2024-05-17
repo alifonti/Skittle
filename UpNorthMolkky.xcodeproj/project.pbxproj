@@ -71,6 +71,7 @@
 		FDD8C7EC2BC8DEBE0082B523 /* CheckmarkToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8C7EB2BC8DEBE0082B523 /* CheckmarkToggleStyle.swift */; };
 		FDD8C7EE2BC8E8010082B523 /* PartyToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8C7ED2BC8E8010082B523 /* PartyToggleStyle.swift */; };
 		FDE03B2C2ACE2BD400A263A7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE03B2B2ACE2BD400A263A7 /* HomeView.swift */; };
+		FDF8C66D2BF6E063003C811D /* ResultsShareSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF8C66C2BF6E063003C811D /* ResultsShareSummaryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +139,7 @@
 		FDD8C7EB2BC8DEBE0082B523 /* CheckmarkToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkToggleStyle.swift; sourceTree = "<group>"; };
 		FDD8C7ED2BC8E8010082B523 /* PartyToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyToggleStyle.swift; sourceTree = "<group>"; };
 		FDE03B2B2ACE2BD400A263A7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		FDF8C66C2BF6E063003C811D /* ResultsShareSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsShareSummaryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -324,6 +326,7 @@
 				FD991FD12BE73DAD0089B6A6 /* ResultView.swift */,
 				FD991FD32BE835A70089B6A6 /* ResultsLeaderboardView.swift */,
 				FD991FD52BE836A10089B6A6 /* ResultsAwardsView.swift */,
+				FDF8C66C2BF6E063003C811D /* ResultsShareSummaryView.swift */,
 			);
 			path = Results;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 				FDD8C7EC2BC8DEBE0082B523 /* CheckmarkToggleStyle.swift in Sources */,
 				FDC0DF732BE45F570007EB32 /* AppPreferencesView.swift in Sources */,
 				FD7928752AB166B200FF25CE /* ScoreHistoryView.swift in Sources */,
+				FDF8C66D2BF6E063003C811D /* ResultsShareSummaryView.swift in Sources */,
 				FD90A3A52BD1E23C00FCA297 /* PlayTabView.swift in Sources */,
 				FDD8C7E72BC8D42F0082B523 /* NumberInput.swift in Sources */,
 				FDD8C7D52BBF99490082B523 /* PlayerOrderView.swift in Sources */,

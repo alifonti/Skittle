@@ -19,10 +19,15 @@ struct ScoreboardResultsView: View {
     
     @State var selectedTab: ScoreboardResultsView.Tab = ScoreboardResultsView.Tab.leaderboard
     
+    
     let tabShape = UnevenRoundedRectangle(topLeadingRadius: 20, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 20)
     
     var sortedContenders: [(UUID, MolkkyRound.ContenderScore, Int)] {
         MolkkyRound.getSortedResults(round: round)
+    }
+    
+    var renderer: ImageRenderer<ResultsShareSummaryView> {
+        ImageRenderer(content: ResultsShareSummaryView(round: round, results: sortedContenders))
     }
     
     func onNewGameClick() {
@@ -39,11 +44,18 @@ struct ScoreboardResultsView: View {
                         HStack {
                             Button(action: {navigationState.isNavigationActive = false}) {
                                 Label("Home", systemImage: "chevron.backward")
-                                    .font(.title3)
-                                    .foregroundColor(.white)
                             }
                             Spacer()
+                            if let image = renderer.uiImage {
+                                let sharePhoto: TransferablePhoto = TransferablePhoto(
+                                    image: Image(uiImage: image), caption: "Results")
+                                ShareLink(item: sharePhoto, preview: SharePreview(sharePhoto.caption, image: sharePhoto.image)) {
+                                    Image(systemName: "square.and.arrow.up")
+                                }
+                            }
                         }
+                        .font(.title3)
+                        .foregroundColor(.white)
                         Spacer()
                         if let winner = sortedContenders.first {
                             Text("\(winner.1.contender.name) wins!")
