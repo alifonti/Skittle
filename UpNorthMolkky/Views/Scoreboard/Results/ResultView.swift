@@ -16,24 +16,30 @@ struct ScoreboardResultsView: View {
     @Binding var isPresenting: Bool
     
     @State private var confettiAnimationCounter = 0
-    
     @State var selectedTab: ScoreboardResultsView.Tab = ScoreboardResultsView.Tab.leaderboard
     
     
     let tabShape = UnevenRoundedRectangle(topLeadingRadius: 20, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 20)
     
-    var sortedContenders: [(UUID, MolkkyRound.ContenderScore, Int)] {
-        MolkkyRound.getSortedResults(round: round)
-    }
-    
-    var renderer: ImageRenderer<ResultsShareSummaryView> {
-        ImageRenderer(content: ResultsShareSummaryView(round: round, results: sortedContenders))
-    }
+    let sortedContenders: [(UUID, MolkkyRound.ContenderScore, Int)]
+    let renderer: ImageRenderer<ResultsShareSummaryView>
     
     func onNewGameClick() {
         let newRound: MolkkyRound = MolkkyRound(round: round)
         store.userData.addRound(newRound)
         navigationState.activeRoundId = newRound.id
+    }
+    
+    init(round: Binding<MolkkyRound>, isPresenting: Binding<Bool>) {
+        let sortedContenders = MolkkyRound.getSortedResults(round: round.wrappedValue)
+        let renderer = ImageRenderer(content: ResultsShareSummaryView(round: round.wrappedValue, results: sortedContenders))
+        renderer.scale = UIScreen.main.scale
+        renderer.scale = 3.0
+        
+        self._round = round
+        self._isPresenting = isPresenting
+        self.sortedContenders = sortedContenders
+        self.renderer = renderer
     }
     
     var body: some View {
@@ -49,7 +55,7 @@ struct ScoreboardResultsView: View {
                             if let image = renderer.uiImage {
                                 let sharePhoto: TransferablePhoto = TransferablePhoto(
                                     image: Image(uiImage: image), caption: "Results")
-                                ShareLink(item: sharePhoto, preview: SharePreview(sharePhoto.caption, image: sharePhoto.image)) {
+                                ShareLink(item: sharePhoto.image, preview: SharePreview(sharePhoto.caption, image: sharePhoto.image)) {
                                     Image(systemName: "square.and.arrow.up")
                                 }
                             }
