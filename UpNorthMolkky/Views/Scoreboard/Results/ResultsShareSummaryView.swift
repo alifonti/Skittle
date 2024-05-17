@@ -28,7 +28,7 @@ struct ResultsShareSummaryView: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             VStack(spacing: 10) {
                 ForEach(results, id: \.0) { result in
                     HStack {
@@ -61,8 +61,7 @@ struct ResultsShareSummaryView: View {
                     }
                 }
             }
-            .padding(.vertical, 10)
-            .padding(.horizontal, 15)
+            .padding(.all, 15)
             HStack {
                 Text(round.date.formatted(date: .abbreviated, time: .shortened))
                     .padding(.trailing, 150)
