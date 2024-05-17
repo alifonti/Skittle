@@ -26,6 +26,7 @@ struct HistoryTabSelector: View {
             HistoryTabSelectorButton(tab: HistoryTabView.Tab.stats, selectedTab: selectedTab, setSelectedTab: setSelectedTab,
                                      image: "chart.bar.fill", text: "Overall", color: getColor(tab: HistoryTabView.Tab.stats))
         }
+        .fixedSize(horizontal: false, vertical: true)
         .padding(.all, 15)
     }
 }
@@ -42,7 +43,7 @@ struct HistoryTabSelectorButton: View {
         Button(action: {
             setSelectedTab(tab)
         }, label: {
-            HStack {
+            HStack(alignment: .firstTextBaseline) {
                 Image(systemName: image)
                     .foregroundStyle(Color(UIColor.label))
                 if (tab == selectedTab) {
@@ -55,7 +56,7 @@ struct HistoryTabSelectorButton: View {
             .padding(.horizontal, 10)
             .padding(.vertical, 4)
         })
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(
             Capsule(style: .circular)
                 .fill(color.opacity(0.2))
