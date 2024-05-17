@@ -8,43 +8,35 @@
 import SwiftUI
 
 struct RoundsView: View {
+    @Environment(\.editMode) private var editMode
     @EnvironmentObject var navigationState: NavigationState
     @Binding var rounds: [MolkkyRound]
     
-    @State var editMode = EditMode.inactive
-    
     var body: some View {
-        List {
-            ForEach($rounds, id: \.id) { $round in
-                Button(action: {
-                    navigationState.activeRoundId = round.id
-                    navigationState.isNavigationActive = true
-                }) {
-                    CardView(round: round)
+        VStack {
+            HStack(spacing: 20) {
+                VStack {
+                    Divider()
                 }
+                EditButton()
             }
-            .onDelete { rounds.remove(atOffsets: $0) }
-            .deleteDisabled(!self.editMode.isEditing)
-            .listRowBackground(Color(named: "s.fill.tertiary"))
+            List {
+                ForEach($rounds, id: \.id) { $round in
+                    Button(action: {
+                        navigationState.activeRoundId = round.id
+                        navigationState.isNavigationActive = true
+                    }) {
+                        CardView(round: round)
+                            .deleteDisabled(!(editMode?.wrappedValue.isEditing ?? false))
+                    }
+                }
+                .onDelete { rounds.remove(atOffsets: $0) }
+                .listRowBackground(Color(named: "s.fill.tertiary"))
+            }
+            .scrollContentBackground(.hidden)
+            .background(Color(named: "s.background.primary"))
         }
-        .animation(nil, value: editMode)
-        .scrollContentBackground(.hidden)
-        .background(Color(named: "s.background.primary"))
-//        .overlay {
-//            VStack {
-//                Rectangle()
-//                    .fill(Color(named: "s.background.primary"))
-//                    .shadow(radius: 10, x: 0, y: 5)
-//                    .frame(height: 20)
-//                Spacer()
-//                Rectangle()
-//                    .fill(Color(named: "s.background.primary"))
-//                    .shadow(radius: 10, x: 0, y: -5)
-//                    .frame(height: 20)
-//            }
-//            .ignoresSafeArea()
-//        }
-        .environment(\.editMode, $editMode)
+        .padding(.horizontal, 15)
     }
 }
 

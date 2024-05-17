@@ -12,20 +12,21 @@ struct HistoryTabSelector: View {
     let setSelectedTab: (HistoryTabView.Tab) -> Void
     
     func getColor(tab: HistoryTabView.Tab) -> Color {
-        return tab == selectedTab ? Color(named: "s.accent2.main").opacity(0.8) : Color(UIColor.clear)
+        return tab == selectedTab ? Color(named: "s.accent2.main") : Color(UIColor.clear)
     }
     
     var body: some View {
         HStack(alignment: .center) {
             HistoryTabSelectorButton(tab: HistoryTabView.Tab.rounds, selectedTab: selectedTab, setSelectedTab: setSelectedTab,
-                 image: "clipboard.fill", text: "Rounds", color: getColor(tab: HistoryTabView.Tab.rounds))
+                                     image: "clipboard.fill", text: "Rounds", color: getColor(tab: HistoryTabView.Tab.rounds))
+            Spacer()
             HistoryTabSelectorButton(tab: HistoryTabView.Tab.people, selectedTab: selectedTab, setSelectedTab: setSelectedTab,
-                 image: "person.2.fill", text: "People", color: getColor(tab: HistoryTabView.Tab.people))
+                                     image: "person.2.fill", text: "People", color: getColor(tab: HistoryTabView.Tab.people))
+            Spacer()
             HistoryTabSelectorButton(tab: HistoryTabView.Tab.stats, selectedTab: selectedTab, setSelectedTab: setSelectedTab,
-                 image: "chart.bar.fill", text: "Overall", color: getColor(tab: HistoryTabView.Tab.stats))
+                                     image: "chart.bar.fill", text: "Overall", color: getColor(tab: HistoryTabView.Tab.stats))
         }
-        .fixedSize(horizontal: false, vertical: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-        .padding()
+        .padding(.all, 15)
     }
 }
 
@@ -41,24 +42,27 @@ struct HistoryTabSelectorButton: View {
         Button(action: {
             setSelectedTab(tab)
         }, label: {
-            HStack(alignment: .firstTextBaseline) {
+            HStack {
                 Image(systemName: image)
                     .foregroundStyle(Color(UIColor.label))
                 if (tab == selectedTab) {
                     Text(text)
                         .foregroundStyle(Color(UIColor.label))
                         .font(.headline)
-                        .frame(width: tab == selectedTab ? nil : 0, alignment: .leading)
-                        .clipped()
                 }
             }
-            .frame(maxHeight: .infinity)
+            .clipShape(Capsule(style: .circular).scale(1.1))
             .padding(.horizontal, 10)
             .padding(.vertical, 4)
-            .offset(x: 0, y: -1)
         })
-        .background(color)
-        .clipShape(Capsule(style: .circular))
+        .frame(maxWidth: .infinity)
+        .background(
+            Capsule(style: .circular)
+                .fill(color.opacity(0.2))
+                .stroke(color, lineWidth: 3)
+                .frame(width: tab == selectedTab ? nil : 0, alignment: .center)
+                .background(Color(UIColor.systemBackground))
+        )
     }
 }
 

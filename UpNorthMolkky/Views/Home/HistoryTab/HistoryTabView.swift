@@ -15,21 +15,15 @@ struct HistoryTabView: View {
     var people: [Player] = []
     
     func setSelectedTab(_ tab: HistoryTabView.Tab) {
-        withAnimation {
+        withAnimation() {
             selectedTab = tab
         }
     }
     
     var body: some View {
         VStack(alignment: .leading) {
-            HStack {
-                HistoryTabSelector(selectedTab: selectedTab, setSelectedTab: setSelectedTab(_:))
-                // Spacer()
-                // Button(editMode == EditMode.inactive ? "Edit" : "Done") {
-                //     editMode = editMode == EditMode.inactive ? EditMode.active : EditMode.inactive
-                // }
-            }
-            TabView(selection: $selectedTab.animation(.smooth)) {
+            HistoryTabSelector(selectedTab: selectedTab, setSelectedTab: setSelectedTab(_:))
+            TabView(selection: $selectedTab.animation()) {
                 RoundsView(rounds: $userData.rounds)
                     .tabItem {
                         Text("Rounds")
