@@ -80,6 +80,7 @@ struct ResultsShareSummaryView: View {
             )
             
         }
+        .background(.white)
     }
 }
 
