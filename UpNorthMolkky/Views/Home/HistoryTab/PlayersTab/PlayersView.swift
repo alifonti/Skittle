@@ -43,7 +43,7 @@ struct PlayersView: View {
                     }
                 }
             }
-            .listRowBackground(Color(named: "s.fill.tertiary"))
+            .listRowBackground(Color(named: "s.fill.quaternary"))
         }
         .scrollContentBackground(.hidden)
         .background(Color(named: "s.background.primary"))

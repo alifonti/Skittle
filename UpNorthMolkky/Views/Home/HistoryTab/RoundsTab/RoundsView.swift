@@ -64,6 +64,7 @@ struct RoundsView: View {
                 }
                 EditButton()
             }
+            .padding(.horizontal, 15)
             List {
                 if (roundsToday.count > 0) {
                     Section(header: Text("Today")) {
@@ -77,7 +78,8 @@ struct RoundsView: View {
                             }
                         }
                         .onDelete(perform: {deleteRound(offsets: $0, list: roundsToday)})
-                        .listRowBackground(Color(named: "s.fill.tertiary"))
+                        .listRowBackground(Color(named: "s.fill.quaternary"))
+                        .listRowSeparatorTint(Color(UIColor.secondaryLabel))
                     }
                 }
                 if (roundsThisWeek.count > 0) {
@@ -92,7 +94,9 @@ struct RoundsView: View {
                             }
                         }
                         .onDelete(perform: {deleteRound(offsets: $0, list: roundsThisWeek)})
-                        .listRowBackground(Color(named: "s.fill.tertiary"))
+                        .listRowBackground(Color(named: "s.fill.quaternary"))
+                        .listRowSeparatorTint(Color(UIColor.secondaryLabel))
+                        
                     }
                 }
                 if (roundsOlder.count > 0) {
@@ -107,19 +111,19 @@ struct RoundsView: View {
                             }
                         }
                         .onDelete(perform: {deleteRound(offsets: $0, list: roundsOlder)})
-                        .listRowBackground(Color(named: "s.fill.tertiary"))
+                        .listRowBackground(Color(named: "s.fill.quaternary"))
+                        .listRowSeparatorTint(Color(UIColor.secondaryLabel))
                     }
                 }
             }
             .scrollContentBackground(.hidden)
             .background(Color(named: "s.background.primary"))
         }
-        .padding(.horizontal, 15)
     }
 }
 
 struct RoundsView_Previews: PreviewProvider {
     static var previews: some View {
-        RoundsView(rounds: .constant([MolkkyRound.sampleData]))
+        RoundsView(rounds: .constant([MolkkyRound.sampleData, MolkkyRound.sampleData]))
     }
 }
