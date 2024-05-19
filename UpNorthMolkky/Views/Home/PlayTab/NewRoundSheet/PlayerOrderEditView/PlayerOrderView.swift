@@ -49,6 +49,12 @@ struct PlayerOrderView: View {
                 }
                 .onMove(perform: move)
             }
+            // TODO: Fix this hack... whenever the list of contenders changes, this recreates the list but updates the orderKeys
+            .onChange(of: round.contenders) {
+                round.contenders = round.contenders.enumerated().map {
+                    Contender(id: $1.id, name: $1.name, orderKey: $0)
+                }
+            }
             .scrollContentBackground(.hidden)
             .background(Color(named: "s.background.primary"))
             Spacer()
