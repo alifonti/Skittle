@@ -9,7 +9,11 @@ import SwiftUI
 
 struct PlayerScoreView: View {
     @AppStorage("PreferDetailedScoreView") var preferDetailedScoreView: Bool = false
+    
     @State var isSimpleView: Bool = true
+    
+    @State var scoreAnimationCopy: Int = 0
+    @State var scoreAnimationDifference: Int = 0
     
     init(round: MolkkyRound, playerScore: MolkkyRound.ContenderScore, currentPlayer: Bool) {
         self.round = round
@@ -94,10 +98,11 @@ struct PlayerScoreView: View {
                 HStack {
                     if (playerScore.finishPosition < 0) {
                         MissScoreView(round: round, playerScore: playerScore, isSimpleView: isSimpleView, displayAccentColor: accentColor)
-                        Text(String(playerScore.totalScore))
+                        Color.clear
+                            .frame(width: 40, alignment: .trailing)
+                            .modifier(AnimatableNumberModifier(number: scoreAnimationCopy))
                             .font(.title)
                             .foregroundColor(playerScore.isFinished ? accentColor : Color(UIColor.label))
-                            .frame(width: 40, alignment: .trailing)
                     } else {
                         MedalView(finishPosition: playerScore.finishPosition + 1, accentColor: accentColor)
                             .frame(width: 40, alignment: .center)
@@ -108,6 +113,11 @@ struct PlayerScoreView: View {
             .padding([.top, .bottom], -2)
         }
         .background(currentPlayer ? accentColor.opacity(0.05) : Color(UIColor.systemBackground))
+        .onChange(of: playerScore.totalScore) {
+            scoreAnimationDifference = abs(playerScore.totalScore - scoreAnimationCopy)
+            scoreAnimationCopy = playerScore.totalScore
+        }
+        .animation(.linear(duration: 0.6 * (Double(scoreAnimationDifference) / 12.0)), value: scoreAnimationCopy)
         .onTapGesture {
             isSimpleView = !isSimpleView
         }

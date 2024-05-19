@@ -71,6 +71,7 @@
 		FDD8C7EE2BC8E8010082B523 /* PartyToggleStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD8C7ED2BC8E8010082B523 /* PartyToggleStyle.swift */; };
 		FDE03B2C2ACE2BD400A263A7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE03B2B2ACE2BD400A263A7 /* HomeView.swift */; };
 		FDF8C66D2BF6E063003C811D /* ResultsShareSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF8C66C2BF6E063003C811D /* ResultsShareSummaryView.swift */; };
+		FDF8C66F2BFA7116003C811D /* AnimatingNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF8C66E2BFA7116003C811D /* AnimatingNumberView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -138,6 +139,7 @@
 		FDD8C7ED2BC8E8010082B523 /* PartyToggleStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyToggleStyle.swift; sourceTree = "<group>"; };
 		FDE03B2B2ACE2BD400A263A7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		FDF8C66C2BF6E063003C811D /* ResultsShareSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsShareSummaryView.swift; sourceTree = "<group>"; };
+		FDF8C66E2BFA7116003C811D /* AnimatingNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatingNumberView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,6 +287,7 @@
 				FD95BC462ABBE98C001A9CFF /* MissScoreView.swift */,
 				FD95BC662AC10AAE001A9CFF /* ShimmerBox.swift */,
 				FD8F2E6F2AC2546B00A1A17C /* MedalView.swift */,
+				FDF8C66E2BFA7116003C811D /* AnimatingNumberView.swift */,
 			);
 			path = PlayerList;
 			sourceTree = "<group>";
@@ -532,6 +535,7 @@
 				FD79285B2AB14D3700FF25CE /* UpNorthMolkkyApp.swift in Sources */,
 				FD90A3B22BDB1E0B00FCA297 /* StatsTabView.swift in Sources */,
 				FDC0DF782BE592DA0007EB32 /* ColorSchemePicker.swift in Sources */,
+				FDF8C66F2BFA7116003C811D /* AnimatingNumberView.swift in Sources */,
 				FDD8C7CC2BBE20F90082B523 /* PlayerEditView.swift in Sources */,
 				FD90BD082AB6673700D7CF3B /* ErrorWrapper.swift in Sources */,
 				FD3F12AE2AD20E4B005F5BF5 /* Player.swift in Sources */,
