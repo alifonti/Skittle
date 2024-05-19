@@ -50,7 +50,7 @@ extension StatsTabView {
             Spacer()
             Text(String(count))
                 .font(.largeTitle)
-                .fontWeight(.semibold)
+                .fontWeight(.medium)
         }
         .padding()
         .background(RoundedRectangle(cornerRadius: 10).fill(Color(named: "s.fill.quaternary")))

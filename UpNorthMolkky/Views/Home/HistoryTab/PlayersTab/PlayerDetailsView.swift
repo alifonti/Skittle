@@ -69,9 +69,9 @@ struct PlayerDetailsView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 VStack(spacing: 8) {
                     PlayerDetailsView.StatView(text: "Rounds played", count: String(playerRoundCount))
-                    PlayerDetailsView.StatView(text: "Skittles thrown", count: String(playerRoundCount))
-                    PlayerDetailsView.StatView(text: "Points per throw", count: String(playerRoundCount))
-                    PlayerDetailsView.StatView(text: "Wins", count: String(playerRoundCount))
+                    PlayerDetailsView.StatView(text: "Skittles thrown", count: String(playerAttemptCount))
+                    PlayerDetailsView.StatView(text: "Points per throw", count: String(format: "%.2f", playerAttemptAverage))
+                    PlayerDetailsView.StatView(text: "Wins", count: String(playerWinCount))
                 }
             }
             VStack(spacing: 10) {
@@ -117,7 +117,6 @@ extension PlayerDetailsView {
             Spacer()
             Text(String(count))
                 .font(.title2)
-                .fontWeight(.medium)
         }
         .padding(.vertical, 10)
         .padding(.horizontal, 15)

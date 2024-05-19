@@ -99,12 +99,14 @@ struct SkittleData: Codable {
         var awardsDict: [UUID: [Award: Int]] = [:]
         
         rounds.forEach { round in
-            let awards: [(Award, [Contender], String?)] = MolkkyRound.getPlayerAwards(round: round)
-            awards.forEach { award in
-                award.1.forEach { contender in
-                    var playerDict = awardsDict[contender.id, default: [:]]
-                    playerDict.updateValue(playerDict[award.0, default: 0] + 1, forKey: award.0)
-                    awardsDict.updateValue(playerDict, forKey: contender.id)
+            if (round.hasGameEnded) {
+                let awards: [(Award, [Contender], String?)] = MolkkyRound.getPlayerAwards(round: round)
+                awards.forEach { award in
+                    award.1.forEach { contender in
+                        var playerDict = awardsDict[contender.id, default: [:]]
+                        playerDict.updateValue(playerDict[award.0, default: 0] + 1, forKey: award.0)
+                        awardsDict.updateValue(playerDict, forKey: contender.id)
+                    }
                 }
             }
         }
@@ -119,9 +121,11 @@ struct SkittleData: Codable {
         rounds.forEach { round in
             attemptTotal += round.attempts.count
             
-            let awards: [(Award, [Contender], String?)] = MolkkyRound.getPlayerAwards(round: round)
-            awards.forEach { award in
-                awardsTotal += award.1.count
+            if (round.hasGameEnded) {
+                let awards: [(Award, [Contender], String?)] = MolkkyRound.getPlayerAwards(round: round)
+                awards.forEach { award in
+                    awardsTotal += award.1.count
+                }
             }
         }
         
