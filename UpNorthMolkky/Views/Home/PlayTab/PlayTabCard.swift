@@ -35,8 +35,11 @@ struct RulesPlayTabCard: View {
         .padding([.horizontal], 16)
         .padding([.vertical], 18)
         .frame(maxWidth: .infinity)
-        .background(Color(named: "s.fill.quaternary"))
-        .clipShape(RoundedRectangle(cornerRadius: 10.0))
+        .background(
+            RoundedRectangle(cornerRadius: 10.0)
+                .fill(Color(named: "s.fill.quaternary"))
+                .shadow(radius: 2, x: 0, y: 2)
+        )
     }
 }
 
@@ -75,8 +78,11 @@ struct GenericPlayTabCard: View {
         .padding([.horizontal], 16)
         .padding([.vertical], 18)
         .frame(maxWidth: .infinity)
-        .background(Color(named: "s.fill.quaternary"))
-        .clipShape(RoundedRectangle(cornerRadius: 10.0))
+        .background(
+            RoundedRectangle(cornerRadius: 10.0)
+                .fill(Color(named: "s.fill.quaternary"))
+                .shadow(radius: 2, x: 0, y: 2)
+        )
     }
 }
 
@@ -140,8 +146,11 @@ struct RoundInProgressCard: View {
         .padding([.horizontal], 16)
         .padding([.vertical], 18)
         .frame(maxWidth: .infinity)
-        .background(Color(named: "s.fill.quaternary"))
-        .clipShape(RoundedRectangle(cornerRadius: 10.0))
+        .background(
+            RoundedRectangle(cornerRadius: 10.0)
+                .fill(Color(named: "s.fill.quaternary"))
+                .shadow(radius: 2, x: 0, y: 2)
+        )
     }
 }
 

@@ -24,10 +24,12 @@ struct PlayTabView: View {
     var body: some View {
         ZStack {
             Group {
-                VStack(spacing: 15) {
-                    RulesPlayTabCard()
-                    MainPlayCard(newGameOnClick: startNewRound, rounds: $userData.rounds)
-                    Spacer()
+                ScrollView {
+                    VStack(spacing: 15) {
+                        RulesPlayTabCard()
+                        MainPlayCard(newGameOnClick: startNewRound, rounds: $userData.rounds)
+                        Spacer()
+                    }
                 }
                 .sheet(isPresented: $isPresentingNewRoundView, onDismiss: {
                     if (shouldNavigate) {
