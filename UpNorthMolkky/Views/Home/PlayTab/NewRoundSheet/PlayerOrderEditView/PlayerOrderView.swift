@@ -13,31 +13,46 @@ struct PlayerOrderView: View {
     @State private var isShuffle: Bool = true
     @State private var isTeams: Bool = false
     
+    func move(from source: IndexSet, to destination: Int) {
+        round.contenders.move(fromOffsets: source, toOffset: destination)
+    }
+    
     var body: some View {
         VStack {
-            VStack(alignment: .leading) {
-                Picker("Grouping", selection: $isTeams) {
-                    Text("Singles").tag(false)
-                    Text("Teams").tag(true)
-                }.pickerStyle(.segmented)
-                Picker("Turn Order", selection: $isShuffle) {
-                    Text("Random order").tag(true)
-                    Text("Set order").tag(false)
-                }.pickerStyle(.segmented)
+            VStack(spacing: 20) {
+                VStack(alignment: .leading) {
+                    //                Picker("Grouping", selection: $isTeams) {
+                    //                    Text("Singles").tag(false)
+                    //                    Text("Teams").tag(true)
+                    //                }.pickerStyle(.segmented)
+                    Picker("Turn Order", selection: $isShuffle) {
+                        Text("Random order").tag(true)
+                        Text("Set order").tag(false)
+                    }.pickerStyle(.segmented)
+                }
+                HStack {
+                    Image(systemName: "hand.tap")
+                    Text("Press and hold to move")
+                }
+                .font(.callout)
+                .foregroundStyle(Color(UIColor.secondaryLabel))
+                .opacity(isShuffle ? 0 : 1)
+            
             }
-            Divider()
-                .padding(.vertical, 10)
-            ScrollView(showsIndicators: false, content: {
-                VStack(spacing: 10, content: {
-                    ForEach(round.contenders, id: \.self) { contender in
-                        PlayerOrderItemView(title: contender.name, index: round.contenders.firstIndex(of: contender) ?? 0,
-                            hideOrderedDetails: isShuffle)
-                    }
-                    Spacer()
-                })
-            })
+            .padding(.top, 10)
+            .padding(.horizontal, 20)
+            List {
+                ForEach(round.contenders, id: \.self) { contender in
+                    PlayerOrderItemView(title: contender.name, index: round.contenders.firstIndex(of: contender) ?? 0, hideOrderedDetails: isShuffle)
+                        .listRowBackground(Color(named: "s.fill.quaternary"))
+                        .moveDisabled(isShuffle)
+                }
+                .onMove(perform: move)
+            }
+            .scrollContentBackground(.hidden)
+            .background(Color(named: "s.background.primary"))
+            Spacer()
         }
-        .padding()
     }
 }
 

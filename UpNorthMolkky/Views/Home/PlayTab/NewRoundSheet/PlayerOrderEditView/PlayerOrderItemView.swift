@@ -15,22 +15,25 @@ struct PlayerOrderItemView: View {
     
     var body: some View {
         HStack {
-            HStack {
+            HStack(alignment: .center) {
                 if (!hideOrderedDetails) {
-                    Text(String(index + 1))
-                        .bold()
+                    Image(systemName: "\(String(index + 1)).square.fill")
+                        .font(.title2)
+                        .foregroundStyle(Color(named: "s.accent1.main"))
                 }
                 Text(title)
+                    .font(.title2)
             }
-            .padding()
             Spacer()
-            if (!hideOrderedDetails) {
-                Image(systemName: "chevron.up.chevron.down")
-                    .padding()
-            }
+//            if (!hideOrderedDetails) {
+//                Image(systemName: "chevron.up.chevron.down")
+//            }
         }
-        .background(Color(UIColor.secondarySystemFill))
-        .cornerRadius(5)
+        .padding(.all, 20)
+        .alignmentGuide(.listRowSeparatorLeading) { d in
+            d[.leading]
+        }
+        .listRowInsets(.init(top: 0, leading: 10, bottom: 0, trailing: 0))
     }
 }
 
