@@ -12,7 +12,7 @@ struct RulesView: View {
         Group {
             VStack(alignment: .leading) {
                 HStack {
-                    Text("Section Header")
+                    Text("Set up")
                         .font(.title2)
                     Spacer()
                 }

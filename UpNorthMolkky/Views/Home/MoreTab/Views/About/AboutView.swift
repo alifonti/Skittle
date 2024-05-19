@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct AboutView: View {
+    var releaseVersionNumber: String? {
+        Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    }
+    
     var body: some View {
         VStack {
             HStack(spacing: 15) {
@@ -19,11 +23,23 @@ struct AboutView: View {
                     Text("Skittle")
                         .font(.title)
                         .fontWeight(.semibold)
-                    Text("Version 1.0.0")
                 }
             }
+            HStack {
+                Text("Version")
+                Spacer()
+                Text(releaseVersionNumber ?? "?")
+                    .foregroundStyle(Color(UIColor.secondaryLabel))
+            }
+            .padding()
+            .background(
+                RoundedRectangle(cornerRadius: 15)
+                    .fill(Color(named: "s.fill.quaternary"))
+            )
+            .padding()
+            Spacer()
         }
-        .navigationTitle("About")
+        // .navigationTitle("About")
     }
 }
 
