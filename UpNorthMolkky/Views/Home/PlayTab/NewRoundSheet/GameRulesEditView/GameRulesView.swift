@@ -114,23 +114,23 @@ struct GameRulesView: View {
                         }
                         .listRowBackground(listColor)
                     }
-                    if (!round.canBeReset && funRules) {
-                        Toggle("Players can win by exceeding target score", isOn: $round.canExceedTarget)
-                            .toggleStyle(CheckmarkToggleStyle())
-                            .listRowBackground(funListColor)
-                    }
+//                    if (!round.canBeReset && funRules) {
+//                        Toggle("Players can win by exceeding target score", isOn: $round.canExceedTarget)
+//                            .toggleStyle(CheckmarkToggleStyle())
+//                            .listRowBackground(funListColor)
+//                    }
                 }
                 // TODO: Implement in a future version
-                if (false) {
-                    Section(header: Text("Additional rules")) {
-                        Toggle("Keep playing after first finisher", isOn: $round.continueUntilAllFinished)
-                            .toggleStyle(CheckmarkToggleStyle())
-                            .listRowBackground(funListColor)
-                        Toggle("All players get the same number of throws", isOn: $round.allPlayersGetEqualThrows)
-                            .toggleStyle(CheckmarkToggleStyle())
-                            .listRowBackground(funListColor)
-                    }
-                }
+//                if (funRules) {
+//                    Section(header: Text("Additional rules")) {
+//                        Toggle("Keep playing after first finisher", isOn: $round.continueUntilAllFinished)
+//                            .toggleStyle(CheckmarkToggleStyle())
+//                            .listRowBackground(funListColor)
+//                        Toggle("All players get the same number of throws", isOn: $round.allPlayersGetEqualThrows)
+//                            .toggleStyle(CheckmarkToggleStyle())
+//                            .listRowBackground(funListColor)
+//                    }
+//                }
             }
             .scrollContentBackground(.hidden)
             .onChange(of: round.targetScore) {

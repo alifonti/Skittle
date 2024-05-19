@@ -391,8 +391,11 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
             Contender(id: $1.1.contender.id, name: $1.1.contender.name, orderKey: $0)
         }
         self.targetScore = round.targetScore
-        self.resetScore = round.resetScore
+        self.canBeEliminated = round.canBeEliminated
         self.missesForElimination = round.missesForElimination
+        self.resetInsteadOfEliminate = round.resetInsteadOfEliminate
+        self.canBeReset = round.canBeReset
+        self.resetScore = round.resetScore
     }
 }
 
