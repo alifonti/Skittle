@@ -17,6 +17,7 @@ struct PlayerScoresListView: View {
                     VStack(spacing: 0) {
                         Divider()
                         PlayerScoreView(
+                            round: round,
                             playerScore: contenderScore,
                             currentPlayer: (round.currentContenderIndex == contenderScore.contender.orderKey) && !round.hasGameEnded
                         )

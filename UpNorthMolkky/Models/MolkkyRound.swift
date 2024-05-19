@@ -30,7 +30,8 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
     var resetInsteadOfEliminate: Bool = false
     var canExceedTarget: Bool = false
     var continueUntilAllFinished: Bool = false
-    var allPlayersGetEqualThrows: Bool = false
+    var allPlayersGetEqualThrows: Bool = false // TODO later
+    var maxRounds: Int = 10 // TODO later
     
     // - Animation State
     var wasAttemptAdded = true
@@ -59,7 +60,14 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
         
         for attempt in attempts {
             dict.updateValue(dict[attempt.contender, default: []] + [attempt], forKey: attempt.contender)
-            scoreDict.updateValue(calculateTotalScore(total: scoreDict[attempt.contender, default: 0], nextScore: attempt.score), forKey: attempt.contender)
+            
+            let attempts = dict[attempt.contender, default: []]            
+            let shouldBeEliminated = attempts.count >= (missesForElimination) && attempts.suffix(missesForElimination).allSatisfy({$0.score == 0})
+            let nextScore = calculateTotalScore(total: scoreDict[attempt.contender, default: 0],
+                                                nextScore: attempt.score,
+                                                shouldBeEliminated: shouldBeEliminated)
+            
+            scoreDict.updateValue(nextScore, forKey: attempt.contender)
             if (scoreDict[attempt.contender] == targetScore) {
                 finishPositions.append(attempt.contender)
             }
@@ -70,8 +78,12 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
                 player: $0.key,
                 attempts: $0.value,
                 totalScore: scoreDict[$0.key] ?? 0,
-                isInWarning: $0.value.count >= (missesForElimination - 1) && $0.value.suffix((missesForElimination - 1)).allSatisfy({$0.score == 0}),
-                isEliminated: $0.value.count >= (missesForElimination) && $0.value.suffix((missesForElimination)).allSatisfy({$0.score == 0}),
+                isInWarning: (canBeEliminated || resetInsteadOfEliminate) &&
+                    $0.value.count >= (missesForElimination - 1) &&
+                    ($0.value.suffix(from: ($0.value.lastIndex(where: { $0.score != 0 }) ?? $0.value.count) + 1 ).count % missesForElimination) == missesForElimination - 1,
+                isEliminated: (canBeEliminated && !resetInsteadOfEliminate) &&
+                    $0.value.count >= (missesForElimination) &&
+                    $0.value.suffix((missesForElimination)).allSatisfy({$0.score == 0}),
                 finishPosition: finishPositions.firstIndex(of: $0.key) ?? -1
             )
         }
@@ -157,9 +169,9 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
     func findNextContender(_ offset: Int = 0) -> Contender? {
         let followingPlayers = contenders[(currentContenderIndex + 1)...] + contenders[...(currentContenderIndex)]
         let activePlayers = followingPlayers.filter({ player in
-            let nps = contenderScores.first(where: {$0.contender == player})
-            if let nps {
-                return (!nps.isFinished)
+            let nextPlayersScore = contenderScores.first(where: {$0.contender == player})
+            if let nextPlayersScore {
+                return (!nextPlayersScore.isFinished)
             }
             return false
         })
@@ -170,12 +182,18 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
         }
     }
     
-    func calculateTotalScore(total: Int, nextScore: Int) -> Int {
+    func calculateTotalScore(total: Int, nextScore: Int, shouldBeEliminated: Bool) -> Int {
+        if (shouldBeEliminated && resetInsteadOfEliminate) {
+            return 0
+        }
+        
         let nextTotal = total + nextScore
         if (nextTotal <= targetScore) {
             return nextTotal
+        } else if (canBeReset) {
+            return resetScore
         } else {
-            return canBeReset ? resetScore : total
+            return total
         }
     }
     

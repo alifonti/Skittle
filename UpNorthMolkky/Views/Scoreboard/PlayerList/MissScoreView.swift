@@ -8,16 +8,23 @@
 import SwiftUI
 
 struct MissScoreView: View {
+    let round: MolkkyRound
     var playerScore: MolkkyRound.ContenderScore
-    var currentPlayer: Bool
     var isSimpleView: Bool
     var displayAccentColor: Color
     
-    let numberOfAllowedMisses: Int = 3
+    var numberOfAllowedMisses: Int {
+        round.missesForElimination
+    }
     var numberOfRecentMisses: Int {
-        for (index, element) in playerScore.attempts.reversed().enumerated() {
+        for (number, element) in playerScore.attempts.reversed().enumerated() {
             if (element.score != 0) {
-                return index
+                if (round.resetInsteadOfEliminate) {
+                    // TODO: does this break anything else?
+                    return number % round.missesForElimination
+                } else {
+                    return number
+                }
             }
         }
         if (playerScore.attempts.count > 0 && playerScore.attempts[0].score == 0) {
@@ -57,7 +64,7 @@ struct MissScoreView: View {
 
 struct MissScoreView_Previews: PreviewProvider {
     static var previews: some View {
-        MissScoreView(playerScore: (MolkkyRound.ContenderScore(
+        MissScoreView(round: MolkkyRound.sampleData, playerScore: (MolkkyRound.ContenderScore(
             player: Contender(name: "A", orderKey: 0),
             attempts: [
                 MolkkyRound.ContenderAttempt(player: Contender(name: "A", orderKey: 0), score: 0),
@@ -67,6 +74,6 @@ struct MissScoreView_Previews: PreviewProvider {
             isInWarning: false,
             isEliminated: false,
             finishPosition: -1
-        )), currentPlayer: true, isSimpleView: false, displayAccentColor: Color(UIColor.tintColor))
+        )), isSimpleView: false, displayAccentColor: Color(UIColor.tintColor))
     }
 }

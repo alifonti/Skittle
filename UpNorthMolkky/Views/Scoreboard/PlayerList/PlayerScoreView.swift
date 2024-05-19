@@ -11,12 +11,14 @@ struct PlayerScoreView: View {
     @AppStorage("PreferDetailedScoreView") var preferDetailedScoreView: Bool = false
     @State var isSimpleView: Bool = true
     
-    init(playerScore: MolkkyRound.ContenderScore, currentPlayer: Bool) {
+    init(round: MolkkyRound, playerScore: MolkkyRound.ContenderScore, currentPlayer: Bool) {
+        self.round = round
         self.playerScore = playerScore
         self.currentPlayer = currentPlayer
         _isSimpleView = State(initialValue: !preferDetailedScoreView)
     }
     
+    let round: MolkkyRound
     var playerScore: MolkkyRound.ContenderScore
     var currentPlayer: Bool
     
@@ -42,7 +44,9 @@ struct PlayerScoreView: View {
         }
     }
     
-    let numberOfAllowedMisses: Int = 3
+    var numberOfAllowedMisses: Int {
+        round.missesForElimination
+    }
     var numberOfRecentMisses: Int {
         for (index, element) in playerScore.attempts.reversed().enumerated() {
             if (element.score != 0) {
@@ -89,7 +93,7 @@ struct PlayerScoreView: View {
                 Spacer()
                 HStack {
                     if (playerScore.finishPosition < 0) {
-                        MissScoreView(playerScore: playerScore, currentPlayer: currentPlayer, isSimpleView: isSimpleView, displayAccentColor: accentColor)
+                        MissScoreView(round: round, playerScore: playerScore, isSimpleView: isSimpleView, displayAccentColor: accentColor)
                         Text(String(playerScore.totalScore))
                             .font(.title)
                             .foregroundColor(playerScore.isFinished ? accentColor : Color(UIColor.label))
