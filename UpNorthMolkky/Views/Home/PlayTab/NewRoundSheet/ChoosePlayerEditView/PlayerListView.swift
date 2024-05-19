@@ -67,9 +67,9 @@ struct PlayerListView: View {
             .padding()
             //
             VStack(spacing: 10) {
-                HStack {
+                HStack(alignment: .firstTextBaseline) {
                     Text("\(selectedPlayers.count)")
-                    Image(systemName: "person.fill")
+                    Image(systemName: "person.fill.checkmark")
                 }
                 ScrollView(showsIndicators: false, content: {
                     if (viewAddPlayerField) {
@@ -112,11 +112,12 @@ struct PlayerListView: View {
                                         round.contenders.append(Contender(id: player.id, name: player.playerName, orderKey: round.contenders.count))
                                     }
                                 }
-                        }
+                    }
                     Spacer()
                 })
                 .padding(.horizontal, 20)
             }
+            .animation(.linear(duration: 0.2), value: selectedPlayers)
         }
     }
 }
