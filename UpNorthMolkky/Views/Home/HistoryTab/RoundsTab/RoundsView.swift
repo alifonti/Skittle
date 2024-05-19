@@ -68,27 +68,41 @@ struct RoundsView: View {
     }
     
     var body: some View {
-        VStack {
-            HStack(spacing: 20) {
-                VStack {
-                    Divider()
+        if (rounds.count > 0) {
+            VStack {
+                HStack(spacing: 20) {
+                    VStack {
+                        Divider()
+                    }
+                    EditButton()
                 }
-                EditButton()
+                .padding(.horizontal, 15)
+                List {
+                    RoundSection(roundsSubset: roundsToday, title: "Today")
+                    RoundSection(roundsSubset: roundsThisWeek, title: "This week")
+                    RoundSection(roundsSubset: roundsOlder, title: "Older")
+                }
+                .scrollContentBackground(.hidden)
+                .background(Color(named: "s.background.primary"))
             }
-            .padding(.horizontal, 15)
-            List {
-                RoundSection(roundsSubset: roundsToday, title: "Today")
-                RoundSection(roundsSubset: roundsThisWeek, title: "This week")
-                RoundSection(roundsSubset: roundsOlder, title: "Older")
+            .onDisappear(perform: {
+                if (editMode?.wrappedValue == .active) {
+                    editMode?.wrappedValue = .inactive
+                }
+            })
+        } else {
+            VStack(spacing: 20) {
+                Image(systemName: "figure.2")
+                    .font(.largeTitle)
+                Group {
+                  Text("Go to the ") +
+                  Text("Play")
+                        .foregroundStyle(Color(named: "s.accent1.main"))
+                        .fontWeight(.medium) +
+                  Text(" tab to start a new round!")
+                }
             }
-            .scrollContentBackground(.hidden)
-            .background(Color(named: "s.background.primary"))
         }
-        .onDisappear(perform: {
-            if (editMode?.wrappedValue == .active) {
-                editMode?.wrappedValue = .inactive
-            }
-        })
     }
 }
 
