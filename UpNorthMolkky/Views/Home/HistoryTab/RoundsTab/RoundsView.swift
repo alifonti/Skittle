@@ -39,19 +39,30 @@ struct RoundsView: View {
         })
     }
     
-//    init(rounds: Binding<[MolkkyRound]>) {
-//        self._rounds = rounds
-//    }
-    
-//    func srtDates(a: Binding<MolkkyRound>, b: Binding<MolkkyRound>) {
-//        .sorted(by: {a, b in
-//            a.wrappedValue.date > b.wrappedValue.date
-//        })
-//    }
     func deleteRound(offsets: IndexSet, list: [Binding<MolkkyRound>]) {
         for offset in offsets {
             if let index = rounds.firstIndex(where: {$0 == list[offset].wrappedValue}) {
                 rounds.remove(at: index)
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func RoundSection(roundsSubset: [Binding<MolkkyRound>], title: String) -> some View {
+        if (roundsSubset.count > 0) {
+            Section(header: Text(title)) {
+                ForEach(roundsSubset, id: \.id) { $round in
+                    Button(action: {
+                        navigationState.activeRoundId = round.id
+                        navigationState.isNavigationActive = true
+                    }) {
+                        CardView(round: round)
+                            .deleteDisabled(!(editMode?.wrappedValue.isEditing ?? false))
+                    }
+                }
+                .onDelete(perform: {deleteRound(offsets: $0, list: roundsSubset)})
+                .listRowBackground(Color(named: "s.fill.quaternary"))
+                // .listRowSeparatorTint(Color(UIColor.secondaryLabel))
             }
         }
     }
@@ -66,55 +77,9 @@ struct RoundsView: View {
             }
             .padding(.horizontal, 15)
             List {
-                if (roundsToday.count > 0) {
-                    Section(header: Text("Today")) {
-                        ForEach(roundsToday, id: \.id) { $round in
-                            Button(action: {
-                                navigationState.activeRoundId = round.id
-                                navigationState.isNavigationActive = true
-                            }) {
-                                CardView(round: round)
-                                    .deleteDisabled(!(editMode?.wrappedValue.isEditing ?? false))
-                            }
-                        }
-                        .onDelete(perform: {deleteRound(offsets: $0, list: roundsToday)})
-                        .listRowBackground(Color(named: "s.fill.quaternary"))
-                        .listRowSeparatorTint(Color(UIColor.secondaryLabel))
-                    }
-                }
-                if (roundsThisWeek.count > 0) {
-                    Section(header: Text("This week")) {
-                        ForEach(roundsThisWeek, id: \.id) { $round in
-                            Button(action: {
-                                navigationState.activeRoundId = round.id
-                                navigationState.isNavigationActive = true
-                            }) {
-                                CardView(round: round)
-                                    .deleteDisabled(!(editMode?.wrappedValue.isEditing ?? false))
-                            }
-                        }
-                        .onDelete(perform: {deleteRound(offsets: $0, list: roundsThisWeek)})
-                        .listRowBackground(Color(named: "s.fill.quaternary"))
-                        .listRowSeparatorTint(Color(UIColor.secondaryLabel))
-                        
-                    }
-                }
-                if (roundsOlder.count > 0) {
-                    Section(header: Text("Older")) {
-                        ForEach(roundsOlder, id: \.id) { $round in
-                            Button(action: {
-                                navigationState.activeRoundId = round.id
-                                navigationState.isNavigationActive = true
-                            }) {
-                                CardView(round: round)
-                                    .deleteDisabled(!(editMode?.wrappedValue.isEditing ?? false))
-                            }
-                        }
-                        .onDelete(perform: {deleteRound(offsets: $0, list: roundsOlder)})
-                        .listRowBackground(Color(named: "s.fill.quaternary"))
-                        .listRowSeparatorTint(Color(UIColor.secondaryLabel))
-                    }
-                }
+                RoundSection(roundsSubset: roundsToday, title: "Today")
+                RoundSection(roundsSubset: roundsThisWeek, title: "This week")
+                RoundSection(roundsSubset: roundsOlder, title: "Older")
             }
             .scrollContentBackground(.hidden)
             .background(Color(named: "s.background.primary"))

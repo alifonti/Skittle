@@ -30,7 +30,10 @@ struct PlayersView: View {
     var body: some View {
         List {
             Section(header: Text("Players")) {
-                ForEach($userData.players, id: \.id) { $player in
+                ForEach($userData.players.sorted(by: {
+                    playerRoundsCount[$0.id] ?? 0 >
+                    playerRoundsCount[$1.id] ?? 0
+                }), id: \.id) { $player in
                     NavigationLink(destination: PlayerDetailsView(userData: $userData, player: $player,
                                                                   playerRoundCount: playerRoundsCount[player.id] ?? 0,
                                                                   playerAttemptCount: playerAttemptCount[player.id] ?? 0,
