@@ -50,7 +50,7 @@ struct GameRulesView: View {
                         Spacer()
                     }
                     .background(
-                        RoundedRectangle(cornerRadius: 10).stroke(Color(named: "s.fill.primary").opacity(0.5))
+                        RoundedRectangle(cornerRadius: 10).stroke(Color(UIColor.secondaryLabel).opacity(0.75))
                     )
                 }
                 Spacer()

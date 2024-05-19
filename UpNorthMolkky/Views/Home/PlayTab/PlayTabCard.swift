@@ -24,7 +24,7 @@ struct RulesPlayTabCard: View {
                         .padding()
                         .frame(maxWidth: .infinity)
                 }
-                .background(Color(UIColor.quaternarySystemFill))
+                .background(Color(UIColor.tertiarySystemFill))
                 .foregroundColor(Color(UIColor.label))
                 .font(.headline)
                 .fontWeight(.medium)
@@ -35,7 +35,7 @@ struct RulesPlayTabCard: View {
         .padding([.horizontal], 16)
         .padding([.vertical], 18)
         .frame(maxWidth: .infinity)
-        .background(Color(UIColor.tertiarySystemFill))
+        .background(Color(named: "s.fill.quaternary"))
         .clipShape(RoundedRectangle(cornerRadius: 10.0))
     }
 }
@@ -75,7 +75,7 @@ struct GenericPlayTabCard: View {
         .padding([.horizontal], 16)
         .padding([.vertical], 18)
         .frame(maxWidth: .infinity)
-        .background(Color(UIColor.tertiarySystemFill))
+        .background(Color(named: "s.fill.quaternary"))
         .clipShape(RoundedRectangle(cornerRadius: 10.0))
     }
 }
@@ -129,7 +129,7 @@ struct RoundInProgressCard: View {
                         .padding()
                         .frame(maxWidth: .infinity)
                 }
-                .background(Color(UIColor.quaternarySystemFill))
+                .background(Color(UIColor.tertiarySystemFill))
                 .foregroundColor(Color(UIColor.label))
                 .font(.headline)
                 .fontWeight(.medium)
@@ -140,7 +140,7 @@ struct RoundInProgressCard: View {
         .padding([.horizontal], 16)
         .padding([.vertical], 18)
         .frame(maxWidth: .infinity)
-        .background(Color(UIColor.tertiarySystemFill))
+        .background(Color(named: "s.fill.quaternary"))
         .clipShape(RoundedRectangle(cornerRadius: 10.0))
     }
 }
