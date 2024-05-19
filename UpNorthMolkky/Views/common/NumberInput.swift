@@ -13,7 +13,7 @@ struct NumberInput: View {
     var minimumValue: Int = Int.min
     var maximumValue: Int = Int.max
     
-    let buttonColor: Color = Color(hue: 0.6, saturation: 0.85, brightness: 0.55)
+    let buttonColor: Color = Color(named: "s.accent1.main")
     
     func changeValue(number: Int) {
         value += increment * number

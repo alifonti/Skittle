@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CheckmarkToggleStyle: ToggleStyle {
     
-    let enabledColor: Color = Color(hue: 0.13, saturation: 0.5, brightness: 0.95)
+    let enabledColor: Color = Color(named: "s.accent2.main")
     
     func makeBody(configuration: Configuration) -> some View {
         HStack {

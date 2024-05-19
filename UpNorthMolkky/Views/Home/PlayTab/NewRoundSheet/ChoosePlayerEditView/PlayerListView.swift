@@ -65,7 +65,6 @@ struct PlayerListView: View {
                 }
             }
             .padding()
-            .background(Color(hue: 0.1, saturation: 0.5, brightness: 0.9, opacity: 0.25))
             //
             VStack(spacing: 10) {
                 HStack {

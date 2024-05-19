@@ -18,36 +18,49 @@ struct GameRulesView: View {
         return formatter
     }()
     
-    var funListColor: Color = Color(hue: 0.6, saturation: 0.25, brightness: 0.95)
-    var listColor: Color {
-        return Color(UIColor.systemFill)
-    }
+    var funListColor: Color = Color(named: "s.accent3.main").opacity(0.25)
+    var listColor: Color = Color(named: "s.fill.quaternary")
     var listTextColor: Color {
         return Color(UIColor.label)
+    }
+    
+    func resetToDefault() {
+        round.targetScore = 50
+        round.canBeEliminated = true
+        round.missesForElimination = 3
+        round.canBeReset = true
+        round.resetScore = 25
+        round.resetInsteadOfEliminate = false
+        round.canExceedTarget = false
+        funRules = false
     }
     
     var body: some View {
         VStack {
             HStack {
-                HStack {
-                    Spacer()
+                Button(action: resetToDefault) {
                     HStack {
-                        Text("Reset to default")
+                        Spacer()
+                        HStack {
+                            Text("Reset to default")
+                                .fontWeight(.medium)
+                                .foregroundStyle(Color(UIColor.secondaryLabel))
+                        }
+                        .padding(.vertical, 10)
+                        Spacer()
                     }
-                    .padding(.vertical, 10)
-                    Spacer()
+                    .background(
+                        RoundedRectangle(cornerRadius: 10).stroke(Color(named: "s.fill.primary").opacity(0.5))
+                    )
                 }
-                .background(Color(UIColor.systemFill))
-                .cornerRadius(10)
                 Spacer()
-                Toggle("Fun rules", isOn: $funRules)
+                Toggle("", isOn: $funRules)
                     .toggleStyle(PartyToggleStyle())
                     .padding([.horizontal], 22)
                     .padding([.vertical], 5)
             }
             .padding([.leading, .trailing], 22)
             .padding([.top], 5)
-            Divider()
             //
             Form {
                 Section(header: Text("Target Score")) {
@@ -107,7 +120,8 @@ struct GameRulesView: View {
                             .listRowBackground(funListColor)
                     }
                 }
-                if (funRules) {
+                // TODO: Implement in a future version
+                if (false) {
                     Section(header: Text("Additional rules")) {
                         Toggle("Keep playing after first finisher", isOn: $round.continueUntilAllFinished)
                             .toggleStyle(CheckmarkToggleStyle())

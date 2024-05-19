@@ -30,7 +30,6 @@ struct NewRoundSheet: View {
                 .disabled(newRound.contenders.count <= 1)
             }
             .padding()
-            .background(Color(hue: 0.1, saturation: 0.75, brightness: 0.9, opacity: 0.25))
             DetailEditView(round: $newRound)
         }
     }

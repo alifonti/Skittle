@@ -9,12 +9,14 @@ import SwiftUI
 
 struct PartyToggleStyle: ToggleStyle {
     
-    var funListColor: Color = Color(hue: 0.6, saturation: 0.25, brightness: 0.95)
+    var funListColor: Color = Color(named: "s.accent3.main").opacity(0.5)
+    var offColor: Color = Color(named: "s.fill.secondary")
     
     func makeBody(configuration: Configuration) -> some View {
         HStack {
+            configuration.label
             Rectangle()
-                .foregroundStyle(configuration.isOn ? funListColor : .gray)
+                .foregroundStyle(configuration.isOn ? funListColor : offColor)
                 .frame(width: 51, height: 31, alignment: .center)
                 .overlay(
                     Circle()
@@ -27,7 +29,7 @@ struct PartyToggleStyle: ToggleStyle {
                                 .font(Font.title.weight(.heavy))
                                 .frame(width: 16, height: 16, alignment: .center)
                                 .symbolRenderingMode(.palette)
-                                .foregroundStyle(configuration.isOn ? .red : .gray, .blue)
+                                .foregroundStyle(configuration.isOn ? Color(named: "s.accent1.main") : .gray, Color(named: "s.accent2.main"))
                         )
                         .offset(x: configuration.isOn ? 11 : -11, y: 0)
                         .animation(.linear, value: 0.1)
