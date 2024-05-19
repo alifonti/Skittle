@@ -80,7 +80,7 @@ struct GameRulesView: View {
                         .listRowBackground(listColor)
                     }
                     if (round.canBeEliminated && funRules) {
-                        Toggle("Reset player score instead of eliminating them", isOn: $round.resetInsteadOfEliminate)
+                        Toggle("Set score to 0 instead of eliminating player", isOn: $round.resetInsteadOfEliminate)
                             .toggleStyle(CheckmarkToggleStyle())
                             .listRowBackground(funListColor)
                     }

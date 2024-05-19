@@ -283,7 +283,17 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
             var resetCount = 0
             var scoreAccum = 0
             var efficiencyTotal = 0
+            var runningMissTotal = 0
             $0.attempts.map({$0.score}).forEach({
+                if ($0 == 0) {
+                    runningMissTotal += 1
+                    if (round.resetInsteadOfEliminate && runningMissTotal == round.missesForElimination) {
+                        scoreAccum = 0
+                        runningMissTotal = 0
+                    }
+                } else {
+                    runningMissTotal = 0
+                }
                 if (scoreAccum + $0 > round.targetScore) {
                     resetCount += 1
                     scoreAccum = round.resetScore
