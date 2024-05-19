@@ -50,6 +50,8 @@ struct HistoryTabSelectorButton: View {
                     Text(text)
                         .foregroundStyle(Color(UIColor.label))
                         .font(.headline)
+                        .lineLimit(1)
+                        .truncationMode(.tail)
                 }
             }
             .clipShape(Capsule(style: .circular).scale(1.1))

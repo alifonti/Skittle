@@ -14,23 +14,45 @@ struct NewRoundSheet: View {
     @Binding var shouldNavigate: Bool
     @Binding var newRound: MolkkyRound
     
+    @State private var selectedTab = "choose"
+    
+    func getHeaderText() -> String {
+        if (selectedTab == "choose") {
+            return "Choose players"
+        } else if (selectedTab == "order") {
+            return "Organize players"
+        } else if (selectedTab == "settings") {
+            return "Set rules"
+        } else {
+            return ""
+        }
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
-            HStack {
-                Button("Dismiss") {
-                    isPresentingNewRoundView = false
+            ZStack {
+                HStack {
+                    Spacer()
+                    Text(getHeaderText())
+                    Spacer()
                 }
-                Spacer()
-                Button("Start") {
-                    userData.addRound(newRound)
-                    navigationState.activeRoundId = newRound.id
-                    isPresentingNewRoundView = false
-                    shouldNavigate = true
+                .padding()
+                HStack {
+                    Button("Dismiss") {
+                        isPresentingNewRoundView = false
+                    }
+                    Spacer()
+                    Button("Start") {
+                        userData.addRound(newRound)
+                        navigationState.activeRoundId = newRound.id
+                        isPresentingNewRoundView = false
+                        shouldNavigate = true
+                    }
+                    .disabled(newRound.contenders.count <= 1)
                 }
-                .disabled(newRound.contenders.count <= 1)
+                .padding()
             }
-            .padding()
-            DetailEditView(round: $newRound)
+            DetailEditView(round: $newRound, selectedTab: $selectedTab)
         }
     }
 }

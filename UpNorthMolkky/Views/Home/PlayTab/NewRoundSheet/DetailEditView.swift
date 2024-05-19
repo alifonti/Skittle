@@ -24,15 +24,19 @@ struct RoundEditTip: Tip {
 
 struct DetailEditView: View {
     @Binding var round: MolkkyRound
+    @Binding var selectedTab: String
     
     var roundEditTip = RoundEditTip()
     
     var body: some View {
         VStack {
-            TabView {
+            TabView(selection: $selectedTab) {
                 ChoosePlayerEditView(round: $round)
+                    .tag("choose")
                 PlayerOrderEditView(round: $round)
+                    .tag("order")
                 GameRulesEditView(round: $round)
+                    .tag("settings")
             }
             .tabViewStyle(.page(indexDisplayMode: .always))
             .indexViewStyle(.page(backgroundDisplayMode: .always))
