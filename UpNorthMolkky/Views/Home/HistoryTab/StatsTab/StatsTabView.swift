@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+struct Tag: Identifiable, Hashable {
+    let id: String
+    let string: String
+}
+
 struct StatsTabView: View {
     @Binding var userData: SkittleData
     
@@ -15,25 +20,37 @@ struct StatsTabView: View {
     }
     
     var body: some View {
-        VStack {
-            HStack {
-                Text("Rounds played:")
-                Spacer()
-                Text("\(playerStats["RoundCount"] ?? 0)")
-            }
-            HStack {
-                Text("Unique players:")
-                Spacer()
-                Text("\(playerStats["PlayerCount"] ?? 0)")
-            }
-            HStack {
-                Text("Number of attempts:")
-                Spacer()
-                Text("\(playerStats["TotalThrows"] ?? 0)")
-            }
+        VStack(spacing: 15) {
+            StatsTabView.StatView(text: "Rounds played",
+                                  count: String(playerStats["RoundCount"] ?? 0))
+            StatsTabView.StatView(text: "Skittles thrown",
+                                  count: String(playerStats["TotalThrows"] ?? 0))
+            StatsTabView.StatView(text: "Players added",
+                                  count: String(playerStats["PlayerCount"] ?? 0))
+            StatsTabView.StatView(text: "Awards earned",
+                                  count: String(playerStats["AwardCount"] ?? 0))
             Spacer()
         }
         .padding()
+    }
+}
+
+extension StatsTabView {
+    @ViewBuilder
+    static func StatView(text: String, count: String) -> some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text(text)
+            }
+            .font(.title2)
+            .fontWeight(.medium)
+            Spacer()
+            Text(String(count))
+                .font(.largeTitle)
+                .fontWeight(.semibold)
+        }
+        .padding()
+        .background(RoundedRectangle(cornerRadius: 10).fill(Color(named: "s.fill.quaternary")))
     }
 }
 

@@ -31,7 +31,7 @@ struct HistoryTabView: View {
                     .tag(HistoryTabView.Tab.rounds)
                 PlayersView(userData: $userData)
                     .tabItem {
-                        Text("People")
+                        Text("Players")
                     }
                     .tag(HistoryTabView.Tab.people)
                 StatsTabView(userData: $userData)

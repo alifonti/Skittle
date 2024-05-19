@@ -21,7 +21,7 @@ struct HistoryTabSelector: View {
                                      image: "clipboard.fill", text: "Rounds", color: getColor(tab: HistoryTabView.Tab.rounds))
             Spacer()
             HistoryTabSelectorButton(tab: HistoryTabView.Tab.people, selectedTab: selectedTab, setSelectedTab: setSelectedTab,
-                                     image: "person.2.fill", text: "People", color: getColor(tab: HistoryTabView.Tab.people))
+                                     image: "person.2.fill", text: "Players", color: getColor(tab: HistoryTabView.Tab.people))
             Spacer()
             HistoryTabSelectorButton(tab: HistoryTabView.Tab.stats, selectedTab: selectedTab, setSelectedTab: setSelectedTab,
                                      image: "chart.bar.fill", text: "Overall", color: getColor(tab: HistoryTabView.Tab.stats))

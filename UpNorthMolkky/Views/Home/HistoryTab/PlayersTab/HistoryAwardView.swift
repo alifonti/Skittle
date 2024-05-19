@@ -19,7 +19,7 @@ struct HistoryAwardView: View {
                 }
             }
         }
-        .background(backgroundShape.fill(Color.gray.opacity(0.2)))
+        .background(backgroundShape.fill(Color(named: "s.fill.quaternary")))
         .clipShape(backgroundShape)
     }
 }

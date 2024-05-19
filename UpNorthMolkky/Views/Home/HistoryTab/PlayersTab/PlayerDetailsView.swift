@@ -33,7 +33,7 @@ struct PlayerDetailsView: View {
     }
     
     var body: some View {
-        VStack(spacing: 25) {
+        VStack(spacing: 20) {
             VStack {
                 HStack(alignment: .center) {
                     if (!viewNameTextField) {
@@ -66,35 +66,16 @@ struct PlayerDetailsView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 Text("Added on \(dateString)")
                     .frame(maxWidth: .infinity, alignment: .leading)
-                VStack(spacing: 1) {
-                    HStack {
-                        Text("Rounds played:")
-                        Spacer()
-                        Text("\(playerRoundCount)")
-                    }
-                    HStack {
-                        Text("Attempts made:")
-                        Spacer()
-                        Text("\(playerAttemptCount)")
-                    }
-                    HStack {
-                        Text("Average points per attempt:")
-                        Spacer()
-                        Text(String(format: "%.1f", playerAttemptAverage))
-                    }
-                    HStack {
-                        Text("Wins:")
-                        Spacer()
-                        Text("\(playerWinCount)")
-                    }
+                VStack(spacing: 8) {
+                    PlayerDetailsView.StatView(text: "Rounds played", count: String(playerRoundCount))
+                    PlayerDetailsView.StatView(text: "Skittles thrown", count: String(playerRoundCount))
+                    PlayerDetailsView.StatView(text: "Points per throw", count: String(playerRoundCount))
+                    PlayerDetailsView.StatView(text: "Wins", count: String(playerRoundCount))
                 }
-                .padding()
-                .background(Color(named: "s.fill.tertiary"))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
             }
             VStack(spacing: 10) {
                 Text("Trophy Case")
-                    .font(.title)
+                    .font(.title2)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 HistoryAwardView()
             }
@@ -120,6 +101,26 @@ struct PlayerDetailsView: View {
             }
         }
         .padding()
+    }
+}
+
+extension PlayerDetailsView {
+    @ViewBuilder
+    static func StatView(text: String, count: String) -> some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text(text)
+            }
+            .font(.headline)
+            .fontWeight(.regular)
+            Spacer()
+            Text(String(count))
+                .font(.title2)
+                .fontWeight(.medium)
+        }
+        .padding(.vertical, 10)
+        .padding(.horizontal, 15)
+        .background(RoundedRectangle(cornerRadius: 10).fill(Color(named: "s.fill.quaternary")))
     }
 }
 
