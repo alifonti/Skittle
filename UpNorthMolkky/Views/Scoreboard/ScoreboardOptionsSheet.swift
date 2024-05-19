@@ -37,6 +37,7 @@ struct ScoreboardOptionsView: View {
             VStack {
                 Divider()
                 Button(action: {
+                    isPresentingOptionsView = false
                     navigationState.isNavigationActive = false
                 }) {
                     Label("Return to menu", systemImage: "house")

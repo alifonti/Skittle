@@ -48,8 +48,13 @@ struct ScoreboardResultsView: View {
                 VStack(spacing: 0) {
                     VStack {
                         HStack {
-                            Button(action: {navigationState.isNavigationActive = false}) {
-                                Label("Home", systemImage: "chevron.backward")
+                            if (navigationState.isNavigationActive) {
+                                Button(action: {navigationState.isNavigationActive = false}) {
+                                    Label("Home", systemImage: "chevron.backward")
+                                }
+                            } else {
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle(tint: Color.white))
                             }
                             Spacer()
                             if let image = renderer.uiImage {
@@ -184,6 +189,8 @@ extension ScoreboardResultsView {
 struct ScoreboardResultsView_Previews: PreviewProvider {
     static var previews: some View {
         ScoreboardResultsView(round: .constant(MolkkyRound.sampleData), isPresenting: .constant(true))
+            .environmentObject(MolkkyStore())
+            .environmentObject(NavigationState())
     }
 }
 
