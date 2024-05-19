@@ -14,6 +14,10 @@ struct PlayersView: View {
         userData.getPlayerStats()
     }
     
+    var playerAwards: [UUID: [Award: Int]] {
+        userData.getPlayerAwards()
+    }
+    
     var playerRoundsCount: [UUID: Int] {
         (playerStats["RoundCount"] ?? [:]) as? [UUID: Int] ?? [:]
     }
@@ -38,7 +42,7 @@ struct PlayersView: View {
                                                                   playerRoundCount: playerRoundsCount[player.id] ?? 0,
                                                                   playerAttemptCount: playerAttemptCount[player.id] ?? 0,
                                                                   playerAttemptAverage: playerAttemptAverages[player.id] ?? 0,
-                                                                  playerWinCount: playerWinCount[player.id] ?? 0)) {
+                                                                  playerWinCount: playerWinCount[player.id] ?? 0, awards: playerAwards[player.id] ?? [:])) {
                         HStack {
                             Text(player.playerName)
                             Spacer()

@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct HistoryAwardView: View {
+    let awards: [Award: Int]
+    
     let backgroundShape = RoundedRectangle(cornerRadius: 10)
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 Divider()
                 ForEach(Award.allCases) { award in
-                    CompactAwardView(award: award, count: 0)
+                    let awardData = awards[award]
+                    CompactAwardView(award: award, count: awardData ?? 0)
                     Divider()
                 }
             }
@@ -49,6 +52,6 @@ struct CompactAwardView: View {
 
 struct HistoryAwardView_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryAwardView()
+        HistoryAwardView(awards: [:])
     }
 }

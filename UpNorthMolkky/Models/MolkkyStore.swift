@@ -95,24 +95,37 @@ struct SkittleData: Codable {
         return ["RoundCount": roundCountDict, "AttemptCount": attemptCountDict, "AttemptAverage": attemptAverageDict, "WinCount": winsDict]
     }
     
-//    func getPlayerAwards() -> [UUID: [Award: Int]] {
-//        var awardsDict: [UUID: [Award: Int]] = [:]
-//        
-//        rounds.forEach { round in
-//            let awards = MolkkyRound.getPlayerAwards(round: round)
-//        }
-//        
-//        return awardsDict
-//    }
+    func getPlayerAwards() -> [UUID: [Award: Int]] {
+        var awardsDict: [UUID: [Award: Int]] = [:]
+        
+        rounds.forEach { round in
+            let awards: [(Award, [Contender], String?)] = MolkkyRound.getPlayerAwards(round: round)
+            awards.forEach { award in
+                award.1.forEach { contender in
+                    var playerDict = awardsDict[contender.id, default: [:]]
+                    playerDict.updateValue(playerDict[award.0, default: 0] + 1, forKey: award.0)
+                    awardsDict.updateValue(playerDict, forKey: contender.id)
+                }
+            }
+        }
+        
+        return awardsDict
+    }
     
     func getGeneralStats() -> [String: Int] {
         var attemptTotal: Int = 0
+        var awardsTotal: Int = 0
         
         rounds.forEach { round in
             attemptTotal += round.attempts.count
+            
+            let awards: [(Award, [Contender], String?)] = MolkkyRound.getPlayerAwards(round: round)
+            awards.forEach { award in
+                awardsTotal += award.1.count
+            }
         }
         
-        return ["RoundCount": rounds.count, "PlayerCount": players.count, "TotalThrows": attemptTotal]
+        return ["RoundCount": rounds.count, "PlayerCount": players.count, "ThrowCount": attemptTotal, "AwardCount": awardsTotal]
     }
 }
 

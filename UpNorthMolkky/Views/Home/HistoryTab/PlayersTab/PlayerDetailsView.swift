@@ -16,6 +16,7 @@ struct PlayerDetailsView: View {
     var playerAttemptCount: Int = 0
     var playerAttemptAverage: Double = 0.0
     var playerWinCount: Int = 0
+    var awards: [Award: Int] = [:]
     
     @State private var newValue: String = ""
     @State private var viewNameTextField = false
@@ -77,7 +78,7 @@ struct PlayerDetailsView: View {
                 Text("Trophy Case")
                     .font(.title2)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                HistoryAwardView()
+                HistoryAwardView(awards: awards)
             }
             VStack {
                 Button("Delete player") {

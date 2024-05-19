@@ -84,6 +84,11 @@ struct RoundsView: View {
             .scrollContentBackground(.hidden)
             .background(Color(named: "s.background.primary"))
         }
+        .onDisappear(perform: {
+            if (editMode?.wrappedValue == .active) {
+                editMode?.wrappedValue = .inactive
+            }
+        })
     }
 }
 

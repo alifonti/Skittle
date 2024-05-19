@@ -18,13 +18,16 @@ struct StatsTabView: View {
     var playerStats: [String: Int] {
         userData.getGeneralStats()
     }
+    var playerAwards: [UUID: [Award: Int]] {
+        userData.getPlayerAwards()
+    }
     
     var body: some View {
         VStack(spacing: 15) {
             StatsTabView.StatView(text: "Rounds played",
                                   count: String(playerStats["RoundCount"] ?? 0))
             StatsTabView.StatView(text: "Skittles thrown",
-                                  count: String(playerStats["TotalThrows"] ?? 0))
+                                  count: String(playerStats["ThrowCount"] ?? 0))
             StatsTabView.StatView(text: "Players added",
                                   count: String(playerStats["PlayerCount"] ?? 0))
             StatsTabView.StatView(text: "Awards earned",
