@@ -20,6 +20,8 @@ struct PlayerScoreView: View {
         self.playerScore = playerScore
         self.currentPlayer = currentPlayer
         _isSimpleView = State(initialValue: !preferDetailedScoreView)
+        _scoreAnimationCopy = State(initialValue: playerScore.totalScore)
+        _scoreAnimationDifference = State(initialValue: 0)
     }
     
     let round: MolkkyRound
