@@ -72,6 +72,11 @@ struct SkittleData: Codable {
         rounds.append(round)
     }
     
+    mutating func resetUserData() {
+        rounds = []
+        players = []
+    }
+    
     func getPlayerStats() -> [String: [UUID: any Numeric]] {
         var roundCountDict: [UUID: Int] = [:]
         var attemptDict: [UUID: [Int]] = [:]

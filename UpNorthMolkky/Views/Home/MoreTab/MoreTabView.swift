@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MoreTabView: View {
     @Environment(\.openURL) private var openURL
+    @EnvironmentObject var store: MolkkyStore
     
     @State private var showingDeleteDataPopover = false
     
@@ -55,7 +56,7 @@ struct MoreTabView: View {
                             isPresented: $showingDeleteDataPopover
                         ) {
                             Button(role: .destructive) {
-                                // delete
+                                store.userData.resetUserData()
                             } label: {
                                 Text("Delete")
                             }
