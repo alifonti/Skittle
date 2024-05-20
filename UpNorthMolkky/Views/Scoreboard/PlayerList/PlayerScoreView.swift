@@ -76,6 +76,8 @@ struct PlayerScoreView: View {
                     Text(playerScore.contender.name)
                         .font(isSimpleView ? .title : .title2)
                         .foregroundColor(Color(UIColor.label))
+                        .lineLimit(1)
+                        .truncationMode(.tail)
                     ScrollViewReader { proxy in
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack(spacing: 0) {

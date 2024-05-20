@@ -24,7 +24,6 @@ struct ScoreboardView: View {
                 PlayerScoresListView(round: $round)
                 ScoreControlsView(round: $round)
             }
-            .navigationTitle("Scoreboard")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(true)
             .toolbar {

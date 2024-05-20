@@ -16,7 +16,7 @@ struct SortToggleButton: View {
     var body: some View {
         HStack(spacing: 0) {
             if (isShowingLabel) {
-                Text(round.sortByTurn ? "Turn Order" : "Points")
+                Text(round.sortByTurn ? "Sort by turn order" : "Sort by points")
                     .font(.subheadline)
                     .transition(.opacity)
             }

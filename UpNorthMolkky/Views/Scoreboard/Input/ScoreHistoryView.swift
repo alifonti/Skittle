@@ -77,6 +77,8 @@ struct PastElement: View {
     var body: some View {
         VStack {
             Text(attempt.contender.name)
+                .lineLimit(1)
+                .truncationMode(.tail)
             Text(String(attempt.score))
         }
         .fontWeight(.light)
@@ -114,6 +116,8 @@ struct HistoryElement: View {
         VStack {
             Text(player?.name ?? "")
                 .fontWeight(isCurrentPlayer ? .medium : .light)
+                .lineLimit(1)
+                .truncationMode(.tail)
             if (amountToWin != "" && isCurrentPlayer) {
                 Text("\(amountToWin) to win")
                     .font(.subheadline)

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct PlayerListView: View {
     @EnvironmentObject var store: MolkkyStore
@@ -16,6 +17,13 @@ struct PlayerListView: View {
     @FocusState private var newPlayerIsFocused: Bool
     @State private var searchText = ""
     @FocusState private var searchIsFocused: Bool
+    
+    let nameTextLimit = 20
+    func limitText(_ upper: Int) {
+        if newPlayerNameText.count > upper {
+            newPlayerNameText = String(newPlayerNameText.prefix(upper))
+        }
+    }
     
     private var selectedPlayers: [UUID] {
         round.contenders.map{$0.id}
@@ -31,6 +39,7 @@ struct PlayerListView: View {
                     }, onCommit: {
                         searchIsFocused = false
                     })
+                    .onReceive(Just(newPlayerNameText)) { _ in limitText(nameTextLimit) }
                     .foregroundColor(.primary)
                     .autocorrectionDisabled(true)
                     .focused($searchIsFocused)
