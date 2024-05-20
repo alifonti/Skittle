@@ -10,23 +10,44 @@ import SwiftUI
 struct CurrentGameRulesView: View {
     let round: MolkkyRound
     
+    func getString(_ bool: Bool) -> String {
+        return bool ? "Yes" : "No"
+    }
+    
     var body: some View {
         Group {
-            VStack {
-                LabeledContent("Target Score") {
-                    Text(String(round.targetScore))
+            VStack(spacing: 20) {
+                VStack {
+                    LabeledContent("Target score") {
+                        Text(String(round.targetScore))
+                    }
                 }
-                LabeledContent("Can be eliminated") {
-                    Text(String(round.canBeEliminated))
+                Divider()
+                VStack {
+                    LabeledContent("Players can be eliminated") {
+                        Text(getString(round.canBeEliminated))
+                    }
+                    if (round.canBeEliminated) {
+                        LabeledContent("Misses for elimination") {
+                            Text(String(round.missesForElimination))
+                        }
+                    }
+                    if (round.resetInsteadOfEliminate) {
+                        LabeledContent("Reset instead of elimination") {
+                            Text(String(round.resetInsteadOfEliminate))
+                        }
+                    }
                 }
-                LabeledContent("Misses for elimination") {
-                    Text(String(round.missesForElimination))
-                }
-                LabeledContent("Can be reset") {
-                    Text(String(round.canBeReset))
-                }
-                LabeledContent("Score after reset") {
-                    Text(String(round.resetScore))
+                Divider()
+                VStack {
+                    LabeledContent("Player can be reset") {
+                        Text(getString(round.canBeReset))
+                    }
+                    if (round.canBeReset) {
+                        LabeledContent("Score after reset") {
+                            Text(String(round.resetScore))
+                        }
+                    }
                 }
                 Spacer()
             }

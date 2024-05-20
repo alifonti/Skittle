@@ -34,9 +34,6 @@ struct MoreTabView: View {
                 NavigationLink(destination: RulesView()) {
                     MoreTabViewListItem(text: "Game rules", image: "book")
                 }
-                NavigationLink(destination: SkittleTipsView()) {
-                    MoreTabViewListItem(text: "Skittle tips", image: "lightbulb")
-                }
             }
             VStack(spacing: 5) {
                 MoreTabViewListTitle(title: "Application")
