@@ -72,6 +72,7 @@
 		FDE03B2C2ACE2BD400A263A7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE03B2B2ACE2BD400A263A7 /* HomeView.swift */; };
 		FDF8C66D2BF6E063003C811D /* ResultsShareSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF8C66C2BF6E063003C811D /* ResultsShareSummaryView.swift */; };
 		FDF8C66F2BFA7116003C811D /* AnimatingNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF8C66E2BFA7116003C811D /* AnimatingNumberView.swift */; };
+		FDF8C6712BFAD8B2003C811D /* FormationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF8C6702BFAD8B2003C811D /* FormationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,6 +141,7 @@
 		FDE03B2B2ACE2BD400A263A7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		FDF8C66C2BF6E063003C811D /* ResultsShareSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsShareSummaryView.swift; sourceTree = "<group>"; };
 		FDF8C66E2BFA7116003C811D /* AnimatingNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatingNumberView.swift; sourceTree = "<group>"; };
+		FDF8C6702BFAD8B2003C811D /* FormationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -316,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				FDC0DF742BE4951E0007EB32 /* RulesView.swift */,
+				FDF8C6702BFAD8B2003C811D /* FormationView.swift */,
 			);
 			path = Rules;
 			sourceTree = "<group>";
@@ -574,6 +577,7 @@
 				FD841A212AB6BEA700E4AD1B /* EditScoreSheet.swift in Sources */,
 				FDD8C7D22BBF861E0082B523 /* PlayerItemView.swift in Sources */,
 				FD90A3AB2BD373F400FCA297 /* PlayTabCard.swift in Sources */,
+				FDF8C6712BFAD8B2003C811D /* FormationView.swift in Sources */,
 				FDD8C7D02BBF85940082B523 /* PlayerListView.swift in Sources */,
 				FD9EC8062BE31ADD00006205 /* MoreTabView.swift in Sources */,
 				FD90BD062AB665A900D7CF3B /* RoundsView.swift in Sources */,
