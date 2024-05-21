@@ -101,7 +101,9 @@ struct PlayerScoreView: View {
                 Spacer()
                 HStack {
                     if (playerScore.finishPosition < 0) {
-                        MissScoreView(round: round, playerScore: playerScore, isSimpleView: isSimpleView, displayAccentColor: accentColor)
+                        if (round.canBeEliminated) {
+                            MissScoreView(round: round, playerScore: playerScore, isSimpleView: isSimpleView, displayAccentColor: accentColor)
+                        }
                         Color.clear
                             .frame(width: 40, alignment: .trailing)
                             .modifier(AnimatableNumberModifier(number: scoreAnimationCopy))
