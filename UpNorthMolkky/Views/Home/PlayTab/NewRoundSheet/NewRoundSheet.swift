@@ -54,6 +54,12 @@ struct NewRoundSheet: View {
             }
             DetailEditView(round: $newRound, selectedTab: $selectedTab)
         }
+        // TODO: Fix this hack... whenever the list of contenders changes, this recreates the list but updates the orderKeys
+        .onChange(of: newRound.contenders) {
+            newRound.contenders = newRound.contenders.enumerated().map {
+                Contender(id: $1.id, name: $1.name, orderKey: $0)
+            }
+        }
         .interactiveDismissDisabled()
     }
 }

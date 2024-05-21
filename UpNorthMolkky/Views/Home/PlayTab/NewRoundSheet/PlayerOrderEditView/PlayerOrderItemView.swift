@@ -36,33 +36,3 @@ struct PlayerOrderItemView: View {
         .listRowInsets(.init(top: 0, leading: 10, bottom: 0, trailing: 0))
     }
 }
-
-struct DropViewDelegate: DropDelegate {
-    
-    let destinationItem: Player
-    @Binding var players: [Player]
-    @Binding var draggedItem: Player?
-    
-    func dropUpdated(info: DropInfo) -> DropProposal? {
-        return DropProposal(operation: .move)
-    }
-    
-    func performDrop(info: DropInfo) -> Bool {
-        draggedItem = nil
-        return true
-    }
-    
-    func dropEntered(info: DropInfo) {
-        if let draggedItem {
-            let fromIndex = players.firstIndex(of: draggedItem)
-            if let fromIndex {
-                let toIndex = players.firstIndex(of: destinationItem)
-                if let toIndex, fromIndex != toIndex {
-                    withAnimation {
-                        self.players.move(fromOffsets: IndexSet(integer: fromIndex), toOffset: (toIndex > fromIndex ? (toIndex + 1) : toIndex))
-                    }
-                }
-            }
-        }
-    }
-}
