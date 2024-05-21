@@ -122,7 +122,7 @@ struct ScoreboardResultsView: View {
                             .clipShape(Rectangle())
                         }
                         .background(tabShape.fill(backgroundColor))
-                        TabView(selection: $selectedTab) {
+                        TabView(selection: $selectedTab.animation()) {
                             ResultsLeaderboardView(round: round, sortedContenders: sortedContenders)
                                 .tag(ScoreboardResultsView.Tab.leaderboard)
                                 .ignoresSafeArea(.all, edges: .bottom)
