@@ -38,7 +38,7 @@ struct MissScoreView: View {
         VStack {
             HStack {
                 if(numberOfRecentMisses > 0 || !isSimpleView) {
-                    ForEach(0..<numberOfRecentMisses, id: \.self) { _ in
+                    ForEach(0 ..< numberOfRecentMisses, id: \.self) { _ in
                         Image(systemName: "circle.slash")
                             .foregroundColor(Color(UIColor.label))
                             .fixedSize()

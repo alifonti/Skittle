@@ -82,7 +82,7 @@ struct GameRulesView: View {
                         .listRowBackground(listColor)
                     if (round.canBeEliminated) {
                         LabeledContent {
-                            NumberInput(value: $round.missesForElimination, increment: 1, minimumValue: 1, maximumValue: 5)
+                            NumberInput(value: $round.missesForElimination, increment: 1, minimumValue: 1, maximumValue: 3)
                                 .fixedSize()
                                 .foregroundColor(listTextColor)
                         } label: {

@@ -80,7 +80,7 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
                 totalScore: scoreDict[$0.key] ?? 0,
                 isInWarning: (canBeEliminated || resetInsteadOfEliminate) &&
                     $0.value.count >= (missesForElimination - 1) &&
-                    ($0.value.suffix(from: ($0.value.lastIndex(where: { $0.score != 0 }) ?? $0.value.count) + 1 ).count % missesForElimination) == missesForElimination - 1,
+                    ($0.value.suffix(from: ($0.value.lastIndex(where: { $0.score != 0 }) ?? -1) + 1 ).count % missesForElimination) == missesForElimination - 1,
                 isEliminated: (canBeEliminated && !resetInsteadOfEliminate) &&
                     $0.value.count >= (missesForElimination) &&
                     $0.value.suffix((missesForElimination)).allSatisfy({$0.score == 0}),

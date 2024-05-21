@@ -91,7 +91,7 @@ struct AnimatableGradientModifier: AnimatableModifier {
     func body(content: Content) -> some View {
         var gradientColors = [Color]()
  
-        for i in 0..<fromGradient.stops.count {
+        for i in 0 ..< fromGradient.stops.count {
             let fromColor = UIColor(fromGradient.stops[i].color)
             let toColor = UIColor(toGradient.stops[i].color)
  
