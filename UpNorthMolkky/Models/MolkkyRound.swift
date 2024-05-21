@@ -321,12 +321,14 @@ struct MolkkyRound: Identifiable, Codable, Hashable {
         }
         // Survivor
         var survivorData: [Contender] = []
-        round.contenderScores.forEach({
-            let range = $0.attempts.map({$0.score}).firstRange(of: Array(repeating: 0, count: round.missesForElimination - 1))
-            if (range != nil && range?.endIndex != $0.attempts.count && !$0.isEliminated) {
-                survivorData.append($0.contender)
-            }
-        })
+        if (round.canBeEliminated && !round.resetInsteadOfEliminate) {
+            round.contenderScores.forEach({
+                let range = $0.attempts.map({$0.score}).firstRange(of: Array(repeating: 0, count: round.missesForElimination - 1))
+                if (range != nil && range?.endIndex != $0.attempts.count && !$0.isEliminated) {
+                    survivorData.append($0.contender)
+                }
+            })
+        }
         if (survivorData.count > 0) {
             awards.append((Award.survivor, survivorData, nil))
         }
