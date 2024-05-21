@@ -111,7 +111,7 @@ struct PlayerListView: View {
                     }
                     ForEach(store.userData.players
                         .sorted(by: {selectedPlayers.contains($0.id) && !selectedPlayers.contains($1.id)})
-                        .filter{$0.playerName.hasPrefix(searchText) || selectedPlayers.contains($0.id) || searchText == ""
+                        .filter{$0.playerName.lowercased().hasPrefix(searchText.lowercased()) || selectedPlayers.contains($0.id) || searchText == ""
                         }, id: \.self) { player in
                             PlayerItemView(player: player, selected: selectedPlayers.contains(player.id))
                                 .onTapGesture {
