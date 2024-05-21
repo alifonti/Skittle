@@ -38,7 +38,7 @@ struct CompactAwardView: View {
     var body: some View {
         HStack {
             Image(systemName: awardInfo.2)
-                .frame(width: 40, alignment: .leading)
+                .frame(width: 40, alignment: .center)
             VStack(alignment: .leading) {
                 Text(awardInfo.0)
             }
@@ -46,7 +46,8 @@ struct CompactAwardView: View {
             Text(String(count))
         }
         .padding(.vertical, 15)
-        .padding(.horizontal, 20)
+        .padding(.leading, 10)
+        .padding(.trailing, 20)
     }
 }
 
