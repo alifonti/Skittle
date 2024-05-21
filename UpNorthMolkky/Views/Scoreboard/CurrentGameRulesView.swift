@@ -53,7 +53,7 @@ struct CurrentGameRulesView: View {
             }
             .padding()
         }
-        .navigationTitle("Game Rules")
+        .navigationTitle("Customized Rules")
     }
 }
 

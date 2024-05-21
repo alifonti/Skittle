@@ -17,6 +17,10 @@ struct PlayerOrderView: View {
         round.contenders.move(fromOffsets: source, toOffset: destination)
     }
     
+    func shuffle() {
+        round.contenders.shuffle()
+    }
+    
     var body: some View {
         VStack {
             VStack(spacing: 20) {
@@ -30,14 +34,31 @@ struct PlayerOrderView: View {
                         Text("Set order").tag(false)
                     }.pickerStyle(.segmented)
                 }
-                HStack {
-                    Image(systemName: "hand.tap")
-                    Text("Press and hold to move")
+                if (round.contenders.count > 0) {
+                    if (isShuffle) {
+                        HStack {
+                            Button(action: shuffle) {
+                                Text("Tap to re-shuffle")
+                            }
+                        }
+                        .font(.callout)
+                        .foregroundStyle(Color(named: "s.accent1.main"))
+                    } else {
+                        HStack {
+                            Image(systemName: "hand.tap")
+                            Text("Press and hold to move")
+                        }
+                        .font(.callout)
+                        .foregroundStyle(Color(UIColor.secondaryLabel))
+                    }
+                } else {
+                    VStack {
+                        Spacer()
+                        Image(systemName: "person.fill.badge.plus")
+                        Text("Add players before setting the order!")
+                        Spacer()
+                    }
                 }
-                .font(.callout)
-                .foregroundStyle(Color(UIColor.secondaryLabel))
-                .opacity(isShuffle ? 0 : 1)
-            
             }
             .padding(.top, 10)
             .padding(.horizontal, 20)

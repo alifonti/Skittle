@@ -54,5 +54,6 @@ struct NewRoundSheet: View {
             }
             DetailEditView(round: $newRound, selectedTab: $selectedTab)
         }
+        .interactiveDismissDisabled()
     }
 }

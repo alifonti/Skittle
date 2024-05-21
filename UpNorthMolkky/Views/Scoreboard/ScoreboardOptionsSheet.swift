@@ -58,7 +58,7 @@ struct ScoreboardOptionsView: View {
                 }
                 Divider()
                 NavigationLink(destination: CurrentGameRulesView(round: round)) {
-                    Label("View Game Settings", systemImage: "gear")
+                    Label("View Customized Rules", systemImage: "gearshape")
                         .padding()
                 }
                 Divider()
