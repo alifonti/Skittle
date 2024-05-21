@@ -18,6 +18,7 @@ struct ScoreboardResultsView: View {
     @State private var confettiAnimationCounter = 0
     @State var selectedTab: ScoreboardResultsView.Tab = ScoreboardResultsView.Tab.leaderboard
     
+    let backgroundColor: Color = Color(named: "s.accent1.background")
     
     let tabShape = UnevenRoundedRectangle(topLeadingRadius: 20, bottomLeadingRadius: 0, bottomTrailingRadius: 0, topTrailingRadius: 20)
     
@@ -76,9 +77,9 @@ struct ScoreboardResultsView: View {
                         Spacer()
                         HStack {
                             Button(action: onNewGameClick) {
-                                Label("Play again", systemImage: "play")
+                                Label("Play again", systemImage: "arrow.triangle.2.circlepath")
                                     .font(.headline)
-                                    .foregroundColor(.white)
+                                    .foregroundColor(Color(named: "s.accent.foreground"))
                                     .padding()
                                     .background(RoundedRectangle(cornerRadius: 10).fill(Color(named: "s.accent2.main")))
                             }
@@ -90,9 +91,9 @@ struct ScoreboardResultsView: View {
                                         round.continueUntilAllFinished.toggle()
                                     }
                                 }) {
-                                    Label("Continue playing", systemImage: "chevron.forward")
+                                    Label("Continue playing", systemImage: "play")
                                         .font(.headline)
-                                        .foregroundColor(.white)
+                                        .foregroundColor(Color(named: "s.accent.foreground"))
                                         .padding()
                                         .background(RoundedRectangle(cornerRadius: 10).fill(Color(named: "s.accent2.main")))
                                 }
@@ -120,7 +121,7 @@ struct ScoreboardResultsView: View {
                             }
                             .clipShape(Rectangle())
                         }
-                        .background(tabShape.fill(Color(named: "s.accent1.main")))
+                        .background(tabShape.fill(backgroundColor))
                         TabView(selection: $selectedTab) {
                             ResultsLeaderboardView(round: round, sortedContenders: sortedContenders)
                                 .tag(ScoreboardResultsView.Tab.leaderboard)
@@ -140,7 +141,7 @@ struct ScoreboardResultsView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .ignoresSafeArea(.all, edges: .bottom)
-            .background(Color(named: "s.accent1.main"))
+            .background(backgroundColor)
             EmptyView()
                 .confettiCannon(counter: $confettiAnimationCounter, num: 50, rainHeight: 1500, radius: 600)
                 .onAppear {

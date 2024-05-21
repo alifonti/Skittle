@@ -116,7 +116,12 @@ struct PlayerScoreView: View {
             .padding()
             .padding([.top, .bottom], -2)
         }
-        .background(currentPlayer ? accentColor.opacity(0.05) : Color(UIColor.systemBackground))
+        .background(
+            Rectangle().fill(Color(UIColor.secondarySystemBackground))
+            .overlay {
+                Rectangle().fill(currentPlayer ? accentColor.opacity(0.1) : .clear)
+            }
+        )
         .onChange(of: playerScore.totalScore) {
             scoreAnimationDifference = abs(playerScore.totalScore - scoreAnimationCopy)
             scoreAnimationCopy = playerScore.totalScore

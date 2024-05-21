@@ -122,7 +122,7 @@ struct RoundInProgressCard: View {
                         .frame(maxWidth: .infinity)
                 }
                 .background(Color(named: "s.accent1.main"))
-                .foregroundColor(Color(UIColor.white))
+                .foregroundColor(Color(named: "s.accent.foreground"))
                 .font(.headline)
                 .fontWeight(.semibold)
                 .cornerRadius(10)
@@ -169,7 +169,7 @@ struct MainPlayCard: View {
             }
             GenericPlayTabCard(title: "Ready to play?", imageName: "play.circle",
                                buttonLabel: "Start a new round", buttonColor: Color(named: "s.accent1.main"),
-                               buttonLabelColor: .white, onClick: newGameOnClick)
+                               buttonLabelColor: Color(named: "s.accent.foreground"), onClick: newGameOnClick)
                 .opacity(!showInProgress ? 1 : 0)
         }
     }
