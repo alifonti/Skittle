@@ -34,7 +34,7 @@ struct CurrentGameRulesView: View {
                     }
                     if (round.resetInsteadOfEliminate) {
                         LabeledContent("Reset instead of elimination") {
-                            Text(String(round.resetInsteadOfEliminate))
+                            Text(getString(round.resetInsteadOfEliminate))
                         }
                     }
                 }
