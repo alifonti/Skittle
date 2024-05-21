@@ -12,7 +12,7 @@ struct PlayerItemView: View {
     var player: Player
     var selected: Bool
     
-    let selectedColor: Color = Color(hue: 0.6, saturation: 0.25, brightness: 0.95)
+    let selectedColor: Color = Color(named: "s.accent2.main")
     let unselectedColor: Color = Color(UIColor.secondarySystemFill)
     
     var body: some View {
@@ -25,6 +25,7 @@ struct PlayerItemView: View {
                 .opacity(selected ? 1 : 0)
         }
         .background(selected ? selectedColor : unselectedColor)
+        .foregroundStyle(selected ? Color(named: "s.accent.foreground") : Color(UIColor.label))
         .cornerRadius(5)
     }
 }

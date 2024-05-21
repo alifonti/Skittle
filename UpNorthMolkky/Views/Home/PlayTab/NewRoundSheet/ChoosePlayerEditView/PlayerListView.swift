@@ -65,7 +65,7 @@ struct PlayerListView: View {
                     .padding()
                     Spacer()
                 }
-                .foregroundStyle(.white)
+                .foregroundStyle(Color(named: "s.accent.foreground"))
                 .background(Color(named: "s.accent1.main"))
                 .cornerRadius(5)
                 .onTapGesture {
